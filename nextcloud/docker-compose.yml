@@ -1,0 +1,68 @@
+services:
+  # Note: MariaDB is external service. You can find more information about the configuration here:
+  # https://hub.docker.com/_/mariadb
+  db:
+    # Note: Check the recommend version here: https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html#server
+    image: mariadb:lts
+    restart: unless-stopped
+    command: --transaction-isolation=READ-COMMITTED
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=SrcT86C3CaB3rn
+      - MYSQL_PASSWORD=8ad3P0VL5XIXFL
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+
+  # Note: Redis is an external service. You can find more information about the configuration here:
+  # https://hub.docker.com/_/redis
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+
+  nextcloud:
+    image: nextcloud
+    restart: unless-stopped
+    container_name: nextcloud
+    user: 1000:1000
+    networks:
+      - nginx-proxy
+      - default
+    depends_on:
+      - redis
+      - db
+      - collabora
+    volumes:
+      - nextcloud-data:/var/www/html
+    environment:
+      - MYSQL_PASSWORD=8ad3P0VL5XIXFL
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=db
+      - TRUSTED_PROXIES=192.168.0.100
+      - OVERWRITEHOST=cloud.74services.net 
+      - OVERWRITEPROTOCOL=https
+      - OVERWRITECLIURL=https://cloud.74services.net
+    labels:
+      - homepage.group=Media
+      - homepage.name=Nextcloud
+      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/nextcloud.svg
+      - homepage.href=https://cloud.74services.net
+      - homepage.description=Cloud File, Calendar and Notes Management
+    
+  collabora:
+    image: collabora/code
+    container_name: collabora
+    networks:
+      - nginx-proxy
+    environment:
+      - aliasgroup1=https://cloud.74services.net
+      - "extra_params=--o:ssl.enable=false --o:ssl.termination=true"
+
+volumes:
+  nextcloud-data:
+  db:
+
+networks:
+  nginx-proxy:
+    external: true

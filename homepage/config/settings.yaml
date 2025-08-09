@@ -1,0 +1,18 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/settings/
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey
+
+background: images/cyberpunk.jpg
+cardBlur: md
+theme: dark
+bookmarksStyle: icons
+
+layout:
+  Game Servers:
+    style: row
+    Minecraft:
+      style: column

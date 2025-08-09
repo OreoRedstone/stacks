@@ -1,0 +1,3 @@
+**.env
+**.log
+nginx-reverse-proxy/creds.ini

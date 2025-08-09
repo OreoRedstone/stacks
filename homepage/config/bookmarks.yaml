@@ -1,0 +1,20 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/bookmarks
+
+- Bookmarks:
+    - Github:
+        - icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/github-light.svg
+          href: https://github.com/
+
+    - Reddit:
+        - icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/reddit.svg
+          href: https://reddit.com/
+
+    - YouTube:
+        - icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/youtube.svg
+          href: https://youtube.com/
+
+    - Modrinth:
+        - icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/modrinth.svg
+          href: https://modrinth.com/
