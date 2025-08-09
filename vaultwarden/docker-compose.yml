@@ -1,0 +1,24 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    environment:
+      DOMAIN: "https://vw.74services.net"
+    volumes:
+      - data:/data/
+    networks:
+      - nginx-proxy
+    labels:
+      - homepage.group=Security
+      - homepage.name=Vaultwarden
+      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/vaultwarden-light.svg
+      - homepage.href=https://vw.74services.net/
+      - homepage.description=Data Vault
+
+volumes:
+  data:
+
+networks:
+  nginx-proxy:
+    external: true

@@ -1,0 +1,47 @@
+services:
+  router:
+    image: ${MC_ROUTER_IMAGE:-itzg/mc-router}
+    container_name: mc-router
+    # environment:
+    #   MAPPING: |
+    #     lspace-atm8.play.74services.net=lspace-atm8:25565
+    #     vanilla.play.74services.net=vanilla:25565
+    ports:
+      - 25565:25565
+  lspace-atm8:
+    image: itzg/minecraft-server:java17
+    environment:
+      EULA: "TRUE"
+      TYPE: AUTO_CURSEFORGE
+      CF_API_KEY: '$$2a$$10$$MSR7H/MJu9vzSD0wZYMKoOkhkRdpsXBEZfgeVYRrf76hP8RrCsDcK'
+      CF_SLUG: all-the-mods-8
+      CF_FILENAME_MATCHER: 1.1.0
+      INIT_MEMORY: 1G
+      MAX_MEMORY: 8G
+    volumes:
+      - lspace-atm8:/data
+    labels:
+      - mc-router.host=lspace-atm8.play.74services.net
+      - homepage.group=Minecraft
+      - homepage.name=ATM8 1.1.0
+      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/minecraft.svg
+      - homepage.href=https://atm8.play.74services.net/
+      - homepage.description=All the Mods 8 1.1.0 Server
+  # vanilla:
+  #   image: itzg/minecraft-server:java21
+  #   environment:
+  #     EULA: "TRUE"
+  #     TYPE: PAPER
+  #     VERSION: 1.21.4
+  #   volumes:
+  #     - ./vanilla/data:/data
+  #   labels:
+  #     - mc-router.host=vanilla.play.74services.net
+  #     - homepage.group=Minecraft
+  #     - homepage.name=Vanilla 1.21.4
+  #     - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/minecraft.svg
+  #     - homepage.href=https://vanilla.play.74services.net/
+  #     - homepage.description=Vanilla 1.21.4 Server
+
+volumes:
+  lspace-atm8:

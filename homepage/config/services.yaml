@@ -1,0 +1,47 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Management:
+    - Proxmox:
+        href: http://192.168.0.48:8006
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/proxmox.svg
+        description: Virtualization Hypervisor
+        widget:
+            type: proxmox
+            url: http://192.168.0.48
+            username: api@pam!homepage
+            password: 3845f2bc-459f-4d8a-8c2c-2d4ca370c53a
+            # node: pve-1 # optional
+    # - Monitoring:
+    #     href: http://192.168.0.100:3000
+    #     icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/grafana.svg
+    #     description: Monitoring with Grafana
+
+# - Media:
+    # - Jellyfin:
+    #     href: https://stream.74services.net
+    #     icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyfin.svg
+    #     description: Media Streaming
+    #     server: my-docker
+    #     container: jellyfin
+    # - Immich:
+    #     href: https://immich.74services.net
+    #     icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/immich.svg
+    #     description: Photos Backup and Viewing
+    #     server: my-docker
+    #     container: immich_server
+    # - Tdarr:
+    #     href: http://192.168.0.100:8265
+    #     icon: https://cdn.jsdelivr.net/gh/selfhst/icons/png/tdarr.png
+    #     description: Video Transcoding
+    #     server: my-docker
+    #     container: tdarr
+
+# - Security:
+#     - Vaultwarden:
+#         href: https://vw.74services.net/
+#         icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/vaultwarden-light.svg
+#         description: Data Vault
+#         server: my-docker
+#         container: vaultwarden

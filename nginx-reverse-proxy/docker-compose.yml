@@ -1,0 +1,22 @@
+services:
+  nginx:
+    container_name: nginx-reverse-proxy
+    image: nginx
+    restart: always
+    networks:
+      - nginx-proxy
+    ports:
+      - 443:443
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      # - ./logs:/var/log/nginx
+    labels:
+      - homepage.group=Security
+      - homepage.name=Nginx
+      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/nginx.svg
+      - homepage.description=Nginx Reverse Proxy
+
+networks:
+  nginx-proxy:
+    name: nginx-proxy

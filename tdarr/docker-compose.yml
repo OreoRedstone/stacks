@@ -1,0 +1,37 @@
+services:
+  tdarr:
+    container_name: tdarr
+    image: ghcr.io/haveagitgat/tdarr:latest
+    restart: unless-stopped
+    ports:
+      - 8265:8265 # webUI port
+      - 8266:8266 # server port
+    environment:
+      - TZ=Europe/London
+      - PUID=0
+      - PGID=0
+      - UMASK_SET=002
+      - serverIP=0.0.0.0
+      - serverPort=8266
+      - webUIPort=8265
+      - internalNode=true
+      - inContainer=true
+      - ffmpegVersion=7
+      - nodeName=MyInternalNode
+    volumes:
+      - server:/app/server
+      - ./configs:/app/configs
+      # - ./logs:/app/logs
+      - /mnt/nas/media:/media
+      # - ./temp:/temp
+    labels:
+      - homepage.group=Media
+      - homepage.name=Tdarr
+      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/png/tdarr.png
+      - homepage.href=http://192.168.0.100:8265
+      - homepage.description=Video Transcoding
+      - homepage.widgets[0].type=tdarr
+      - homepage.widgets[0].url=http://192.168.0.100:8265/
+
+volumes:
+  server:

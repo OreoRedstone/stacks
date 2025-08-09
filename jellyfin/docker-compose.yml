@@ -1,0 +1,58 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    user: 0:0
+    networks:
+      - nginx-proxy
+    volumes:
+      - jellyfin-config:/config
+      - jellyfin-cache:/cache
+      - type: bind
+        source: /mnt/nas/media/films
+        target: /media/films
+      - type: bind
+        source: /mnt/nas/media/shows
+        target: /media/shows
+      - type: bind
+        source: /mnt/nas/media/Music
+        target: /media/music
+    restart: 'unless-stopped'
+    # Optional - alternative address used for autodiscovery
+    # environment:
+    #   - JELLYFIN_PublishedServerUrl=https://stream.74services.net
+    # Optional - may be necessary for docker healthcheck to pass if running in host network mode
+    # extra_hosts:
+    #   - 'host.docker.internal:host-gateway'
+    labels:
+      - homepage.group=Media
+      - homepage.name=Jellyfin
+      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyfin.svg
+      - homepage.href=https://stream.74services.net
+      - homepage.description=Media Streaming
+  wizarr:
+    image: ghcr.io/wizarrrr/wizarr
+    networks:
+      - nginx-proxy
+    volumes:
+      - wizarr-db:/data/database
+    environment:
+      - PUID=1000 #Set UID
+      - PGID=1000 #Set GID
+      - DISABLE_BUILTIN_AUTH=false #Set to true ONLY if you are using another auth provider (Authelia, Authentik, etc)
+      - TZ=Europe/London #Set your timezone here
+    labels:
+      - homepage.group=Media
+      - homepage.name=Wizarr
+      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wizarr.svg
+      - homepage.href=https://wizarr.74services.net
+      - homepage.description=Jellyfin Setup Links
+
+volumes:
+  jellyfin-cache:
+  jellyfin-config:
+  wizarr-db:
+
+networks:
+  nginx-proxy:
+    external: true
