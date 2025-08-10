@@ -1,6 +1,6 @@
 services:
   grafana:
-    image: grafana/grafana-enterprise
+    image: grafana/grafana-enterprise:latest
     container_name: grafana
     restart: always
     user: 0:0 # Temp fix for permissions in the volume
@@ -16,7 +16,7 @@ services:
       - homepage.description=Data Visualisation
 
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:latest
     container_name: prometheus
     restart: always
     volumes:
