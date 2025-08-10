@@ -3,6 +3,7 @@
   "webUIPort": "8265",
   "serverIP": "0.0.0.0",
   "serverBindIP": false,
+  "serverDualStack": false,
   "handbrakePath": "",
   "ffmpegPath": "",
   "logLevel": "INFO",
@@ -12,5 +13,6 @@
   "cronPluginUpdate": "",
   "auth": false,
   "authSecretKey": "tsec_Ez89U6cI16oHU5LgHNjLhFpx23ygH",
-  "maxLogSizeMB": 10
+  "maxLogSizeMB": 10,
+  "seededApiKey": ""
 }

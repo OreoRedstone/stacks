@@ -1,6 +1,6 @@
 services:
   jellyfin:
-    image: jellyfin/jellyfin
+    image: jellyfin/jellyfin:latest
     container_name: jellyfin
     user: 0:0
     networks:
@@ -31,7 +31,7 @@ services:
       - homepage.href=https://stream.74services.net
       - homepage.description=Media Streaming
   wizarr:
-    image: ghcr.io/wizarrrr/wizarr
+    image: ghcr.io/wizarrrr/wizarr:latest
     networks:
       - nginx-proxy
     volumes:

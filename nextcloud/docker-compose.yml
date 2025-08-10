@@ -21,7 +21,7 @@ services:
     restart: unless-stopped
 
   nextcloud:
-    image: nextcloud
+    image: nextcloud:stable-apache
     restart: unless-stopped
     container_name: nextcloud
     user: 1000:1000
@@ -51,7 +51,7 @@ services:
       - homepage.description=Cloud File, Calendar and Notes Management
     
   collabora:
-    image: collabora/code
+    image: collabora/code:latest
     container_name: collabora
     networks:
       - nginx-proxy

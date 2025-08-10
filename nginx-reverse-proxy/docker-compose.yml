@@ -1,7 +1,7 @@
 services:
   nginx:
     container_name: nginx-reverse-proxy
-    image: nginx
+    image: nginx:stable
     restart: always
     networks:
       - nginx-proxy

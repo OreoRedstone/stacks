@@ -1,6 +1,6 @@
 services:
   router:
-    image: ${MC_ROUTER_IMAGE:-itzg/mc-router}
+    image: itzg/mc-router:latest
     container_name: mc-router
     # environment:
     #   MAPPING: |
