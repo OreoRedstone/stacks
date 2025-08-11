@@ -13,7 +13,7 @@ services:
     environment:
       EULA: "TRUE"
       TYPE: AUTO_CURSEFORGE
-      CF_API_KEY: '$$2a$$10$$MSR7H/MJu9vzSD0wZYMKoOkhkRdpsXBEZfgeVYRrf76hP8RrCsDcK'
+      CF_API_KEY: ${CF_API_KEY}
       CF_SLUG: all-the-mods-8
       CF_FILENAME_MATCHER: 1.1.0
       INIT_MEMORY: 1G

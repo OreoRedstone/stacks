@@ -9,3 +9,8 @@ services:
       - WATCHTOWER_MONITOR_ONLY=true
       - WATCHTOWER_NOTIFICATION_SKIP_TITLE=true
       - WATCHTOWER_NOTIFICATION_URL=ntfy://oreo:546827913@ntfy.74services.net/watchtower
+    labels:
+      - homepage.group=Monitoring
+      - homepage.name=Watchtower
+      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/watchtower.svg
+      - homepage.description=Docker Image Version Management
