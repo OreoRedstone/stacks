@@ -2,12 +2,15 @@ services:
   router:
     image: itzg/mc-router:latest
     container_name: mc-router
+    command: "-debug -in-docker"
     # environment:
     #   MAPPING: |
     #     lspace-atm8.play.74services.net=lspace-atm8:25565
     #     vanilla.play.74services.net=vanilla:25565
     ports:
       - 25565:25565
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
   lspace-atm8:
     image: itzg/minecraft-server:java17
     environment:
