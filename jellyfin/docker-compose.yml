@@ -23,7 +23,7 @@ services:
     #   - 'host.docker.internal:host-gateway'
     labels:
       - traefik.enable=true
-      - traefik.http.routers.jellyfin.rule=Host('stream.74services.net')
+      - traefik.http.routers.jellyfin.rule=Host(`stream.74services.net`)
       - homepage.group=Media
       - homepage.name=Jellyfin
       - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyfin.svg

@@ -18,7 +18,7 @@ services:
     restart: unless-stopped
     labels:
       - traefik.enable=true
-      - traefik.http.routers.ntfy.rule=Host('ntfy.74services.net')
+      - traefik.http.routers.ntfy.rule=Host(`ntfy.74services.net`)
       - homepage.group=Monitoring
       - homepage.name=Ntfy
       - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/png/ntfy.png
