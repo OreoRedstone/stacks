@@ -22,9 +22,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
-    networks:
-      - nginx-proxy
-      - default
     depends_on:
       - redis
       - database
@@ -32,6 +29,8 @@ services:
     healthcheck:
       disable: false
     labels:
+      - traefik.enable=true
+      - traefik.http.routers.immich.rule=Host('photos.74services.net')
       - homepage.group=Media
       - homepage.name=Immich
       - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/immich.svg
@@ -80,7 +79,3 @@ services:
 volumes:
   model-cache:
   pg-data:
-
-networks:
-  nginx-proxy:
-    external: true

@@ -1,0 +1,16 @@
+services:
+  app:
+    image: traefik:v3.5@sha256:4e7175cfe19be83c6b928cae49dde2f2788fb307189a4dc9550b67acf30c11a5
+    container_name: traefik
+    restart: unless-stopeed
+    command:
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - nginx
+
+networks:
+  nginx:
+    external: true
