@@ -6,6 +6,8 @@ services:
       DOMAIN: "https://vw.74services.net"
     volumes:
       - data:/data/
+    networks:
+      - traefik
     labels:
       - traefik.enable=true
       - traefik.http.routers.vaultwarden.rule=Host(`vault.74services.net`)
@@ -17,3 +19,7 @@ services:
 
 volumes:
   data:
+
+networks:
+  traefik:
+    external: true

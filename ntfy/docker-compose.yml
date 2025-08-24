@@ -6,6 +6,8 @@ services:
     environment:
       - TZ=UTC    # optional: set desired timezone
     user: 1000:1000 # optional: replace with your own user/group or uid/gid
+    networks:
+      - traefik
     volumes:
       - cache:/var/cache/ntfy
       - ./server.yml:/etc/ntfy/server.yml
@@ -27,3 +29,7 @@ services:
 
 volumes:
   cache:
+
+networks:
+  traefik:
+    external: true

@@ -14,6 +14,8 @@ services:
       - type: bind
         source: /mnt/nas/media/Music
         target: /media/music
+    networks:
+      - traefik
     restart: 'unless-stopped'
     # Optional - alternative address used for autodiscovery
     # environment:
@@ -32,7 +34,7 @@ services:
   wizarr:
     image: ghcr.io/wizarrrr/wizarr:2025.8.3@sha256:ba051d632ae12eb1d6d61bfa02bf7ae743c7fc1ec56910c302dbee0f6e705afe
     networks:
-      - nginx-proxy
+      - traefik
     volumes:
       - wizarr-db:/data/database
     environment:
@@ -41,6 +43,8 @@ services:
       - DISABLE_BUILTIN_AUTH=false #Set to true ONLY if you are using another auth provider (Authelia, Authentik, etc)
       - TZ=Europe/London #Set your timezone here
     labels:
+      - traefik.enable=true
+      - traefik.http.routers.wizarr.rule=Host(`wizarr.74services.net`)
       - homepage.group=Media
       - homepage.name=Wizarr
       - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wizarr.svg
@@ -51,3 +55,7 @@ volumes:
   jellyfin-cache:
   jellyfin-config:
   wizarr-db:
+
+networks:
+  traefik:
+    external: true
