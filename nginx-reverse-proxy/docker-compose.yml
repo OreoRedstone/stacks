@@ -1,7 +1,7 @@
 services:
   nginx:
     container_name: nginx-reverse-proxy
-    image: nginx:stable@sha256:24ccf9a6192d2c6c5c4a6e9d2fdfa2a8e382b15f8dd7d0e05a1579f6a46f7776
+    image: nginx:1.29-alpine-perl@sha256:b04b512a3daf265299d237dcef02909b4f3fa998800030d1beef22e29d36ee97
     restart: always
     networks:
       - nginx-proxy

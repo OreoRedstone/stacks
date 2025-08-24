@@ -1,6 +1,6 @@
 services:
   jellyfin:
-    image: jellyfin/jellyfin:latest@sha256:7ae36aab93ef9b6aaff02b37f8bb23df84bb2d7a3f6054ec8fc466072a648ce2
+    image: jellyfin/jellyfin:10.10@sha256:7ae36aab93ef9b6aaff02b37f8bb23df84bb2d7a3f6054ec8fc466072a648ce2
     container_name: jellyfin
     user: 0:0
     networks:
@@ -31,7 +31,7 @@ services:
       - homepage.href=https://stream.74services.net
       - homepage.description=Media Streaming
   wizarr:
-    image: ghcr.io/wizarrrr/wizarr:latest@sha256:ba051d632ae12eb1d6d61bfa02bf7ae743c7fc1ec56910c302dbee0f6e705afe
+    image: ghcr.io/wizarrrr/wizarr:2025.8.3@sha256:ba051d632ae12eb1d6d61bfa02bf7ae743c7fc1ec56910c302dbee0f6e705afe
     networks:
       - nginx-proxy
     volumes:
