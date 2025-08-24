@@ -41,7 +41,7 @@ services:
       - OVERWRITECLIURL=https://cloud.74services.net
     labels:
       - traefik.enable=true
-      - traefik.http.routers.nextcloud.rule=Host('cloud.74services.net')
+      - traefik.http.routers.nextcloud.rule=Host(`cloud.74services.net`)
       - homepage.group=Media
       - homepage.name=Nextcloud
       - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/nextcloud.svg
@@ -57,7 +57,7 @@ services:
       - "extra_params=--o:ssl.enable=false --o:ssl.termination=true"
     labels:
       - traefik.enable=true
-      - traefik.http.routers.collabora.rule=Host('collabora.74services.net')
+      - traefik.http.routers.collabora.rule=Host(`collabora.74services.net`)
 
 volumes:
   nextcloud-data:
