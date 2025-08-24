@@ -32,6 +32,7 @@ services:
       - nextcloud-data:/var/www/html
     networks:
       - traefik
+      - default
     environment:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=nextcloud
@@ -54,6 +55,7 @@ services:
     image: collabora/code:25.04.4.3.1@sha256:6a21d715cfcbf89e81ebfbceacbdc7822b5f4c03a3cd952a5c4b5563e65bdf85
     networks:
       - traefik
+      - default
     environment:
       - aliasgroup1=https://cloud.74services.net
       - "extra_params=--o:ssl.enable=false --o:ssl.termination=true"
