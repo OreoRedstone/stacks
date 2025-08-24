@@ -1,6 +1,6 @@
 services:
   router:
-    image: itzg/mc-router:latest
+    image: itzg/mc-router:latest@sha256:2c0e34af3ee92a68c349cb4d12a992dcd09032b3aa2f858f5b937401db2d64df
     container_name: mc-router
     command: "-debug -in-docker"
     # environment:
@@ -12,7 +12,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
   lspace-atm8:
-    image: itzg/minecraft-server:java17
+    image: itzg/minecraft-server:java17@sha256:45d766d571783847bcae089fe8c5a6001d874f9e3f9907599b69f234806f1aa1
     environment:
       EULA: "TRUE"
       TYPE: AUTO_CURSEFORGE
