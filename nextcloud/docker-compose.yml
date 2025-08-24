@@ -30,6 +30,8 @@ services:
       - collabora
     volumes:
       - nextcloud-data:/var/www/html
+    networks:
+      - traefik
     environment:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=nextcloud
@@ -51,7 +53,7 @@ services:
   collabora:
     image: collabora/code:25.04.4.3.1@sha256:6a21d715cfcbf89e81ebfbceacbdc7822b5f4c03a3cd952a5c4b5563e65bdf85
     networks:
-      - nginx-proxy
+      - traefik
     environment:
       - aliasgroup1=https://cloud.74services.net
       - "extra_params=--o:ssl.enable=false --o:ssl.termination=true"
@@ -62,3 +64,7 @@ services:
 volumes:
   nextcloud-data:
   db:
+
+networks:
+  traefik:
+    external: true
