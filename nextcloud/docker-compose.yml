@@ -37,7 +37,7 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
-      - TRUSTED_PROXIES=192.168.0.100
+      - TRUSTED_PROXIES=traefik
       - OVERWRITEHOST=cloud.74services.net 
       - OVERWRITEPROTOCOL=https
       - OVERWRITECLIURL=https://cloud.74services.net
