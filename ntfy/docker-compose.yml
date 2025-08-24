@@ -1,7 +1,6 @@
 services:
   ntfy:
     image: binwiederhier/ntfy:v2.14@sha256:5a051798d14138c3ecb12c038652558ab6a077e1aceeb867c151cbf5fa8451ef
-    container_name: ntfy
     command:
       - serve
     environment:
@@ -10,8 +9,6 @@ services:
     volumes:
       - cache:/var/cache/ntfy
       - ./server.yml:/etc/ntfy/server.yml
-    networks:
-      - nginx-proxy
     healthcheck: # optional: remember to adapt the host:port to your environment
         test: ["CMD-SHELL", "wget -q --tries=1 http://localhost:80/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1"]
         interval: 60s
@@ -20,6 +17,8 @@ services:
         start_period: 40s
     restart: unless-stopped
     labels:
+      - traefik.enable=true
+      - traefik.http.routers.ntfy.rule=Host('ntfy.74services.net')
       - homepage.group=Monitoring
       - homepage.name=Ntfy
       - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/png/ntfy.png
@@ -28,7 +27,3 @@ services:
 
 volumes:
   cache:
-
-networks:
-  nginx-proxy:
-    external: true

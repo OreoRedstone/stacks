@@ -1,10 +1,7 @@
 services:
-  jellyfin:
+  app:
     image: jellyfin/jellyfin:10.10@sha256:7ae36aab93ef9b6aaff02b37f8bb23df84bb2d7a3f6054ec8fc466072a648ce2
-    container_name: jellyfin
     user: 0:0
-    networks:
-      - nginx-proxy
     volumes:
       - jellyfin-config:/config
       - jellyfin-cache:/cache
@@ -25,6 +22,8 @@ services:
     # extra_hosts:
     #   - 'host.docker.internal:host-gateway'
     labels:
+      - traefik.enable=true
+      - traefik.http.routers.jellyfin.rule=Host('stream.74services.net')
       - homepage.group=Media
       - homepage.name=Jellyfin
       - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyfin.svg
@@ -52,7 +51,3 @@ volumes:
   jellyfin-cache:
   jellyfin-config:
   wizarr-db:
-
-networks:
-  nginx-proxy:
-    external: true

@@ -20,14 +20,10 @@ services:
     image: redis:8.2-alpine@sha256:987c376c727652f99625c7d205a1cba3cb2c53b92b0b62aade2bd48ee1593232
     restart: unless-stopped
 
-  nextcloud:
+  app:
     image: nextcloud:31.0-apache@sha256:72abe188e4045026f880e124de5c281c5bbea555b468f68344b3fa97a4dcaa58
     restart: unless-stopped
-    container_name: nextcloud
     user: 1000:1000
-    networks:
-      - nginx-proxy
-      - default
     depends_on:
       - redis
       - db
@@ -44,6 +40,8 @@ services:
       - OVERWRITEPROTOCOL=https
       - OVERWRITECLIURL=https://cloud.74services.net
     labels:
+      - traefik.enable=true
+      - traefik.http.routers.nextcloud.rule=Host('cloud.74services.net')
       - homepage.group=Media
       - homepage.name=Nextcloud
       - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/nextcloud.svg
@@ -52,17 +50,15 @@ services:
     
   collabora:
     image: collabora/code:25.04.4.3.1@sha256:6a21d715cfcbf89e81ebfbceacbdc7822b5f4c03a3cd952a5c4b5563e65bdf85
-    container_name: collabora
     networks:
       - nginx-proxy
     environment:
       - aliasgroup1=https://cloud.74services.net
       - "extra_params=--o:ssl.enable=false --o:ssl.termination=true"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.collabora.rule=Host('collabora.74services.net')
 
 volumes:
   nextcloud-data:
   db:
-
-networks:
-  nginx-proxy:
-    external: true

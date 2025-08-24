@@ -1,7 +1,6 @@
 services:
-  homepage:
+  app:
     image: ghcr.io/gethomepage/homepage:v1.4@sha256:a1a578fdcfc72754985c3b3b26e4f398a6a782e354d10cf2b156ecbf06d252e9
-    container_name: homepage
     ports:
       - 80:3000
     volumes:

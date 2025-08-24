@@ -1,7 +1,6 @@
 services:
   grafana:
     image: grafana/grafana-enterprise:12.1@sha256:1d6b24fd4121d97bde0dea8aa19a357306a48dbfb7f61303649c4b6db5d327b7
-    container_name: grafana
     restart: always
     user: 0:0 # Temp fix for permissions in the volume
     ports:
@@ -17,7 +16,6 @@ services:
 
   prometheus:
     image: prom/prometheus:v3.5.0@sha256:63805ebb8d2b3920190daf1cb14a60871b16fd38bed42b857a3182bc621f4996
-    container_name: prometheus
     restart: always
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -29,7 +27,6 @@ services:
 
   cadvisor:
     image: ghcr.io/google/cadvisor:v0.53.0@sha256:c3770bd6fc6c6a9cb2b47143e6b3cc3fdd9d20a8453dffbb7e09a145e7e0c4e4
-    container_name: cadvisor
     restart: always
     volumes:
     - /:/rootfs:ro
@@ -44,7 +41,6 @@ services:
 
   influxdb:
     image: influxdb:2.7@sha256:59fe0181a3b161d36e9ce53001d7e1678762013ab0a284969ec2ebc517b529cc
-    container_name: influxdb
     restart: always
     ports:
       - 8086:8086
@@ -61,7 +57,7 @@ services:
       - homepage.group=Monitoring
       - homepage.name=InfluxDB
       - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/influxdb.svg
-      - homepage.href=http://192.168.0.100:8096
+      - homepage.href=http://192.168.0.100:8086
       - homepage.description=Proxmox Monitoring
 
 volumes:
