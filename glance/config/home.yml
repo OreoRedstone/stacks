@@ -1,0 +1,41 @@
+- name: Home
+  # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+  # hide-desktop-navigation: true
+  columns:
+    - size: small
+      widgets:
+        - type: calendar
+          first-day-of-week: monday
+
+        - type: monitor
+          cache: 1m
+          title: Services
+          sites:
+            - title: Jellyfin
+              url: https://stream.74services.net
+              icon: sh:jellyfin
+            - title: Nextcloud
+              url: https://cloud.74services.net
+              icon: sh:nextcloud
+            - title: Immich
+              url: https://photos.74services.net
+              icon: sh:immich
+            - title: Ntfy
+              url: https://ntfy.74services.net
+              icon: sh:ntfy
+            - title: Vaultwarden
+              url: https://vault.74services.net
+              icon: sh:vaultwarden
+
+    - size: full
+      widgets:
+        - type: docker-containers
+
+    - size: small
+      widgets:
+        - type: repository
+          repository: OreoRedstone/stacks
+          token: ${GH_TOKEN}
+          pull-requests-limit: 5
+          issues-limit: 3
+          commits-limit: 3

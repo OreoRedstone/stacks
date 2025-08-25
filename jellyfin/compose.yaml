@@ -24,13 +24,14 @@ services:
     # extra_hosts:
     #   - 'host.docker.internal:host-gateway'
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.jellyfin.rule=Host(`stream.74services.net`)
-      - homepage.group=Media
-      - homepage.name=Jellyfin
-      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyfin.svg
-      - homepage.href=https://stream.74services.net
-      - homepage.description=Media Streaming
+      traefik.enable: true
+      traefik.http.routers.jellyfin.rule: Host(`stream.74services.net`)
+      glance.name: Jellyfin
+      glance.id: jellyfin
+      glance.catergory: Media
+      glance.icon: sh:jellyfin
+      glance.url: https://stream.74services.net
+      glance.description: Movies and TV
   wizarr:
     image: ghcr.io/wizarrrr/wizarr:2025.8.3@sha256:ba051d632ae12eb1d6d61bfa02bf7ae743c7fc1ec56910c302dbee0f6e705afe
     networks:
@@ -43,13 +44,14 @@ services:
       - DISABLE_BUILTIN_AUTH=false #Set to true ONLY if you are using another auth provider (Authelia, Authentik, etc)
       - TZ=Europe/London #Set your timezone here
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.wizarr.rule=Host(`wizarr.74services.net`)
-      - homepage.group=Media
-      - homepage.name=Wizarr
-      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wizarr.svg
-      - homepage.href=https://wizarr.74services.net
-      - homepage.description=Jellyfin Setup Links
+      traefik.enable: true
+      traefik.http.routers.wizarr.rule: Host(`wizarr.74services.net`)
+      glance.name: Wizarr
+      glance.id: wizarr
+      glance.catergory: Media
+      glance.icon: sh:wizarr
+      glance.url: https://wizarr.74services.net
+      glance.description: Setup for Jellyfin
 
 volumes:
   jellyfin-cache:

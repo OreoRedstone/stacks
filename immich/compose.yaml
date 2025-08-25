@@ -28,17 +28,18 @@ services:
     depends_on:
       - redis
       - database
-    restart: always
+    restart: unless-stopped
     healthcheck:
       disable: false
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.immich.rule=Host(`photos.74services.net`) || Host(`immich.74services.net`)
-      - homepage.group=Media
-      - homepage.name=Immich
-      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/immich.svg
-      - homepage.href=https://immich.74services.net
-      - homepage.description=Photos Backup and Viewing
+      traefik.enable: true
+      traefik.http.routers.immich.rule: Host(`photos.74services.net`) || Host(`immich.74services.net`)
+      glance.name: Immich
+      glance.id: immich
+      glance.catergory: Media
+      glance.icon: sh:immich
+      glance.url: https://photos.74services.net
+      glance.description: Photos Backup and Viewing
 
   immich-machine-learning:
     container_name: immich_machine_learning
@@ -52,16 +53,22 @@ services:
       - model-cache:/cache
     env_file:
       - .env
-    restart: always
+    restart: unless-stopped
     healthcheck:
       disable: false
+    labels:
+      glance.parent: immich
+      glance.name: Machine Learning
 
   redis:
     container_name: immich_redis
     image: docker.io/valkey/valkey:8-bookworm@sha256:facc1d2c3462975c34e10fccb167bfa92b0e0dbd992fc282c29a61c3243afb11
     healthcheck:
       test: redis-cli ping || exit 1
-    restart: always
+    restart: unless-stopped
+    labels:
+      glance.parent: immich
+      glance.name: Redis
 
   database:
     container_name: immich_postgres
@@ -77,7 +84,10 @@ services:
       # Do not edit the next line. If you want to change the database storage location on your system, edit the value of DB_DATA_LOCATION in the .env file
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
     shm_size: 128mb
-    restart: always
+    restart: unless-stopped
+    labels:
+      glance.parent: immich
+      glance.name: Postgres
 
 volumes:
   model-cache:

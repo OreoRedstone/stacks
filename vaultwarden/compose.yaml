@@ -9,13 +9,14 @@ services:
     networks:
       - traefik
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.vaultwarden.rule=Host(`vault.74services.net`) || Host(`vw.74services.net`)
-      - homepage.group=Security
-      - homepage.name=Vaultwarden
-      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/vaultwarden-light.svg
-      - homepage.href=https://vw.74services.net/
-      - homepage.description=Data Vault
+      traefik.enable: true
+      traefik.http.routers.vaultwarden.rule: Host(`vault.74services.net`) || Host(`vw.74services.net`)
+      glance.name: Vaultwarden
+      glance.id: vaultwarden
+      glance.catergory: Security
+      glance.icon: sh:vaultwarden
+      glance.url: https://vault.74services.net
+      glance.description: Password Management
 
 volumes:
   data:
