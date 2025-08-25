@@ -11,12 +11,12 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
-      glance.name: Minecraft Router
+      glance.name: Minecraft
       glance.id: mc-router
       glance.catergory: Gaming
       glance.icon: sh:minecraft
       glance.url: https://play.74services.net
-      glance.description: Minecraft Router
+      glance.description: Minecraft Server System
   lspace-atm8:
     image: itzg/minecraft-server:2025.8.1-java17-alpine@sha256:6420f14e2ff4611e2d2d5d703b51f4079ad4737cfc993cbf7ba159dd548ddf84
     environment:

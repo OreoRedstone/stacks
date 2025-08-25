@@ -29,7 +29,20 @@
 
     - size: full
       widgets:
-        - type: docker-containers
+        - type: split-column
+          widgets:
+            - type: docker-containers
+              title: Media
+              category: media
+            - type: docker-containers
+              title: Management
+              category: management
+            - type: docker-containers
+              title: Security
+              category: Security
+            - type: docker-containers
+              title: Networking
+              category: networking
 
     - size: small
       widgets:
