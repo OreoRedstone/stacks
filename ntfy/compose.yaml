@@ -23,7 +23,7 @@ services:
       traefik.http.routers.ntfy.rule: Host(`ntfy.74services.net`)
       glance.name: Ntfy
       glance.id: ntfy
-      glance.catergory: Management
+      glance.category: Management
       glance.icon: sh:ntfy
       glance.url: https://ntfy.74services.net
       glance.description: Notification Server

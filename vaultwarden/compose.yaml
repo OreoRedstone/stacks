@@ -13,7 +13,7 @@ services:
       traefik.http.routers.vaultwarden.rule: Host(`vault.74services.net`) || Host(`vw.74services.net`)
       glance.name: Vaultwarden
       glance.id: vaultwarden
-      glance.catergory: Security
+      glance.category: Security
       glance.icon: sh:vaultwarden
       glance.url: https://vault.74services.net
       glance.description: Password Management

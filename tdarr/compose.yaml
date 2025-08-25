@@ -26,7 +26,7 @@ services:
     labels:
       glance.name: Tdarr
       glance.id: tdarr
-      glance.catergory: Media
+      glance.category: Media
       glance.icon: sh:tdarr
       glance.url: http://192.168.0.100:8265
       glance.description: Video Transcoding

@@ -13,7 +13,7 @@ services:
     labels:
       glance.name: Minecraft
       glance.id: mc-router
-      glance.catergory: Gaming
+      glance.category: Gaming
       glance.icon: sh:minecraft
       glance.url: https://play.74services.net
       glance.description: Minecraft Server System

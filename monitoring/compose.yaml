@@ -10,7 +10,7 @@ services:
     labels:
       glance.name: Grafana
       glance.id: grafana
-      glance.catergory: Monitoring
+      glance.category: Monitoring
       glance.icon: sh:grafana
       glance.url: http://192.168.0.100:3000
       glance.description: Data Collection and Visualisation

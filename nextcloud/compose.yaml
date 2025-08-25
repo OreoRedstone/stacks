@@ -53,7 +53,7 @@ services:
       traefik.http.routers.nextcloud.rule: Host(`cloud.74services.net`)
       glance.name: Nextcloud
       glance.id: nextcloud
-      glance.catergory: Media
+      glance.category: Media
       glance.icon: sh:nextcloud
       glance.url: https://cloud.74services.net
       glance.description: Cloud Management

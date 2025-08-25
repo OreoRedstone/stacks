@@ -28,7 +28,7 @@ services:
       traefik.http.routers.jellyfin.rule: Host(`stream.74services.net`)
       glance.name: Jellyfin
       glance.id: jellyfin
-      glance.catergory: Media
+      glance.category: Media
       glance.icon: sh:jellyfin
       glance.url: https://stream.74services.net
       glance.description: Movies and TV
@@ -48,7 +48,7 @@ services:
       traefik.http.routers.wizarr.rule: Host(`wizarr.74services.net`)
       glance.name: Wizarr
       glance.id: wizarr
-      glance.catergory: Media
+      glance.category: Media
       glance.icon: sh:wizarr
       glance.url: https://wizarr.74services.net
       glance.description: Setup for Jellyfin

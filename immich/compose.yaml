@@ -36,7 +36,7 @@ services:
       traefik.http.routers.immich.rule: Host(`photos.74services.net`) || Host(`immich.74services.net`)
       glance.name: Immich
       glance.id: immich
-      glance.catergory: Media
+      glance.category: Media
       glance.icon: sh:immich
       glance.url: https://photos.74services.net
       glance.description: Photos Backup and Viewing
