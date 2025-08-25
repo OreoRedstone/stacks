@@ -33,7 +33,7 @@ services:
       disable: false
     labels:
       - traefik.enable=true
-      - traefik.http.routers.immich.rule=Host(`photos.74services.net`)
+      - traefik.http.routers.immich.rule=Host(`photos.74services.net`,`immich.74services.net`)
       - homepage.group=Media
       - homepage.name=Immich
       - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/immich.svg

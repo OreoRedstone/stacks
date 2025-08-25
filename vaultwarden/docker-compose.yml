@@ -10,7 +10,7 @@ services:
       - traefik
     labels:
       - traefik.enable=true
-      - traefik.http.routers.vaultwarden.rule=Host(`vault.74services.net`)
+      - traefik.http.routers.vaultwarden.rule=Host(`vault.74services.net`,`vw.74services.net`)
       - homepage.group=Security
       - homepage.name=Vaultwarden
       - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/vaultwarden-light.svg
