@@ -16,11 +16,14 @@ layout:
     style: row
     Minecraft:
       style: column
-  Left:
-    header: false
+  Main:
     style: row
-    columns: 1
-    Management:
-      style: row
-    Networking:
-      style: row
+    columns: 4
+    Left:
+      header: false
+      style: column
+      rows: 2
+      Management:
+        style: column
+      Networking:
+        style: column
