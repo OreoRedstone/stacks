@@ -17,13 +17,20 @@ layout:
     Minecraft:
       style: column
   Main:
+    header: false
     style: row
     columns: 4
     Left:
       header: false
       style: column
-      rows: 2
+      # rows: 2
       Management:
         style: column
       Networking:
         style: column
+    Media:
+      style: column
+    Monitoring:
+      style: column
+    Security:
+      style: column
