@@ -7,8 +7,8 @@
         href: http://192.168.0.48:8006
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/proxmox.svg
         description: Virtualization Hypervisor
-        widget:
-            type: proxmox
-            url: http://192.168.0.48:8006
-            username: api@pam!homepage
-            password: 3845f2bc-459f-4d8a-8c2c-2d4ca370c53a
+        # widget:
+        #     type: proxmox
+        #     url: http://192.168.0.48:8006
+        #     username: api@pam!homepage
+        #     password: 3845f2bc-459f-4d8a-8c2c-2d4ca370c53a
