@@ -24,13 +24,12 @@ services:
       - /mnt/nas/media:/media
       # - ./temp:/temp
     labels:
-      - homepage.group=Media
-      - homepage.name=Tdarr
-      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/png/tdarr.png
-      - homepage.href=http://192.168.0.100:8265
-      - homepage.description=Video Transcoding
-      - homepage.widgets[0].type=tdarr
-      - homepage.widgets[0].url=http://192.168.0.100:8265/
+      glance.name: Tdarr
+      glance.id: tdarr
+      glance.catergory: Media
+      glance.icon: sh:tdarr
+      glance.url: http://192.168.0.100:8265
+      glance.description: Video Transcoding
 
 volumes:
   server:

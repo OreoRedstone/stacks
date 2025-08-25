@@ -19,13 +19,14 @@ services:
         start_period: 40s
     restart: unless-stopped
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.ntfy.rule=Host(`ntfy.74services.net`)
-      - homepage.group=Monitoring
-      - homepage.name=Ntfy
-      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/png/ntfy.png
-      - homepage.href=https://ntfy.74services.net
-      - homepage.description=Notification System
+      traefik.enable: true
+      traefik.http.routers.ntfy.rule: Host(`ntfy.74services.net`)
+      glance.name: Ntfy
+      glance.id: ntfy
+      glance.catergory: Management
+      glance.icon: sh:ntfy
+      glance.url: https://ntfy.74services.net
+      glance.description: Notification Server
 
 volumes:
   cache:

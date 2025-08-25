@@ -13,12 +13,18 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
+    labels:
+      glance.parent: nextcloud
+      glance.name: MariaDB
 
   # Note: Redis is an external service. You can find more information about the configuration here:
   # https://hub.docker.com/_/redis
   redis:
     image: redis:8.2-alpine@sha256:987c376c727652f99625c7d205a1cba3cb2c53b92b0b62aade2bd48ee1593232
     restart: unless-stopped
+    labels:
+      glance.parent: nextcloud
+      glance.name: Redis
 
   app:
     image: nextcloud:31.0-apache@sha256:72abe188e4045026f880e124de5c281c5bbea555b468f68344b3fa97a4dcaa58
@@ -43,13 +49,14 @@ services:
       - OVERWRITEPROTOCOL=https
       - OVERWRITECLIURL=https://cloud.74services.net
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.nextcloud.rule=Host(`cloud.74services.net`)
-      - homepage.group=Media
-      - homepage.name=Nextcloud
-      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/nextcloud.svg
-      - homepage.href=https://cloud.74services.net
-      - homepage.description=Cloud File, Calendar and Notes Management
+      traefik.enable: true
+      traefik.http.routers.nextcloud.rule: Host(`cloud.74services.net`)
+      glance.name: Nextcloud
+      glance.id: nextcloud
+      glance.catergory: Media
+      glance.icon: sh:nextcloud
+      glance.url: https://cloud.74services.net
+      glance.description: Cloud Management
     
   collabora:
     image: collabora/code:25.04.4.3.1@sha256:6a21d715cfcbf89e81ebfbceacbdc7822b5f4c03a3cd952a5c4b5563e65bdf85
@@ -60,8 +67,10 @@ services:
       - aliasgroup1=https://cloud.74services.net
       - "extra_params=--o:ssl.enable=false --o:ssl.termination=true"
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.collabora.rule=Host(`collabora.74services.net`)
+      traefik.enable: true
+      traefik.http.routers.collabora.rule: Host(`collabora.74services.net`)
+      glance.parent: nextcloud
+      glance.name: Collabora
 
 volumes:
   nextcloud-data:
