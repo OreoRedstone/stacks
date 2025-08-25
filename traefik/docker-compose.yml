@@ -17,6 +17,12 @@ services:
       - traefik
     ports:
       - 4000:8080
+    labels:
+      - homepage.group=Networking
+      - homepage.name=Traefik
+      - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/traefik-light.svg
+      - homepage.href=http://192.168.0.100:4000
+      - homepage.description=Application Proxy
 
 networks:
   nginx:
