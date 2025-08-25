@@ -34,12 +34,15 @@
             - type: docker-containers
               title: Media
               category: Media
+
             - type: docker-containers
               title: Management
               category: Management
+
             - type: docker-containers
               title: Security
               category: Security
+              
             - type: docker-containers
               title: Networking
               category: Networking
