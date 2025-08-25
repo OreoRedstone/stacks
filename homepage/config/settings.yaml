@@ -22,7 +22,7 @@ layout:
     columns: 4
     Left:
       header: false
-      style: row
+      style: column
       Management:
         style: column
       Networking:
