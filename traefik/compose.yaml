@@ -20,7 +20,7 @@ services:
     labels:
       glance.name: Traefik
       glance.id: traefik
-      glance.catergory: Networking
+      glance.category: Networking
       glance.icon: sh:traefik
       glance.description: Application Proxy
 

@@ -14,7 +14,7 @@ services:
     labels:
       glance.name: Glance
       glance.id: glance
-      glance.catergory: Management
+      glance.category: Management
       glance.icon: sh:glance
       glance.url: http://192.168.0.100
       glance.description: Dashboard
