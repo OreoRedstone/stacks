@@ -33,16 +33,16 @@
           widgets:
             - type: docker-containers
               title: Media
-              category: media
+              category: Media
             - type: docker-containers
               title: Management
-              category: management
+              category: Management
             - type: docker-containers
               title: Security
               category: Security
             - type: docker-containers
               title: Networking
-              category: networking
+              category: Networking
 
     - size: small
       widgets:
