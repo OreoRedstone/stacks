@@ -29,7 +29,7 @@ services:
       - traefik
     depends_on:
       - redis
-      - database
+      - db
     restart: unless-stopped
     healthcheck:
       disable: false
