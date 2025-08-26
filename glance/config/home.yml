@@ -42,6 +42,10 @@
             - type: docker-containers
               title: Security
               category: Security
+
+            - type: docker-containers
+              title: Gaming
+              category: Gaming
               
             - type: docker-containers
               title: Networking
