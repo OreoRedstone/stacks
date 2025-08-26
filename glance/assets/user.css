@@ -1,0 +1,11 @@
+.docker-container-status-icon {
+    --color-positive: hsl(120, 50%, 60%);
+}
+
+.monitor-site-status-icon {
+    --color-positive: hsl(120, 50%, 60%);
+}
+
+.monitor-site-status-icon-compact {
+    --color-positive: hsl(120, 50%, 60%);
+}
