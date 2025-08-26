@@ -33,6 +33,7 @@ services:
       mc-router.host: lspace-atm8.play.74services.net
       glance.parent: mc-router
       glance.name: All the Mods 8
+      glance.category: Gaming
   # vanilla:
   #   image: itzg/minecraft-server:java21
   #   environment:

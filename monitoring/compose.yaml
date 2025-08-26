@@ -23,6 +23,7 @@ services:
     labels:
       glance.parent: grafana
       glance.name: Prometheus
+      glance.category: Management
 
   cadvisor:
     image: ghcr.io/google/cadvisor:v0.53.0@sha256:c3770bd6fc6c6a9cb2b47143e6b3cc3fdd9d20a8453dffbb7e09a145e7e0c4e4
@@ -35,6 +36,7 @@ services:
     labels:
       glance.parent: grafana
       glance.name: cAdvisor
+      glance.category: Management
 
   influxdb:
     image: influxdb:2.7@sha256:59fe0181a3b161d36e9ce53001d7e1678762013ab0a284969ec2ebc517b529cc
@@ -53,6 +55,7 @@ services:
     labels:
       glance.parent: grafana
       glance.name: InfluxDB
+      glance.category: Management
 
 volumes:
   influx-data:
