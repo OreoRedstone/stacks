@@ -27,7 +27,7 @@ services:
       glance.name: Tdarr
       glance.id: tdarr
       glance.category: Media
-      glance.icon: sh:tdarr
+      glance.icon: https://cdn.jsdelivr.net/gh/selfhst/icons/png/tdarr.png
       glance.url: http://192.168.0.100:8265
       glance.description: Video Transcoding
 
