@@ -12,6 +12,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.jellyfin.rule: Host(`ha.74services.net`)
+      traefik.http.services.{SERVICE}.loadbalancer.server.port: 8123
       glance.name: Home Assistant
       glance.id: home-assistant
       glance.category: Management
