@@ -2,7 +2,8 @@ services:
   app:
     image: ghcr.io/home-assistant/home-assistant:2025.8@sha256:2eb83307a08de3287822b648fce4cbf1364423b55f2af623c149c6b21c2cef00 
     volumes:
-      - ./config:/config
+      - config:/config
+      - ./configuration.yaml:/config/configuration.yaml
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
@@ -19,6 +20,9 @@ services:
       glance.icon: sh:home-assistant
       glance.url: https://ha.74services.net
       glance.description: Home Management
+
+volumes:
+  config:
 
 networks:
   traefik:
