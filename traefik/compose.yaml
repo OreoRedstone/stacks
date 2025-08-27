@@ -13,8 +13,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - nginx
-      - traefik
+      nginx:
+      traefik:
+        ipv4_address: 172.32.0.1
     ports:
       - 4000:8080
     labels:
@@ -29,3 +30,6 @@ networks:
     external: true
   traefik:
     name: traefik
+    ipam:
+      config:
+        - subnet: 172.32.0.0/16
