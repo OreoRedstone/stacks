@@ -53,16 +53,6 @@
 
     - size: small
       widgets:
-        - type: weather
-          units: metric
-          hour-format: 12h
-          location: Basingstoke, United Kingdom
-
-        - type: weather
-          units: metric
-          hour-format: 12h
-          location: Oxford, United Kingdom
-
         - type: repository
           repository: OreoRedstone/stacks
           token: ${GH_TOKEN}

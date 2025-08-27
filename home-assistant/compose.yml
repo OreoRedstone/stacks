@@ -1,0 +1,24 @@
+services:
+  app:
+    image: ghcr.io/home-assistant/home-assistant:2025.8@sha256:2eb83307a08de3287822b648fce4cbf1364423b55f2af623c149c6b21c2cef00 
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    # privileged: true
+    networks:
+      - traefik
+    labels:
+      traefik.enable: true
+      traefik.http.routers.jellyfin.rule: Host(`ha.74services.net`)
+      glance.name: Home Assistant
+      glance.id: home-assistant
+      glance.category: Management
+      glance.icon: sh:home-assistant
+      glance.url: https://ha.74services.net
+      glance.description: Home Management
+
+networks:
+  traefik:
+    external: true
