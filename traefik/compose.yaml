@@ -14,7 +14,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       traefik:
-        ipv4_address: 172.32.0.1
+        ipv4_address: 172.32.0.10
       nginx:
     ports:
       - 4000:8080
