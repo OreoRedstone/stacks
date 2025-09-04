@@ -45,7 +45,10 @@ services:
       INIT_MEMORY: 1G
       MAX_MEMORY: 8G
       OPS: oreoredstone
-      GENERATOR_SETTINGS: {"profile":"onlycities"}
+      GENERATOR_SETTINGS: >-
+        {
+          "profile": "onlycities"
+        }
     volumes:
       - jjk:/data
     labels:
