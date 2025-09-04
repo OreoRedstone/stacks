@@ -45,11 +45,8 @@ services:
       INIT_MEMORY: 1G
       MAX_MEMORY: 8G
       OPS: oreoredstone
-      GENERATOR_SETTINGS: >-
-        {
-          "profile": "onlycities"
-        }
     volumes:
+      - ./jjk/lostcities-server.toml:/data/defaultconfigs/lostcities-server.toml:ro
       - jjk:/data
     labels:
       mc-router.host: jjk.play.74services.net
