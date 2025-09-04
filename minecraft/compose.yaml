@@ -44,6 +44,8 @@ services:
       MODRINTH_MODPACK: https://cloud.74services.net/public.php/dav/files/RekRMRQLoGxZkfg/?accept=zip
       INIT_MEMORY: 1G
       MAX_MEMORY: 8G
+      OPS: oreoredstone
+      GENERATOR_SETTINGS: {"profile":"onlycities"}
     volumes:
       - jjk:/data
     labels:
