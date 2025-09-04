@@ -1,6 +1,7 @@
 services:
   router:
     image: itzg/mc-router:1.35.0@sha256:3743907d3aaa20a0c2f59f7e5b66d2cef595e128864eeb2c01862a02cd9119c5
+    restart: unless_stopped
     command: "-debug -in-docker"
     # environment:
     #   MAPPING: |
@@ -19,6 +20,7 @@ services:
       glance.description: Minecraft Server System
   lspace-atm8:
     image: itzg/minecraft-server:2025.9.0-java17-alpine@sha256:7bd4792767649bc2ec75b757ebaa1a504fa3ee6b3a431198be65261849d5e9e4
+    restart: unless_stopped
     environment:
       EULA: "TRUE"
       MOTD: Running %MODPACK_NAME% version %MODPACK_VERSION%
@@ -37,6 +39,7 @@ services:
       glance.category: Gaming
   jjk:
     image: itzg/minecraft-server:2025.9.0-java17-alpine@sha256:7bd4792767649bc2ec75b757ebaa1a504fa3ee6b3a431198be65261849d5e9e4
+    restart: unless_stopped
     environment:
       EULA: "TRUE"
       MOTD: Running %MODPACK_NAME% version %MODPACK_VERSION%
