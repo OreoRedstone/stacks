@@ -1,0 +1,21 @@
+services:
+  server:
+    image: devidian/spaceengineers:winestaging@sha256:a09dbb38ab62b2c68161b27dd2ab88a59295f3f08ad7397881da0886fc877d79
+    restart: unless-stopped
+    volumes:
+      - data:/appdata/space-engineers
+      - steam:/root/.steam
+    ports:
+      - target: 27016
+        published: 27016
+        protocol: udp
+        mode: host
+    environment:
+      - WINEDEBUG=-all
+      - INSTANCE_NAME=TestInstance
+      - PUBLIC_IP=se.play.74services.net
+      # public ip required for healthcheck
+
+volumes:
+  data:
+  steam:
