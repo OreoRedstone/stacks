@@ -12,7 +12,7 @@ services:
         mode: host
     environment:
       - WINEDEBUG=-all
-      - INSTANCE_NAME=OreoServer
+      - INSTANCE_NAME=SpaceEngineersDedicated
       - PUBLIC_IP=217.154.34.64
       # public ip required for healthcheck
 
