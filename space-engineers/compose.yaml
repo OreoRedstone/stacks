@@ -12,8 +12,8 @@ services:
         mode: host
     environment:
       - WINEDEBUG=-all
-      - INSTANCE_NAME=TestInstance
-      - PUBLIC_IP=se.play.74services.net
+      - INSTANCE_NAME=OreoServer
+      - PUBLIC_IP=217.154.34.64
       # public ip required for healthcheck
 
 volumes:
