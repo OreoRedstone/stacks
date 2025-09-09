@@ -51,6 +51,14 @@
               title: Networking
               category: Networking
 
+        - type: rss
+          title: News
+          style: horizontal-cards
+          feeds:
+            - url: https://blog.computationalcomplexity.org/feeds/posts/default?alt=rss
+              title: Computational Complexity Blog
+
+
     - size: small
       widgets:
         - type: repository
@@ -59,3 +67,11 @@
           pull-requests-limit: 5
           issues-limit: 3
           commits-limit: 3
+
+        - type: releases
+          show-source-icon: true
+          token: ${GH_TOKEN}
+          repositories:
+            - immich-app/immich
+            - Docile-Alligator/Infinity-For-Reddit
+            - SpectralPack/Cryptid
