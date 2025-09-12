@@ -15,7 +15,11 @@ services:
       - INSTANCE_NAME=SpaceEngineersDedicated
       - PUBLIC_IP=217.154.34.64
       # public ip required for healthcheck
-
+    labels:
+      glance.name: Space Engineers
+      glance.id: space-engineers
+      glance.category: Gaming
+      glance.description: Space Engineers Dedicated Server
 volumes:
   data:
   steam:
