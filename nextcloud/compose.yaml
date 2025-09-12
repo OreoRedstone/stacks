@@ -29,7 +29,7 @@ services:
       glance.category: Media
 
   app:
-    image: nextcloud:31.0-apache@sha256:fcf637074755bb1d27644441b938bf39b27dd6c0a8c2326a5752e1b3d5014366
+    image: nextcloud:31.0-apache@sha256:c3329db9d0d0d79b1fe6433b54b81c28acaefecfe96a400be202b7da80f6b8ca
     restart: unless-stopped
     user: 1000:1000
     depends_on:
