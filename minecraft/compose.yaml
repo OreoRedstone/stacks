@@ -92,4 +92,4 @@ services:
 volumes:
   lspace-atm8:
   jjk:
-  will-create
+  will-create:
