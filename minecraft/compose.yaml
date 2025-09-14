@@ -63,7 +63,7 @@ services:
       EULA: "TRUE"
       MOTD: GAY SIGMAS ONLY
       TYPE: MODRINTH
-      MODRINTH_MODPACK: https://cloud.74services.net/public.php/dav/files/9JrKZCyeAyNGcME/?accept=zip
+      MODRINTH_MODPACK: https://cloud.74services.net/public.php/dav/files/XgEoEx8R9xbQz75/?accept=zip
       INIT_MEMORY: 1G
       MAX_MEMORY: 6G
     volumes:
