@@ -1,6 +1,6 @@
 services:
   app:
-    image: docker.io/actualbudget/actual-server:latest
+    image: docker.io/actualbudget/actual-server:sha-8ae070a-alpine@sha256:d7e4ca0b517a6607c090c865c4186d12fe0c71e2de7258fd18b3652521d7db34
     # environment:
       # Uncomment any of the lines below to set configuration options.
       # - ACTUAL_HTTPS_KEY=/data/selfhost.key
@@ -23,6 +23,8 @@ services:
       retries: 3
       start_period: 20s
     restart: unless-stopped
+    networks:
+      traefik
     labels:
       traefik.enable: true
       traefik.http.routers.actual-budget.rule: Host(`budget.74services.net`)
