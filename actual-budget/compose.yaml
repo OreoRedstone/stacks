@@ -38,3 +38,7 @@ services:
 
 volumes:
   actual-data:
+
+networks:
+  traefik:
+    external: true
