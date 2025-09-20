@@ -25,8 +25,8 @@ services:
     restart: unless-stopped
     labels:
       traefik.enable: true
-      traefik.http.routers.home-assistant.rule: Host(`budget.74services.net`)
-      traefik.http.services.home-assistant.loadbalancer.server.port: 5006
+      traefik.http.routers.actual-budget.rule: Host(`budget.74services.net`)
+      traefik.http.services.actual-budget.loadbalancer.server.port: 5006
       glance.name: Actual Budget
       glance.id: actual-budget
       glance.category: Management
