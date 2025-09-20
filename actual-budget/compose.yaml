@@ -1,6 +1,6 @@
 services:
   app:
-    image: docker.io/actualbudget/actual-server:latest
+    image: docker.io/actualbudget/actual-server:latest@sha256:a96e38821a56843a5473204cbd3773ffee816c49c23e0a9187fb80498bd3e154
     # environment:
       # Uncomment any of the lines below to set configuration options.
       # - ACTUAL_HTTPS_KEY=/data/selfhost.key
