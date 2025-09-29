@@ -4,11 +4,10 @@ services:
     networks:
       - traefik
     command:
-      start
+      start --http-enabled=true
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: temp-admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: temp-admin
-      HTTP_ENABLED: true
       DEBUG: true
     labels:
       traefik.enable: true
