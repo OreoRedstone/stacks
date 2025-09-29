@@ -1,6 +1,8 @@
 services:
   app:
     image: quay.io/keycloak/keycloak:26.3.5-0@sha256:357829ec7c4693397533035092ad13b0644bcc95ded311f33a3738c4d9e9bdba
+    command:
+      start-dev
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: temp-admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: temp-admin
