@@ -8,7 +8,7 @@ services:
       KC_BOOTSTRAP_ADMIN_USERNAME: temp-admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: temp-admin
       KC_PROXY_ADDRESS_FORWARDING: true
-      KC_HOSTNAME: keycloak.74services.net
+      KC_HOSTNAME: https://keycloak.74services.net
       KC_HTTP_ENABLED: true
       KC_PROXY_HEADERS: xforwarded
     labels:
