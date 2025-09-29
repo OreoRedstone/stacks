@@ -3,7 +3,7 @@ services:
     image: quay.io/keycloak/keycloak:26.3.5-0@sha256:357829ec7c4693397533035092ad13b0644bcc95ded311f33a3738c4d9e9bdba
     networks:
       - traefik
-    command: ["-b", "0.0.0.0", "-Dkeycloak.profile.feature.docker=enabled"]
+    command: start
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: temp-admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: temp-admin
