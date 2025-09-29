@@ -7,8 +7,9 @@ services:
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: temp-admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: temp-admin
-      PROXY_ADDRESS_FORWARDING: true
-      KEYCLOAK_HOSTNAMEL: keycloak.74services.net
+      KC_PROXY_ADDRESS_FORWARDING: true
+      KC_HOSTNAME: keycloak.74services.net
+      KC_HTTP_ENABLED: true
     labels:
       traefik.enable: true
       traefik.http.routers.keycloak.rule: Host(`keycloak.74services.net`)
