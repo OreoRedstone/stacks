@@ -4,7 +4,7 @@ services:
     networks:
       - traefik
     command:
-      start-dev
+      start
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: temp-admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: temp-admin
