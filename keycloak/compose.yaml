@@ -3,12 +3,12 @@ services:
     image: quay.io/keycloak/keycloak:26.3.5-0@sha256:357829ec7c4693397533035092ad13b0644bcc95ded311f33a3738c4d9e9bdba
     networks:
       - traefik
-    command:
-      start --http-enabled=true --hostname=keycloak.74services.net --proxy-headers xforwarded
+    command: ["-b", "0.0.0.0", "-Dkeycloak.profile.feature.docker=enabled"]
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: temp-admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: temp-admin
-      DEBUG: true
+      PROXY_ADDRESS_FORWARDING: true
+      KEYCLOAK_HOSTNAMEL: keycloak.74services.net
     labels:
       traefik.enable: true
       traefik.http.routers.keycloak.rule: Host(`keycloak.74services.net`)
