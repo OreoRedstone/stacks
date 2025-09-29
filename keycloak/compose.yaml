@@ -10,6 +10,7 @@ services:
       KC_PROXY_ADDRESS_FORWARDING: true
       KC_HOSTNAME: keycloak.74services.net
       KC_HTTP_ENABLED: true
+      KC_PROXY_HEADERS: xforwarded
     labels:
       traefik.enable: true
       traefik.http.routers.keycloak.rule: Host(`keycloak.74services.net`)
