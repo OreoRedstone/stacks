@@ -4,7 +4,7 @@ services:
     networks:
       - traefik
     command:
-      start --http-enabled=true
+      start --http-enabled=true --hostname=keycloak.74services.net --proxy-headers xforwarded
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: temp-admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: temp-admin
