@@ -3,23 +3,45 @@ services:
     image: quay.io/keycloak/keycloak:26.3.5-0@sha256:357829ec7c4693397533035092ad13b0644bcc95ded311f33a3738c4d9e9bdba
     networks:
       - traefik
+      - default
     command: start
+    depends_on:
+      postgres:
+        condition: service_healthy
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: temp-admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: temp-admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://db:5432/keycloak_db
+      KC_DB_USERNAME: ${DB_USER}
+      KC_DB_PASSWORD: ${DB_PASSWORD}
       KC_PROXY_ADDRESS_FORWARDING: true
-      KC_HOSTNAME: https://keycloak.74services.net
+      KC_HOSTNAME: https://auth.74services.net
       KC_HTTP_ENABLED: true
       KC_PROXY_HEADERS: xforwarded
     labels:
       traefik.enable: true
-      traefik.http.routers.keycloak.rule: Host(`keycloak.74services.net`)
+      traefik.http.routers.keycloak.rule: Host(`auth.74services.net`)
       glance.name: Keycloak
       glance.id: keycloak
       glance.category: Security
       glance.icon: sh:keycloak
-      glance.url: https://keycloak.74services.net
+      glance.url: https://auth.74services.net
       glance.description: Identity and Access Management
+  
+  db:
+    image: postgres:17.6-alpine3.21@sha256:88e904502786eb3765bcbd9c73f371cfd00978f9cc4cd1402f2ca5b3d097013a
+    volumes:
+      - pg-data:/var/lib/postgresql/data/
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "keycloak_db", "-U", "keycloak" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  pg-data:
 
 networks:
   traefik:
