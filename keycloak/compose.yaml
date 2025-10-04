@@ -8,6 +8,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    env_file: .env
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: temp-admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: temp-admin
@@ -31,6 +32,11 @@ services:
   
   db:
     image: postgres:17.6-alpine3.21@sha256:88e904502786eb3765bcbd9c73f371cfd00978f9cc4cd1402f2ca5b3d097013a
+    env_file: .env
+    environment:
+      POSTGRES_DB: keycloak_db
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - pg-data:/var/lib/postgresql/data/
     healthcheck:
