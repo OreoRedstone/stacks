@@ -74,7 +74,9 @@ services:
     networks:
       - arr
       - traefik
-    dns: 1.1.1.1
+    dns: 8.8.8.8
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1
     labels:
       traefik.enable: true
       traefik.http.routers.prowlarr.rule: Host(`prowlarr.74services.net`)
