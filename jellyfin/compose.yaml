@@ -5,15 +5,10 @@ services:
     volumes:
       - jellyfin-config:/config
       - jellyfin-cache:/cache
-      - type: bind
-        source: /mnt/nas/media/films
-        target: /media/films
-      - type: bind
-        source: /mnt/nas/media/shows
-        target: /media/shows
-      - type: bind
-        source: /mnt/nas/media/Music
-        target: /media/music
+      - /mnt/nas/media/films:/media/films
+      - /mnt/nas/media/shows:/media/shows
+      - /mnt/nas/media/Music:/media/music
+      - /mnt/nas/othermedia/media:/othermedia
     networks:
       - traefik
     restart: 'unless-stopped'

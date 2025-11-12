@@ -1,0 +1,189 @@
+services:
+  vpn:
+    image: qmcgaw/gluetun
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    env_file: .env
+    environment:
+      TZ: Europe/London
+    # ports:
+      # - 8112:8112 # deluge web UI Port
+      # - 6881:6881 # more deluge
+    networks:
+      - arr
+      - traefik
+    labels:
+      traefik.enable: true
+      traefik.http.routers.deluge.rule: Host(`deluge.74services.net`)
+      glance.parent: deluge
+      glance.name: Gluetun
+      glance.category: Media
+      
+
+  deluge:
+    image: lscr.io/linuxserver/deluge:latest
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/London
+    volumes:
+      - deluge-config:/config
+      - /mnt/nas/othermedia:/data/torrents
+    network_mode: 'service:vpn'
+    depends_on:
+      - vpn
+    labels:
+      glance.name: Deluge
+      glance.id: deluge
+      glance.category: Media
+      glance.icon: sh:deluge
+      glance.description: Media Acquisition
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/London
+    volumes:
+      - prowlarr-config:/config
+    restart: unless-stopped
+    networks:
+      - arr
+      - traefik
+    labels:
+      traefik.enable: true
+      traefik.http.routers.prowlarr.rule: Host(`prowlarr.74services.net`)
+      glance.name: Prowlarr
+      glance.id: prowlarr
+      glance.category: Media
+      glance.icon: sh:prowlarr
+      glance.description: Media Indexing
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/London
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - sonarr-config:/config
+      - /mnt/nas/othermedia:/data
+    networks:
+      - arr
+      - traefik
+    labels:
+      traefik.enable: true
+      traefik.http.routers.sonarr.rule: Host(`sonarr.74services.net`)
+      glance.name: Sonarr
+      glance.id: sonarr
+      glance.category: Media
+      glance.icon: sh:sonarr
+      glance.description: Show Management
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/London
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - radarr-config:/config
+      - /mnt/nas/othermedia:/data
+    networks:
+      - arr
+      - traefik
+    labels:
+      traefik.enable: true
+      traefik.http.routers.radarr.rule: Host(`radarr.74services.net`)
+      glance.name: Radarr
+      glance.id: radarr
+      glance.category: Media
+      glance.icon: sh:radarr
+      glance.description: Film Management
+
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/London
+    volumes:
+      - lidarr-config:/config
+      - /mnt/nas/othermedia:/data
+    networks:
+      - arr
+      - traefik
+    restart: unless-stopped
+    labels:
+      traefik.enable: true
+      traefik.http.routers.lidarr.rule: Host(`lidarr.74services.net`)
+      glance.name: Lidarr
+      glance.id: lidarr
+      glance.category: Media
+      glance.icon: sh:lidarr
+      glance.description: Music Management
+      
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/London
+      UMASK_SET: 022
+    volumes:
+      - bazarr-config:/config
+      - /mnt/nas/othermedia:/data
+    networks:
+      - arr
+      - traefik
+    labels:
+      traefik.enable: true
+      traefik.http.routers.bazarr.rule: Host(`bazarr.74services.net`)
+      glance.name: Bazarr
+      glance.id: bazarr
+      glance.category: Media
+      glance.icon: sh:bazarr
+      glance.description: Subtitle Management
+
+  overseerr:
+    image: sctx/overseerr:latest
+    environment:
+      TZ: Europe/London
+    networks:
+      - arr
+      - traefik
+    volumes:
+      - overseerr-config:/app/config
+    restart: unless-stopped
+    labels:
+      traefik.enable: true
+      traefik.http.routers.overseerr.rule: Host(`overseerr.74services.net`)
+      glance.name: Overseerr
+      glance.id: overseerr
+      glance.category: Media
+      glance.icon: sh:overseerr
+      glance.description: Media Requests
+
+volumes:
+  deluge-config:
+  prowlarr-config:
+  sonarr-config:
+  radarr-config:
+  lidarr-config:
+  bazarr-config:
+  overseerr-config:
+
+networks:
+  traefik:
+    external: true
+  arr:
