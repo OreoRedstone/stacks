@@ -18,9 +18,10 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.deluge.rule: Host(`deluge.74services.net`)
+      traefik.http.services.deluge.loadbalancer.server.port: 8112
       glance.parent: deluge
       glance.name: Gluetun
-      glance.category: Media
+      glance.category: Arr
       
 
   deluge:
@@ -39,9 +40,10 @@ services:
     labels:
       glance.name: Deluge
       glance.id: deluge
-      glance.category: Media
+      glance.category: Arr
       glance.icon: sh:deluge
       glance.description: Media Acquisition
+      glance.url: https://deluge.74services.net
 
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
@@ -60,9 +62,10 @@ services:
       traefik.http.routers.prowlarr.rule: Host(`prowlarr.74services.net`)
       glance.name: Prowlarr
       glance.id: prowlarr
-      glance.category: Media
+      glance.category: Arr
       glance.icon: sh:prowlarr
       glance.description: Media Indexing
+      glance.url: https://prowlarr.74services.net
 
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
@@ -83,9 +86,10 @@ services:
       traefik.http.routers.sonarr.rule: Host(`sonarr.74services.net`)
       glance.name: Sonarr
       glance.id: sonarr
-      glance.category: Media
+      glance.category: Arr
       glance.icon: sh:sonarr
       glance.description: Show Management
+      glance.url: https://sonarr.74services.net
 
   radarr:
     image: lscr.io/linuxserver/radarr:latest
@@ -106,9 +110,10 @@ services:
       traefik.http.routers.radarr.rule: Host(`radarr.74services.net`)
       glance.name: Radarr
       glance.id: radarr
-      glance.category: Media
+      glance.category: Arr
       glance.icon: sh:radarr
       glance.description: Film Management
+      glance.url: https://radarr.74services.net
 
   lidarr:
     image: lscr.io/linuxserver/lidarr:latest
@@ -128,9 +133,10 @@ services:
       traefik.http.routers.lidarr.rule: Host(`lidarr.74services.net`)
       glance.name: Lidarr
       glance.id: lidarr
-      glance.category: Media
+      glance.category: Arr
       glance.icon: sh:lidarr
       glance.description: Music Management
+      glance.url: https://lidarr.74services.net
       
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest
@@ -151,9 +157,10 @@ services:
       traefik.http.routers.bazarr.rule: Host(`bazarr.74services.net`)
       glance.name: Bazarr
       glance.id: bazarr
-      glance.category: Media
+      glance.category: Arr
       glance.icon: sh:bazarr
       glance.description: Subtitle Management
+      glance.url: https://bazarr.74services.net
 
   overseerr:
     image: sctx/overseerr:latest
@@ -170,9 +177,10 @@ services:
       traefik.http.routers.overseerr.rule: Host(`overseerr.74services.net`)
       glance.name: Overseerr
       glance.id: overseerr
-      glance.category: Media
+      glance.category: Arr
       glance.icon: sh:overseerr
       glance.description: Media Requests
+      glance.url: https://overseerr.74services.net
 
 volumes:
   deluge-config:

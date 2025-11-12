@@ -36,6 +36,10 @@
               category: Media
 
             - type: docker-containers
+              title: Arr
+              category: Arr
+
+            - type: docker-containers
               title: Management
               category: Management
 
