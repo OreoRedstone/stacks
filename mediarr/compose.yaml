@@ -28,8 +28,8 @@ services:
     image: lscr.io/linuxserver/deluge:latest
     restart: unless-stopped
     environment:
-      PUID: 1000
-      PGID: 1000
+      PUID: 0
+      PGID: 0
       TZ: Europe/London
     volumes:
       - deluge-config:/config
@@ -48,8 +48,8 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     environment:
-      PUID: 1000
-      PGID: 1000
+      PUID: 0
+      PGID: 0
       TZ: Europe/London
     volumes:
       - prowlarr-config:/config
@@ -71,8 +71,8 @@ services:
     image: lscr.io/linuxserver/sonarr:latest
     restart: unless-stopped
     environment:
-      PUID: 1000
-      PGID: 1000
+      PUID: 0
+      PGID: 0
       TZ: Europe/London
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -95,8 +95,8 @@ services:
     image: lscr.io/linuxserver/radarr:latest
     restart: unless-stopped
     environment:
-      PUID: 1000
-      PGID: 1000
+      PUID: 0
+      PGID: 0
       TZ: Europe/London
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -118,8 +118,8 @@ services:
   lidarr:
     image: lscr.io/linuxserver/lidarr:latest
     environment:
-      PUID: 1000
-      PGID: 1000
+      PUID: 0
+      PGID: 0
       TZ: Europe/London
     volumes:
       - lidarr-config:/config
@@ -142,8 +142,8 @@ services:
     image: lscr.io/linuxserver/bazarr:latest
     restart: unless-stopped
     environment:
-      PUID: 1000
-      PGID: 1000
+      PUID: 0
+      PGID: 0
       TZ: Europe/London
       UMASK_SET: 022
     volumes:
