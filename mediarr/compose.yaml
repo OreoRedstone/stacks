@@ -15,6 +15,7 @@ services:
     networks:
       - arr
       - traefik
+    dns: 1.1.1.1
     labels:
       traefik.enable: true
       traefik.http.routers.deluge.rule: Host(`deluge.74services.net`)
@@ -37,7 +38,6 @@ services:
     network_mode: 'service:vpn'
     depends_on:
       - vpn
-    dns: 1.1.1.1
     labels:
       glance.name: Deluge
       glance.id: deluge
