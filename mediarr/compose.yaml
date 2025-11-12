@@ -50,7 +50,7 @@ services:
       TZ: Europe/London
     volumes:
       - deluge-config:/config
-      - /mnt/nas/othermedia:/data/torrents
+      - /mnt/nas/othermedia/downloads:/data/downloads
     network_mode: 'service:vpn'
     depends_on:
       - vpn
