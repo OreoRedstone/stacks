@@ -36,7 +36,7 @@ services:
     #   - "${PORT:-8191}:8191"
     dns: 8.8.8.8
     networks:
-      -arr
+      - arr
     volumes:
       - flaresolver-config:/config
     restart: unless-stopped
