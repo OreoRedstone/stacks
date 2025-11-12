@@ -1,7 +1,6 @@
 services:
   server:
     image: devidian/spaceengineers:winestaging@sha256:a09dbb38ab62b2c68161b27dd2ab88a59295f3f08ad7397881da0886fc877d79
-    restart: unless-stopped
     volumes:
       - data:/appdata/space-engineers
       - steam:/root/.steam
