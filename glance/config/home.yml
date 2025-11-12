@@ -36,7 +36,7 @@
               category: Media
 
             - type: docker-containers
-              title: Arr
+              title: Mediarr
               category: Arr
 
             - type: docker-containers
