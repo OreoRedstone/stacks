@@ -15,7 +15,7 @@ services:
     networks:
       - arr
       - traefik
-    dns: 1.1.1.1
+    dns: 8.8.8.8
     labels:
       # traefik.enable: true
       # traefik.http.routers.deluge.rule: Host(`deluge.74services.net`)
