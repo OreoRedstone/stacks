@@ -9,17 +9,17 @@ services:
     env_file: .env
     environment:
       TZ: Europe/London
-    # ports:
-      # - 8112:8112 # deluge web UI Port
+    ports:
+      - 8112:8112 # deluge web UI Port
       # - 6881:6881 # more deluge
     networks:
       - arr
       - traefik
     dns: 1.1.1.1
     labels:
-      traefik.enable: true
-      traefik.http.routers.deluge.rule: Host(`deluge.74services.net`)
-      traefik.http.services.deluge.loadbalancer.server.port: 8112
+      # traefik.enable: true
+      # traefik.http.routers.deluge.rule: Host(`deluge.74services.net`)
+      # traefik.http.services.deluge.loadbalancer.server.port: 8112
       glance.parent: deluge
       glance.name: Gluetun
       glance.category: Arr
@@ -44,7 +44,7 @@ services:
       glance.category: Arr
       glance.icon: sh:deluge
       glance.description: Media Acquisition
-      glance.url: https://deluge.74services.net
+      glance.url: http://192.168.0.100:8112
 
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
