@@ -62,6 +62,7 @@ services:
     
   collabora:
     image: collabora/code:25.04.5.2.1@sha256:74031c1ecf6823dc9abd1a97142fef01797bdd7dc93aef0b8b09145ed2273cc3
+    restart: unless-stopped
     networks:
       - traefik
       - default

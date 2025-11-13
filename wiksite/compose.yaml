@@ -1,0 +1,13 @@
+services:
+  site:
+    image: ghcr.io/insignificant74/wik_74site:main
+    restart: unless-stopped
+    networks:
+      - traefik
+    labels:
+      traefik.enable: true
+      traefik.http.routers.wiksite.rule: Host(`blog.74services.net`)
+
+networks:
+  traefik:
+    external: true
