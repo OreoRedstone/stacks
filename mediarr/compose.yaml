@@ -1,30 +1,21 @@
 services:
   vpn:
-    image: qmcgaw/gluetun
-    restart: unless-stopped
+    image: lscr.io/linuxserver/wireguard:latest
     cap_add:
       - NET_ADMIN
-    devices:
-      - /dev/net/tun:/dev/net/tun
-    env_file: .env
+      - SYS_MODULE #optional
     environment:
-      TZ: Europe/London
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./wg-config:/config
+      - /lib/modules:/lib/modules #optional
     ports:
-      - 8112:8112 # deluge web UI Port
-      # - 6881:6881 # more deluge
-    dns:
-      - 1.1.1.1
-      - 9.9.9.9
-    networks:
-      - arr
-      - traefik
-    labels:
-      # traefik.enable: true
-      # traefik.http.routers.deluge.rule: Host(`deluge.74services.net`)
-      # traefik.http.services.deluge.loadbalancer.server.port: 8112
-      glance.parent: deluge
-      glance.name: Gluetun
-      glance.category: Arr
+      - 51820:51820/udp
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
       
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
