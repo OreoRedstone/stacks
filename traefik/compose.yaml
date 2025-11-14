@@ -15,9 +15,9 @@ services:
     networks:
       traefik:
         ipv4_address: 172.32.0.10
-      nginx:
     ports:
       - 4000:8080
+      - 80:80
     labels:
       glance.name: Traefik
       glance.id: traefik
@@ -26,8 +26,6 @@ services:
       glance.description: Application Proxy
 
 networks:
-  nginx:
-    external: true
   traefik:
     name: traefik
     ipam:
