@@ -15,7 +15,6 @@ services:
     networks:
       - arr
       - traefik
-    dns: 8.8.8.8
     labels:
       # traefik.enable: true
       # traefik.http.routers.deluge.rule: Host(`deluge.74services.net`)
@@ -34,7 +33,6 @@ services:
       - TZ=Europe/London
     # ports:
     #   - "${PORT:-8191}:8191"
-    dns: 8.8.8.8
     networks:
       - arr
     volumes:
@@ -74,7 +72,6 @@ services:
     networks:
       - arr
       - traefik
-    dns: 8.8.8.8
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=1
     labels:
@@ -101,7 +98,6 @@ services:
     networks:
       - arr
       - traefik
-    dns: 1.1.1.1
     labels:
       traefik.enable: true
       traefik.http.routers.sonarr.rule: Host(`sonarr.74services.net`)
@@ -126,7 +122,6 @@ services:
     networks:
       - arr
       - traefik
-    dns: 1.1.1.1
     labels:
       traefik.enable: true
       traefik.http.routers.radarr.rule: Host(`radarr.74services.net`)
@@ -150,7 +145,6 @@ services:
       - arr
       - traefik
     restart: unless-stopped
-    dns: 1.1.1.1
     labels:
       traefik.enable: true
       traefik.http.routers.lidarr.rule: Host(`lidarr.74services.net`)
@@ -175,7 +169,6 @@ services:
     networks:
       - arr
       - traefik
-    dns: 1.1.1.1
     labels:
       traefik.enable: true
       traefik.http.routers.bazarr.rule: Host(`bazarr.74services.net`)
@@ -196,7 +189,6 @@ services:
     volumes:
       - overseerr-config:/app/config
     restart: unless-stopped
-    dns: 1.1.1.1
     labels:
       traefik.enable: true
       traefik.http.routers.overseerr.rule: Host(`overseerr.74services.net`)
