@@ -55,8 +55,6 @@ services:
     network_mode: 'service:vpn'
     depends_on:
       - vpn
-    ports:
-      - 8112:8112 # deluge web UI Port
     labels:
       glance.name: Deluge
       glance.id: deluge
