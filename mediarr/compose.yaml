@@ -12,7 +12,7 @@ services:
       - ./wg-config:/config
       - /lib/modules:/lib/modules #optional
     ports:
-      - 51820:51820/udp
+      - 8112:8112 # deluge web UI Port
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
