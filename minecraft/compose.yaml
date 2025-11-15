@@ -29,7 +29,7 @@ services:
       CF_SLUG: all-the-mods-8
       CF_FILENAME_MATCHER: 1.1.0
       INIT_MEMORY: 1G
-      MAX_MEMORY: 8G
+      MAX_MEMORY: 10G
     volumes:
       - lspace-atm8:/data
     labels:
