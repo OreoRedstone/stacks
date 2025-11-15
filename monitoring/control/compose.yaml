@@ -12,7 +12,7 @@ services:
       glance.id: grafana
       glance.category: Management
       glance.icon: sh:grafana
-      glance.url: http://192.168.0.100:3000
+      glance.url: http://192.168.0.20:3000
       glance.description: Data Collection and Visualisation
 
   prometheus:
@@ -23,19 +23,6 @@ services:
     labels:
       glance.parent: grafana
       glance.name: Prometheus
-      glance.category: Management
-
-  cadvisor:
-    image: ghcr.io/google/cadvisor:v0.53.0@sha256:c3770bd6fc6c6a9cb2b47143e6b3cc3fdd9d20a8453dffbb7e09a145e7e0c4e4
-    restart: always
-    volumes:
-    - /:/rootfs:ro
-    - /var/run:/var/run:rw
-    - /sys:/sys:ro
-    - /var/lib/docker/:/var/lib/docker:ro
-    labels:
-      glance.parent: grafana
-      glance.name: cAdvisor
       glance.category: Management
 
   influxdb:

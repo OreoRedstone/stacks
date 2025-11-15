@@ -1,0 +1,15 @@
+services:
+  cadvisor:
+    image: ghcr.io/google/cadvisor:v0.53.0@sha256:c3770bd6fc6c6a9cb2b47143e6b3cc3fdd9d20a8453dffbb7e09a145e7e0c4e4
+    restart: always
+    volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - 3000:3000
+    labels:
+      glance.parent: grafana
+      glance.name: cAdvisor
+      glance.category: Management
