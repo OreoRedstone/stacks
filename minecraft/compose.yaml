@@ -19,7 +19,7 @@ services:
       glance.url: https://play.74services.net
       glance.description: Minecraft Server System
   lspace-atm8:
-    image: itzg/minecraft-server:2025.9.2-java17-alpine@sha256:a9c523654bfba587f114a5fc3bbfc8031d46c58979f47026fa877ee87c8fc043
+    image: itzg/minecraft-server:2025.10.5-java17-alpine@sha256:ecc762c91690d3f5fbfd1051aa07f173025dcaccfbf201984ddf395c21a5264f
     restart: unless-stopped
     environment:
       EULA: "TRUE"
