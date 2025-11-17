@@ -48,10 +48,33 @@ services:
       glance.url: https://wizarr.74services.net
       glance.description: Setup for Jellyfin
 
+  navidrome:
+    image: deluan/navidrome:latest
+    user: 0:0 # should be owner of volumes
+    networks:
+      - traefik
+    restart: unless-stopped
+    # environment:
+      # Optional: put your config options customization here. Examples:
+      # ND_LOGLEVEL: debug
+    volumes:
+      - navidrome-data:/data
+      - /mnt/nas/othermedia/media/music:/music:ro
+    labels:
+      traefik.enable: true
+      traefik.http.routers.navidrome.rule: Host(`music.74services.net`)
+      glance.name: Navidrome
+      glance.id: navidrome
+      glance.category: Media
+      glance.icon: sh:navidrome
+      glance.url: https://music.74services.net
+      glance.description: Music Streaming
+
 volumes:
   jellyfin-cache:
   jellyfin-config:
   wizarr-db:
+  navidrome-data:
 
 networks:
   traefik:
