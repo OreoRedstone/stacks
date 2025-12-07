@@ -16,7 +16,7 @@ services:
     networks:
       - traefik
       - nginx
-    ports:
+    # ports:
       # - 4000:8080
     labels:
       glance.name: Traefik
