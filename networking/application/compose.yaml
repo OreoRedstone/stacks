@@ -10,7 +10,7 @@ services:
       - "--entrypoints.web.address=:80"
       - "--entrypoints.dashboard.address=:8080"
       - "--api.dashboard=true"
-      - "--providers.file.filename=/etc/traefik/dynamic.yml"
+      - "--providers.file.filename=/etc/traefik/dynamic.yaml"
     volumes:
       - ./dynamic.yaml:/etc/traefik/dynamic.yaml
       - /var/run/docker.sock:/var/run/docker.sock:ro
