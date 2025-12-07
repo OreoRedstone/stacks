@@ -1,5 +1,5 @@
 services:
-  app:
+  traefik:
     image: traefik:v3.5@sha256:602b5fdf0ad07e6ca79609b3161e0da52da2c9d70840961d861b4687f5704c7c
     container_name: traefik
     restart: unless-stopped
@@ -11,19 +11,20 @@ services:
       - "--entrypoints.dashboard.address=:8080"
       - "--api.dashboard=true"
     volumes:
+      - ./traefik.yaml:/etc/traefik/traefik.yaml
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       traefik:
         ipv4_address: 172.32.0.10
     ports:
-      - 4000:8080
+      # - 4000:8080
       - 9999:80
     labels:
       glance.name: Traefik
       glance.id: traefik
       glance.category: Networking
       glance.icon: sh:traefik
-      glance.description: Application Proxy
+      glance.description: Application Plane Proxy
 
 networks:
   traefik:
