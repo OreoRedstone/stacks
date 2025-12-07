@@ -28,3 +28,6 @@ services:
 networks:
   traefik:
     name: traefik
+  nginx:
+    name: nginx
+    external: true
