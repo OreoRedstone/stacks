@@ -1,22 +1,4 @@
 services:
-  nginx:
-      image: nginx:1.29-alpine-perl@sha256:b04b512a3daf265299d237dcef02909b4f3fa998800030d1beef22e29d36ee97
-      restart: always
-      labels:
-        komodo.skip: true # Prevent Komodo from stopping with StopAllContainers
-        glance.name: Nginx
-        glance.id: nginx
-        glance.category: Networking
-        glance.icon: sh:nginx
-        glance.description: Control Plane Networking
-      networks:
-        - nginx
-      volumes:
-        - ./nginx.conf:/etc/nginx/nginx.conf
-        - /etc/letsencrypt:/etc/letsencrypt:ro
-      ports:
-        - 443:443
-
   traefik:
     image: traefik:v3.5@sha256:602b5fdf0ad07e6ca79609b3161e0da52da2c9d70840961d861b4687f5704c7c
     container_name: traefik
@@ -28,11 +10,12 @@ services:
       - "--entrypoints.web.address=:80"
       - "--entrypoints.dashboard.address=:8080"
       - "--api.dashboard=true"
+      - "--providers.file.filename=/etc/traefik/dynamic.yaml"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      traefik:
-        # ipv4_address: 172.32.0.10 # Why did I do this?
+      - traefik
+      - nginx
     ports:
       # - 4000:8080
     labels:
@@ -45,6 +28,3 @@ services:
 networks:
   traefik:
     name: traefik
-    # ipam:
-    #   config:
-    #     - subnet: 172.32.0.0/16
