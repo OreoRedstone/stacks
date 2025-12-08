@@ -38,7 +38,7 @@ services:
   #     glance.name: All the Mods 8
   #     glance.category: Gaming
   atm10:
-    image: itzg/minecraft-server:2025.10.5-java17-alpine@sha256:ecc762c91690d3f5fbfd1051aa07f173025dcaccfbf201984ddf395c21a5264f
+    image: itzg/minecraft-server:2025.10.5-java21-alpine@sha256:0ee2b6b5c53b8dbd5c4c5fe99bacd7200a66ee9b6f0a70179a9974e3a3609f75
     restart: unless-stopped
     environment:
       EULA: "TRUE"
