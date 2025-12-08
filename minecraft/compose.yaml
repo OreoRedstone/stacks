@@ -18,24 +18,43 @@ services:
       glance.icon: sh:minecraft
       glance.url: https://play.74services.net
       glance.description: Minecraft Server System
-  lspace-atm8:
-    image: itzg/minecraft-server:2025.9.2-java17-alpine@sha256:a9c523654bfba587f114a5fc3bbfc8031d46c58979f47026fa877ee87c8fc043
+  # lspace-atm8:
+  #   image: itzg/minecraft-server:2025.9.2-java17-alpine@sha256:a9c523654bfba587f114a5fc3bbfc8031d46c58979f47026fa877ee87c8fc043
+  #   restart: unless-stopped
+  #   environment:
+  #     EULA: "TRUE"
+  #     MOTD: Running %MODPACK_NAME% version %MODPACK_VERSION%
+  #     TYPE: AUTO_CURSEFORGE
+  #     CF_API_KEY: ${CF_API_KEY}
+  #     CF_SLUG: all-the-mods-8
+  #     CF_FILENAME_MATCHER: 1.1.0
+  #     INIT_MEMORY: 1G
+  #     MAX_MEMORY: 10G
+  #   volumes:
+  #     - lspace-atm8:/data
+  #   labels:
+  #     mc-router.host: lspace-atm8.play.74services.net
+  #     glance.parent: mc-router
+  #     glance.name: All the Mods 8
+  #     glance.category: Gaming
+  atm10:
+    image: itzg/minecraft-server:2025.10.5-java17-alpine@sha256:ecc762c91690d3f5fbfd1051aa07f173025dcaccfbf201984ddf395c21a5264f
     restart: unless-stopped
     environment:
       EULA: "TRUE"
       MOTD: Running %MODPACK_NAME% version %MODPACK_VERSION%
       TYPE: AUTO_CURSEFORGE
       CF_API_KEY: ${CF_API_KEY}
-      CF_SLUG: all-the-mods-8
-      CF_FILENAME_MATCHER: 1.1.0
+      CF_SLUG: all-the-mods-10
+      CF_FILENAME_MATCHER: 5.3.1
       INIT_MEMORY: 1G
       MAX_MEMORY: 10G
     volumes:
-      - lspace-atm8:/data
+      - atm10:/data
     labels:
-      mc-router.host: lspace-atm8.play.74services.net
+      mc-router.host: atm10.play.74services.net
       glance.parent: mc-router
-      glance.name: All the Mods 8
+      glance.name: All the Mods 10
       glance.category: Gaming
   # jjk:
   #   image: itzg/minecraft-server:2025.9.2-java17-alpine@sha256:a9c523654bfba587f114a5fc3bbfc8031d46c58979f47026fa877ee87c8fc043
