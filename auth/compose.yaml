@@ -13,9 +13,9 @@ services:
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
       AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
-    # ports:
-    # - ${COMPOSE_PORT_HTTP:-9000}:9000
-    # - ${COMPOSE_PORT_HTTPS:-9443}:9443
+    ports:
+      # - ${COMPOSE_PORT_HTTP:-9000}:9000
+      - ${COMPOSE_PORT_HTTPS:-9443}:9443
     networks:
       - default
       - traefik
@@ -26,7 +26,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.authentik.rule: Host(`auth.74services.net`)
-      traefik.http.services.authentik.loadbalancer.server.port: 9443
+      traefik.http.services.authentik.loadbalancer.server.port: 9000
 
   authentik-worker:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2025.10.2}
