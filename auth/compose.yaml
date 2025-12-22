@@ -65,7 +65,10 @@ services:
       timeout: 5s
     restart: unless-stopped
     volumes:
-      - database:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
 
 networks:
   traefik:
