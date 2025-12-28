@@ -182,25 +182,31 @@ services:
       glance.description: Subtitle Management
       glance.url: https://bazarr.74services.net
 
-  overseerr:
-    image: sctx/overseerr:latest
+  seerr:
+    image: seerr/seerr:latest
+    init: true
     environment:
+      LOG_LEVEL: debug
       TZ: Europe/London
-    networks:
-      - arr
-      - traefik
+      PORT: 5055 #optional
     volumes:
-      - overseerr-config:/app/config
+      - seerr-config:/app/config
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:5055/api/v1/status || exit 1
+      start_period: 20s
+      timeout: 3s
+      interval: 15s
+      retries: 3
     restart: unless-stopped
     labels:
       traefik.enable: true
-      traefik.http.routers.overseerr.rule: Host(`overseerr.74services.net`)
-      glance.name: Overseerr
-      glance.id: overseerr
+      traefik.http.routers.seer.rule: Host(`seerr.74services.net`)
+      glance.name: Seerr
+      glance.id: seerr
       glance.category: Arr
-      glance.icon: sh:overseerr
+      glance.icon: sh:seerr
       glance.description: Media Requests
-      glance.url: https://overseerr.74services.net
+      glance.url: https://seerr.74services.net
 
 volumes:
   deluge-config:
@@ -209,7 +215,7 @@ volumes:
   radarr-config:
   lidarr-config:
   bazarr-config:
-  overseerr-config:
+  seerr-config:
   flaresolver-config:
 
 networks:
