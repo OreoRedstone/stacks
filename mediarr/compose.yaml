@@ -183,7 +183,7 @@ services:
       glance.url: https://bazarr.74services.net
 
   seerr:
-    image: seerr/seerr:latest
+    image: ghcr.io/seerr-team/seerr:latest
     init: true
     environment:
       LOG_LEVEL: debug
