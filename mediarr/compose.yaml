@@ -189,6 +189,9 @@ services:
       LOG_LEVEL: debug
       TZ: Europe/London
       PORT: 5055 #optional
+    networks:
+      - traefik
+      - arr
     volumes:
       - seerr-config:/app/config
     healthcheck:
