@@ -29,6 +29,7 @@ services:
       glance.description: Movies and TV
   wizarr:
     image: ghcr.io/wizarrrr/wizarr:v2025.9.2@sha256:ec7bff0536093154321ad8ecb8ee4b34a2df01579e3b37f7d3add86924066d64
+    restart: unless-stopped
     networks:
       - traefik
     volumes:
