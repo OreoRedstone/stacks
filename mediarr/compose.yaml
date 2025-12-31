@@ -1,6 +1,6 @@
 services:
   vpn:
-    image: qmcgaw/gluetun
+    image: qmcgaw/gluetun@sha256:7b1dafa3d25cfd891deae52c7973c499f619f7d8eac52fad84f9aa1e5e6e01ca
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
@@ -27,7 +27,7 @@ services:
       glance.category: Arr
       
   flaresolverr:
-    image: ghcr.io/flaresolverr/flaresolverr:latest
+    image: ghcr.io/flaresolverr/flaresolverr:latest@sha256:7962759d99d7e125e108e0f5e7f3cdbcd36161776d058d1d9b7153b92ef1af9e
     environment:
       - LOG_LEVEL=${LOG_LEVEL:-info}
       - LOG_FILE=${LOG_FILE:-none}
@@ -43,7 +43,7 @@ services:
     restart: unless-stopped
 
   deluge:
-    image: lscr.io/linuxserver/deluge:latest
+    image: lscr.io/linuxserver/deluge:latest@sha256:448ed924f3479ae175c936c9693b4c4df52ebcb193e05d805c9f16c88112fe45
     restart: unless-stopped
     environment:
       PUID: 0
@@ -64,7 +64,7 @@ services:
       glance.url: http://192.168.0.100:8112
 
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:latest
+    image: lscr.io/linuxserver/prowlarr:latest@sha256:67a8aaedcfd6989f3030b937a6a07007310b1dfc7ee8df16d2cbfa48d1c1158c
     environment:
       PUID: 0
       PGID: 0
@@ -88,7 +88,7 @@ services:
       glance.url: https://prowlarr.74services.net
 
   sonarr:
-    image: lscr.io/linuxserver/sonarr:latest
+    image: lscr.io/linuxserver/sonarr:latest@sha256:8b9f2138ec50fc9e521960868f79d2ad0d529bc610aef19031ea8ff80b54c5e0
     restart: unless-stopped
     environment:
       PUID: 0
@@ -112,7 +112,7 @@ services:
       glance.url: https://sonarr.74services.net
 
   radarr:
-    image: lscr.io/linuxserver/radarr:latest
+    image: lscr.io/linuxserver/radarr:latest@sha256:6c0948b42c149e36bb3dbc0b64d36c77b2d3c9dccf1b424c4f72af1e57ba0c21
     restart: unless-stopped
     environment:
       PUID: 0
@@ -136,7 +136,7 @@ services:
       glance.url: https://radarr.74services.net
 
   lidarr:
-    image: lscr.io/linuxserver/lidarr:latest
+    image: lscr.io/linuxserver/lidarr:latest@sha256:ede2bb17350cc97a0d3f24389aa91803f655eac29aa022c77a71f4a61cc621e4
     environment:
       PUID: 0
       PGID: 0
@@ -159,7 +159,7 @@ services:
       glance.url: https://lidarr.74services.net
       
   bazarr:
-    image: lscr.io/linuxserver/bazarr:latest
+    image: lscr.io/linuxserver/bazarr:latest@sha256:001875e61839c8a50743f0bc0fa4da2a55ed8a038b9b5ed0dd2c663dd3d0bfc7
     restart: unless-stopped
     environment:
       PUID: 0
@@ -183,7 +183,7 @@ services:
       glance.url: https://bazarr.74services.net
 
   seerr:
-    image: ghcr.io/seerr-team/seerr:sha-8bbe786
+    image: ghcr.io/seerr-team/seerr:sha-8bbe786@sha256:ffd4995fc11f65f23705de19c4f9206eaeec405c2bdc7ac3e6977a1520a09c5a
     init: true
     environment:
       LOG_LEVEL: debug
