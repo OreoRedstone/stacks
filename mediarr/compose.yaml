@@ -11,6 +11,7 @@ services:
       TZ: Europe/London
     ports:
       - 8112:8112 # deluge web UI Port
+      - 58846:58846
       # - 6881:6881 # more deluge
     dns:
       - 1.1.1.1
