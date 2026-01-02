@@ -51,6 +51,8 @@ services:
       MAX_MEMORY: 10G
     volumes:
       - atm10:/data
+      - /mnt/nas/backups/minecraft/atm10:/backups
+      - ./atm10-backup.conf:/data/config/simplebackups-common.toml
     labels:
       mc-router.host: atm10.play.74services.net
       glance.parent: mc-router
