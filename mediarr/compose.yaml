@@ -213,7 +213,6 @@ services:
       glance.url: https://seerr.74services.net
 
   seed-pauser:
-    image: oreoredstone/seed-pauser
     build: ./seed-pauser
     ports:
       - 80:80
