@@ -9,6 +9,7 @@ services:
       - grafana-data:/var/lib/grafana
     networks:
       - traefik
+      - default
     labels:
       traefik.enable: true
       traefik.http.routers.grafana.rule: Host(`monitoring.control.74services.net`)
