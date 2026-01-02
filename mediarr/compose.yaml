@@ -215,7 +215,7 @@ services:
   seed-pauser:
     build: ./seed-pauser
     ports:
-      - 80:80
+      - 5002:80
     environment:
       DELUGE_PASSWORD: ${DELUGE_PASSWORD}
       DELUGE_URL: ${DELUGE_URL}
