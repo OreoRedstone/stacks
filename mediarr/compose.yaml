@@ -30,11 +30,11 @@ services:
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest@sha256:7962759d99d7e125e108e0f5e7f3cdbcd36161776d058d1d9b7153b92ef1af9e
     environment:
-      - LOG_LEVEL=${LOG_LEVEL:-info}
-      - LOG_FILE=${LOG_FILE:-none}
-      - LOG_HTML=${LOG_HTML:-false}
-      - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
-      - TZ=Europe/London
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      LOG_FILE: ${LOG_FILE:-none}
+      LOG_HTML: ${LOG_HTML:-false}
+      CAPTCHA_SOLVER: ${CAPTCHA_SOLVER:-none}
+      TZ: Europe/London
     # ports:
     #   - "${PORT:-8191}:8191"
     networks:
@@ -211,6 +211,15 @@ services:
       glance.icon: sh:seerr
       glance.description: Media Requests
       glance.url: https://seerr.74services.net
+
+  seed-pauser:
+    image: oreoredstone/seed-pauser
+    build: ./seed-pauser
+    ports:
+      - 80:80
+    environment:
+      DELUGE_PASSWORD: ${DELUGE_PASSWORD}
+      DELUGE_URL: ${DELUGE_URL}
 
 volumes:
   deluge-config:
