@@ -36,6 +36,12 @@ def pause_torrents(torrent_ids):
     resp = rpc_call("core.pause_torrent", [torrent_ids])
     return resp
 
+def resume_torrents(torrent_ids):
+    if not torrent_ids:
+        return {"resumed": 0}
+    resp = rpc_call("core.resume_torrent", [torrent_ids])
+    return resp
+
 @app.route("/pause_seeding", methods=["POST"])
 def pause_seeding():
     try:
@@ -45,6 +51,18 @@ def pause_seeding():
                        if info.get("state","").lower() == "seeding" or float(info.get("progress",0)) >= 100.0]
         pause_torrents(seeding_ids)
         return jsonify({"paused": len(seeding_ids), "ids": seeding_ids})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/resume_seeding", methods=["POST"])
+def resume_seeding():
+    try:
+        torrents = get_torrents_status()
+        # Filter: state equals "Seeding" OR progress == 100
+        seeding_ids = [tid for tid, info in torrents.items()
+                       if info.get("state","").lower() == "paused" and float(info.get("progress",0)) >= 100.0]
+        resume_torrents(seeding_ids)
+        return jsonify({"resumed": len(seeding_ids), "ids": seeding_ids})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
