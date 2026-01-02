@@ -215,7 +215,7 @@ services:
   seed-pauser:
     build:
       context: ./seed-pauser
-      no-cache: true
+      no_cache: true
     ports:
       - 5002:80
     environment:
