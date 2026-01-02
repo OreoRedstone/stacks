@@ -213,9 +213,7 @@ services:
       glance.url: https://seerr.74services.net
 
   seed-pauser:
-    build:
-      context: ./seed-pauser
-      no_cache: true
+    build: ./seed-pauser
     ports:
       - 5002:80
     environment:
