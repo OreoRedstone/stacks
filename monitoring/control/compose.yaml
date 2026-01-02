@@ -9,7 +9,7 @@ services:
       - grafana-data:/var/lib/grafana
     labels:
       traefik.enable: true
-      traefik.http.routers.grafana.rule: Host(`monitoring.control.74services.net`)
+      traefik.http.routers.grafana.rule: Host(`monitoring.74services.net`)
       
       glance.name: Grafana
       glance.id: grafana
