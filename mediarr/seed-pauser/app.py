@@ -86,4 +86,4 @@ def resume_torrents(torrent_ids):
         return 
     deluge_rpc_call("core.resume_torrent", [torrent_ids])
 
-app.run(host="0.0.0.0")
+app.run(host="0.0.0.0", port=80)
