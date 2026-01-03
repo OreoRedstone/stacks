@@ -40,7 +40,7 @@ services:
   atm10:
     image: itzg/minecraft-server:2025.10.5-java21-alpine@sha256:0ee2b6b5c53b8dbd5c4c5fe99bacd7200a66ee9b6f0a70179a9974e3a3609f75
     restart: unless-stopped
-    user: 0
+    user: 0:0
     environment:
       EULA: "TRUE"
       MOTD: Running %MODPACK_NAME% version %MODPACK_VERSION%
