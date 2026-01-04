@@ -35,7 +35,7 @@ def webhook():
             seriesId = request.json['SeriesId']
             series = requests.get(f"{JELLYFIN_URL}/Shows/{seriesId}/Episodes", headers={"Authorization": f"MediaBrowser Token={JELLYFIN_API_KEY}"})
             episodes = series.json()
-            seriesName = episodes['Items'][0]['SeriesName'].replace(" ").lower()
+            seriesName = episodes['Items'][0]['SeriesName'].replace(" ", "").lower()
             seasonNumber = request.json['SeasonNumber']
             episodeNumber = request.json['EpisodeNumber']
 
