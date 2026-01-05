@@ -213,7 +213,7 @@ services:
       glance.url: https://seerr.74services.net
 
   torrent-pauser:
-    image: ghcr.io/oreoredstone/jellyfin-torrent-pauser
+    image: ghcr.io/oreoredstone/jellyfin-torrent-pauser:main
     ports:
       - 5002:80
     environment:
