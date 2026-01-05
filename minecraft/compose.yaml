@@ -54,6 +54,7 @@ services:
       - atm10:/data
       - /mnt/nas/backups/minecraft/atm10:/backups
       - ./atm10-backup.conf:/config/simplebackups-common.toml
+      - ./atm10-atm10-ftbchunks.snbt:/config/ftbchunks-world.snbt
     labels:
       mc-router.host: atm10.play.74services.net
       glance.parent: mc-router

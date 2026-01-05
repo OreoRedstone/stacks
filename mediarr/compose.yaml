@@ -18,11 +18,7 @@ services:
       - 9.9.9.9
     networks:
       - arr
-      # - traefik
     labels:
-      # traefik.enable: true
-      # traefik.http.routers.deluge.rule: Host(`deluge.74services.net`)
-      # traefik.http.services.deluge.loadbalancer.server.port: 8112
       glance.parent: deluge
       glance.name: Gluetun
       glance.category: Arr
@@ -35,8 +31,6 @@ services:
       LOG_HTML: ${LOG_HTML:-false}
       CAPTCHA_SOLVER: ${CAPTCHA_SOLVER:-none}
       TZ: Europe/London
-    # ports:
-    #   - "${PORT:-8191}:8191"
     networks:
       - arr
     volumes:
@@ -220,10 +214,6 @@ services:
     environment:
       DELUGE_PASSWORD: ${DELUGE_PASSWORD}
       DELUGE_URL: ${DELUGE_URL}
-      RADARR_URL: ${RADARR_URL}
-      RADARR_API_KEY: ${RADARR_API_KEY}
-      JELLYFIN_URL: ${JELLYFIN_URL}
-      JELLYFIN_API_KEY: ${JELLYFIN_API_KEY}
 
 volumes:
   deluge-config:
