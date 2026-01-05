@@ -216,6 +216,7 @@ services:
     image: ghcr.io/oreoredstone/jellyfin-torrent-pauser:main
     ports:
       - 5002:80
+    restart: unless-stopped
     environment:
       DELUGE_PASSWORD: ${DELUGE_PASSWORD}
       DELUGE_URL: ${DELUGE_URL}
