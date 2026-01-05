@@ -212,8 +212,8 @@ services:
       glance.description: Media Requests
       glance.url: https://seerr.74services.net
 
-  seed-pauser:
-    build: ./seed-pauser
+  torrent-pauser:
+    image: ghcr.io/oreoredstone/jellyfin-torrent-pauser
     ports:
       - 5002:80
     environment:
