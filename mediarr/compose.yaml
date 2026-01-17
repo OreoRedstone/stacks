@@ -178,7 +178,7 @@ services:
       glance.url: https://bazarr.74services.net
 
   seerr:
-    image: ghcr.io/seerr-team/seerr:sha-8bbe786@sha256:ffd4995fc11f65f23705de19c4f9206eaeec405c2bdc7ac3e6977a1520a09c5a
+    image: ghcr.io/seerr-team/seerr:develop@sha256:d4b6ec2f4c4e37f7a43e369355d2b29adf55a232a89be1b798ff18829133534f
     init: true
     environment:
       LOG_LEVEL: debug
@@ -206,14 +206,14 @@ services:
       glance.description: Media Requests
       glance.url: https://seerr.74services.net
 
-  torrent-pauser:
-    image: ghcr.io/oreoredstone/jellyfin-torrent-pauser:main
-    ports:
-      - 5002:80
-    restart: unless-stopped
-    environment:
-      DELUGE_PASSWORD: ${DELUGE_PASSWORD}
-      DELUGE_URL: ${DELUGE_URL}
+  # torrent-pauser:
+  #   image: ghcr.io/oreoredstone/jellyfin-torrent-pauser:main
+  #   ports:
+  #     - 5002:80
+  #   restart: unless-stopped
+  #   environment:
+  #     DELUGE_PASSWORD: ${DELUGE_PASSWORD}
+  #     DELUGE_URL: ${DELUGE_URL}
 
 volumes:
   deluge-config:
