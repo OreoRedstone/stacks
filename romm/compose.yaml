@@ -12,7 +12,7 @@ services:
       SCREENSCRAPER_PASSWORD: ${SCREENSCRAPER_PASSWORD}
       # RETROACHIEVEMENTS_API_KEY: # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#retroachievements
       # STEAMGRIDDB_API_KEY: # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#steamgriddb
-      # HASHEOUS_API_ENABLED: true # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#hasheous
+      HASHEOUS_API_ENABLED: true # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#hasheous
     volumes:
       - resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
       - redis_data:/redis-data # Cached data for background tasks
