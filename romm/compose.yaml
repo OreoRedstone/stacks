@@ -3,7 +3,7 @@ services:
     image: rommapp/romm:latest
     restart: unless-stopped
     environment:
-      DB_HOST: romm-db
+      DB_HOST: db
       DB_NAME: romm
       DB_USER: romm-user
       DB_PASSWD: ${DB_PASSWORD}
