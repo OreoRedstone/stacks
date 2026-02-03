@@ -8,8 +8,8 @@ services:
       DB_USER: romm-user
       DB_PASSWD: ${DB_PASSWORD}
       ROMM_AUTH_SECRET_KEY: ${AUTH_KEY}
-      # SCREENSCRAPER_USER: # These are the recommended metadata providers
-      # SCREENSCRAPER_PASSWORD: # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#screenscraper
+      SCREENSCRAPER_USER: ${SCREENSCRAPER_USER}
+      SCREENSCRAPER_PASSWORD: ${SCREENSCRAPER_PASSWORD}
       # RETROACHIEVEMENTS_API_KEY: # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#retroachievements
       # STEAMGRIDDB_API_KEY: # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#steamgriddb
       # HASHEOUS_API_ENABLED: true # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#hasheous
