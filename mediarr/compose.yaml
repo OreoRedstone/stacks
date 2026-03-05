@@ -67,6 +67,9 @@ services:
     volumes:
       - prowlarr-config:/config
     restart: unless-stopped
+    dns:
+      - 1.1.1.1
+      - 9.9.9.9
     networks:
       - arr
       - traefik
