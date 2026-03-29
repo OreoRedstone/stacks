@@ -12,12 +12,8 @@ services:
     networks:
       - traefik
     restart: 'unless-stopped'
-    # Optional - alternative address used for autodiscovery
-    # environment:
-    #   - JELLYFIN_PublishedServerUrl=https://stream.74services.net
-    # Optional - may be necessary for docker healthcheck to pass if running in host network mode
-    # extra_hosts:
-    #   - 'host.docker.internal:host-gateway'
+    environment:
+      - JELLYFIN_PublishedServerUrl=https://stream.74services.net
     labels:
       traefik.enable: true
       traefik.http.routers.jellyfin.rule: Host(`stream.74services.net`)
