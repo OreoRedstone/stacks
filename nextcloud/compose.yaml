@@ -9,10 +9,10 @@ services:
     volumes:
       - db:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
     labels:
       glance.parent: nextcloud
       glance.name: MariaDB
@@ -42,14 +42,15 @@ services:
       - traefik
       - default
     environment:
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_HOST=db
-      - TRUSTED_PROXIES=traefik
-      - OVERWRITEHOST=cloud.74services.net 
-      - OVERWRITEPROTOCOL=https
-      - OVERWRITECLIURL=https://cloud.74services.net
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_HOST: db
+      TRUSTED_PROXIES: traefik
+      OVERWRITEHOST: cloud.74services.net 
+      OVERWRITEPROTOCOL: https
+      OVERWRITECLIURL: https://cloud.74services.net
+      ALLOW_EMBEDDING: true
     labels:
       traefik.enable: true
       traefik.http.routers.nextcloud.rule: Host(`cloud.74services.net`)
