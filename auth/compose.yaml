@@ -70,10 +70,7 @@ services:
       timeout: 5s
     restart: unless-stopped
     volumes:
-      - db:/var/lib/postgresql/data
-
-volumes:
-  db:
+      - /mnt/docker-data/auth/db:/var/lib/postgresql/data
 
 networks:
   traefik:

@@ -31,7 +31,7 @@ services:
   #     INIT_MEMORY: 1G
   #     MAX_MEMORY: 10G
   #   volumes:
-  #     - lspace-atm8:/data
+  #     - /mnt/docker-data/minecraft/lspace-atm8:/data
   #   labels:
   #     mc-router.host: lspace-atm8.play.74services.net
   #     glance.parent: mc-router
@@ -51,7 +51,7 @@ services:
       INIT_MEMORY: 1G
       MAX_MEMORY: 10G
     volumes:
-      - atm10:/data
+      - /mnt/docker-data/minecraft/atm10:/data
       - /mnt/nas/backups/minecraft/atm10:/backups
       - ./atm10-backup.conf:/config/simplebackups-common.toml
       - ./atm10-ftbchunks.snbt:/config/ftbchunks-world.snbt
@@ -73,7 +73,7 @@ services:
       OPS: oreoredstone
     volumes:
       - ./jjk/lostcities-server.toml:/data/defaultconfigs/lostcities-server.toml:ro
-      - jjk:/data
+      - /mnt/docker-data/minecraft/jjk:/data
     labels:
       mc-router.host: jjk.play.74services.net
       glance.parent: mc-router
@@ -90,30 +90,9 @@ services:
   #     INIT_MEMORY: 1G
   #     MAX_MEMORY: 6G
   #   volumes:
-  #     - will-create:/data
+  #     - /mnt/docker-data/minecraft/will-create:/data
   #   labels:
   #     mc-router.host: create.play.74services.net
   #     glance.parent: mc-router
   #     glance.name: Create
   #     glance.category: Gaming
-  # vanilla:
-  #   image: itzg/minecraft-server:java21
-  #   environment:
-  #     EULA: "TRUE"
-  #     TYPE: PAPER
-  #     VERSION: 1.21.4
-  #   volumes:
-  #     - ./vanilla/data:/data
-  #   labels:
-  #     - mc-router.host=vanilla.play.74services.net
-  #     - homepage.group=Minecraft
-  #     - homepage.name=Vanilla 1.21.4
-  #     - homepage.icon=https://cdn.jsdelivr.net/gh/selfhst/icons/svg/minecraft.svg
-  #     - homepage.href=https://vanilla.play.74services.net/
-  #     - homepage.description=Vanilla 1.21.4 Server
-
-volumes:
-  lspace-atm8:
-  jjk:
-  will-create:
-  atm10:

@@ -14,8 +14,8 @@ services:
       # STEAMGRIDDB_API_KEY: # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#steamgriddb
       HASHEOUS_API_ENABLED: true # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#hasheous
     volumes:
-      - resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
-      - redis_data:/redis-data # Cached data for background tasks
+      - /mnt/docker-data/romm/resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
+      - /mnt/docker-data/romm/redis_data:/redis-data # Cached data for background tasks
       - /mnt/nas/romm/library:/romm/library # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
       - /mnt/nas/romm/assets:/romm/assets # Uploaded saves, states, etc.
       - ./config.yml:/romm/config/config.yml # Path where config.yml is stored
@@ -45,7 +45,7 @@ services:
       MARIADB_USER: romm-user
       MARIADB_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - db:/var/lib/mysql
+      - /mnt/docker-data/romm/db:/var/lib/mysql
     healthcheck:
       test: [CMD, healthcheck.sh, --connect, --innodb_initialized]
       start_period: 30s
@@ -53,11 +53,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
-volumes:
-  resources:
-  redis_data:
-  db:
 
 networks:
   traefik:
