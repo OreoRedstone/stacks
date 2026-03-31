@@ -3,8 +3,8 @@ services:
     image: jellyfin/jellyfin:10.11@sha256:333b647716631443a43c7fabac4b0c46b4e2f036bad19547e00958f10f721b85
     user: 0:0
     volumes:
-      - jellyfin-config:/config
-      - jellyfin-cache:/cache
+      - /mnt/docker-data/streaming/jellyfin-config:/config
+      - /mnt/docker-data/streaming/jellyfin-cache:/cache
       - /mnt/nas/media/films:/media/films
       - /mnt/nas/media/shows:/media/shows
       - /mnt/nas/media/Music:/media/music
@@ -29,7 +29,7 @@ services:
     networks:
       - traefik
     volumes:
-      - wizarr-db:/data/database
+      - /mnt/docker-data/streaming/wizarr-db:/data/database
     environment:
       - PUID=1000 #Set UID
       - PGID=1000 #Set GID
@@ -55,7 +55,7 @@ services:
       # Optional: put your config options customization here. Examples:
       # ND_LOGLEVEL: debug
     volumes:
-      - navidrome-data:/data
+      - /mnt/docker-data/streaming/navidrome-data:/data
       - /mnt/nas/othermedia/media/music:/music:ro
     labels:
       traefik.enable: true
@@ -66,12 +66,6 @@ services:
       glance.icon: sh:navidrome
       glance.url: https://music.74services.net
       glance.description: Music Streaming
-
-volumes:
-  jellyfin-cache:
-  jellyfin-config:
-  wizarr-db:
-  navidrome-data:
 
 networks:
   traefik:

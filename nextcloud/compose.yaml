@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     command: --transaction-isolation=READ-COMMITTED
     volumes:
-      - db:/var/lib/mysql
+      - /mnt/docker-data/nextcloud/db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
@@ -37,7 +37,7 @@ services:
       - db
       - collabora
     volumes:
-      - nextcloud-data:/var/www/html
+      - /mnt/docker-data/nextcloud/nextcloud-data:/var/www/html
     networks:
       - traefik
       - default
@@ -76,10 +76,6 @@ services:
       glance.parent: nextcloud
       glance.name: Collabora
       glance.category: Media
-
-volumes:
-  nextcloud-data:
-  db:
 
 networks:
   traefik:

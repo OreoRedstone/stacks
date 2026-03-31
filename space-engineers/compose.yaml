@@ -2,8 +2,8 @@ services:
   server:
     image: devidian/spaceengineers:winestaging@sha256:a09dbb38ab62b2c68161b27dd2ab88a59295f3f08ad7397881da0886fc877d79
     volumes:
-      - data:/appdata/space-engineers
-      - steam:/root/.steam
+      - /mnt/docker-data/space-engineers/data:/appdata/space-engineers
+      - /mnt/docker-data/space-engineers/steam:/root/.steam
     ports:
       - target: 27016
         published: 27016
@@ -19,6 +19,3 @@ services:
       glance.id: space-engineers
       glance.category: Gaming
       glance.description: Space Engineers Dedicated Server
-volumes:
-  data:
-  steam:

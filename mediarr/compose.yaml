@@ -34,7 +34,7 @@ services:
     networks:
       - arr
     volumes:
-      - flaresolver-config:/config
+      - /mnt/docker-data/mediarr/flaresolver-config:/config
     restart: unless-stopped
 
   deluge:
@@ -45,7 +45,7 @@ services:
       PGID: 0
       TZ: Europe/London
     volumes:
-      - deluge-config:/config
+      - /mnt/docker-data/mediarr/deluge-config:/config
       - /mnt/nas/othermedia/downloads:/data/downloads
     network_mode: 'service:vpn'
     depends_on:
@@ -65,7 +65,7 @@ services:
       PGID: 0
       TZ: Europe/London
     volumes:
-      - prowlarr-config:/config
+      - /mnt/docker-data/mediarr/prowlarr-config:/config
     restart: unless-stopped
     dns:
       - 1.1.1.1
@@ -94,7 +94,7 @@ services:
       TZ: Europe/London
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - sonarr-config:/config
+      - /mnt/docker-data/mediarr/sonarr-config:/config
       - /mnt/nas/othermedia:/data
     networks:
       - arr
@@ -118,7 +118,7 @@ services:
       TZ: Europe/London
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - radarr-config:/config
+      - /mnt/docker-data/mediarr/radarr-config:/config
       - /mnt/nas/othermedia:/data
     networks:
       - arr
@@ -140,7 +140,7 @@ services:
       PGID: 0
       TZ: Europe/London
     volumes:
-      - lidarr-config:/config
+      - /mnt/docker-data/mediarr/lidarr-config:/config
       - /mnt/nas/othermedia:/data
     networks:
       - arr
@@ -165,7 +165,7 @@ services:
       TZ: Europe/London
       UMASK_SET: 022
     volumes:
-      - bazarr-config:/config
+      - /mnt/docker-data/mediarr/bazarr-config:/config
       - /mnt/nas/othermedia:/data
     networks:
       - arr
@@ -191,7 +191,7 @@ services:
       - traefik
       - arr
     volumes:
-      - seerr-config:/app/config
+      - /mnt/docker-data/mediarr/seerr-config:/app/config
     healthcheck:
       test: wget --no-verbose --tries=1 --spider http://localhost:5055/api/v1/status || exit 1
       start_period: 20s
@@ -217,16 +217,6 @@ services:
   #   environment:
   #     DELUGE_PASSWORD: ${DELUGE_PASSWORD}
   #     DELUGE_URL: ${DELUGE_URL}
-
-volumes:
-  deluge-config:
-  prowlarr-config:
-  sonarr-config:
-  radarr-config:
-  lidarr-config:
-  bazarr-config:
-  seerr-config:
-  flaresolver-config:
 
 networks:
   traefik:

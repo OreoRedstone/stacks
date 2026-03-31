@@ -5,7 +5,7 @@ services:
     environment:
       DOMAIN: "https://vault.74services.net"
     volumes:
-      - data:/data/
+      - /mnt/docker-data/vaultwarden/data:/data/
     networks:
       - traefik
     labels:
@@ -17,9 +17,6 @@ services:
       glance.icon: sh:vaultwarden
       glance.url: https://vault.74services.net
       glance.description: Password Management
-
-volumes:
-  data:
 
 networks:
   traefik:

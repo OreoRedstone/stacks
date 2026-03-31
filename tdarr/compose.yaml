@@ -18,7 +18,7 @@ services:
       - ffmpegVersion=7
       - nodeName=MyInternalNode
     volumes:
-      - server:/app/server
+      - /mnt/docker-data/tdarr/server:/app/server
       - ./configs:/app/configs
       # - ./logs:/app/logs
       - /mnt/nas/media:/media
@@ -30,6 +30,3 @@ services:
       glance.icon: https://cdn.jsdelivr.net/gh/selfhst/icons/png/tdarr.png
       glance.url: http://192.168.0.100:8265
       glance.description: Video Transcoding
-
-volumes:
-  server:
