@@ -26,7 +26,7 @@ services:
       glance.url: https://stream.74services.net
       glance.description: Movies and TV
   wizarr:
-    image: ghcr.io/wizarrrr/wizarr:v2025.9.2@sha256:ec7bff0536093154321ad8ecb8ee4b34a2df01579e3b37f7d3add86924066d64
+    image: ghcr.io/wizarrrr/wizarr:v2025.12.0@sha256:83fc0b50985d196226b7c28a27062a1c4e63124a5d6d2448710aee222637b79e
     restart: unless-stopped
     networks:
       - traefik
