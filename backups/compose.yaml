@@ -1,0 +1,24 @@
+services:
+  restic-backup:
+    image: restic/restic:latest
+
+    environment:
+      RESTIC_REPOSITORY: ${RESTIC_REPOSITORY}
+      RESTIC_PASSWORD: ${RESTIC_PASSWORD}
+
+    volumes:
+      - /mnt/docker-data:/data/docker-data:ro
+      - /mnt/immich-data:/data/immich:ro
+
+      - ./ssh:/root/.ssh:ro
+      - ./cache:/root/.cache/restic
+
+    entrypoint: >
+      sh -c "
+        echo '--- Starting backup $(date) ---';
+
+        restic backup /data/docker-data /data/immich &&
+        restic forget --keep-daily 7 --keep-weekly 4 --prune;
+
+        echo '--- Backup complete ---';
+      "
