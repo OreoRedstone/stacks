@@ -2,23 +2,41 @@ services:
   restic-backup:
     image: restic/restic:latest
 
+    # one-shot execution (Komodo will run it)
+    command: >
+      sh -c "
+        set -e;
+
+        echo '🔐 Setting up SSH...';
+
+        mkdir -p /root/.ssh &&
+        cp /ssh/id_ed25519 /root/.ssh/id_ed25519 &&
+        cp /ssh/known_hosts /root/.ssh/known_hosts &&
+        chmod 600 /root/.ssh/id_ed25519 &&
+        chmod 600 /root/.ssh/known_hosts &&
+
+        echo '📦 Starting backup at $(date)...';
+
+        restic backup /data/docker-data /data/immich &&
+
+        echo '🧹 Applying retention policy...';
+
+        restic forget --keep-daily 7 --keep-weekly 4 --prune &&
+
+        echo '✅ Backup complete at $(date)';
+      "
+
     environment:
       RESTIC_REPOSITORY: ${RESTIC_REPOSITORY}
       RESTIC_PASSWORD: ${RESTIC_PASSWORD}
 
     volumes:
+      # data sources
       - /mnt/docker-data:/data/docker-data:ro
       - /mnt/immich-data:/data/immich:ro
 
-      - ./ssh:/root/.ssh:ro
+      # ssh keys (read-only, fixed at runtime)
+      - ./ssh:/ssh:ro
+
+      # restic cache (optional but improves performance)
       - ./cache:/root/.cache/restic
-
-    entrypoint: >
-      sh -c "
-        echo '--- Starting backup $(date) ---';
-
-        restic backup /data/docker-data /data/immich &&
-        restic forget --keep-daily 7 --keep-weekly 4 --prune;
-
-        echo '--- Backup complete ---';
-      "
