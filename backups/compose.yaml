@@ -2,9 +2,10 @@ services:
   restic-backup:
     image: restic/restic:latest
 
-    # one-shot execution (Komodo will run it)
+    entrypoint: /bin/sh
+
     command: >
-      sh -c "
+      -c "
         set -e;
 
         echo '🔐 Setting up SSH...';
