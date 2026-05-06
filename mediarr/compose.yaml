@@ -134,7 +134,7 @@ services:
       glance.url: https://radarr.74services.net
 
   lidarr:
-    image: lscr.io/linuxserver/lidarr:latest@sha256:ede2bb17350cc97a0d3f24389aa91803f655eac29aa022c77a71f4a61cc621e4
+    image: lscr.io/linuxserver/lidarr:latest@sha256:d2f944115de2ca6754ad142ee92f9db481b1574c7bc030974d624584106b78d7
     environment:
       PUID: 0
       PGID: 0
