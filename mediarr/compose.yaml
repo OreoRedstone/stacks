@@ -38,7 +38,7 @@ services:
     restart: unless-stopped
 
   deluge:
-    image: lscr.io/linuxserver/deluge:latest@sha256:448ed924f3479ae175c936c9693b4c4df52ebcb193e05d805c9f16c88112fe45
+    image: lscr.io/linuxserver/deluge:latest@sha256:6ae1d992859c1afaec200a1ec703a26afa97f82f3780ca4e5c224d1531bc1bf0
     restart: unless-stopped
     environment:
       PUID: 0
