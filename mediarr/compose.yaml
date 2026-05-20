@@ -59,7 +59,7 @@ services:
       glance.url: http://192.168.0.100:8112
 
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:latest@sha256:67a8aaedcfd6989f3030b937a6a07007310b1dfc7ee8df16d2cbfa48d1c1158c
+    image: lscr.io/linuxserver/prowlarr:latest@sha256:c9fe528f34b1fd3715438b6f6d6991d64e2965f2c055db36398bc66a0e7eab01
     environment:
       PUID: 0
       PGID: 0
