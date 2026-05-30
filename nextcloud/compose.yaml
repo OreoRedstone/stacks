@@ -62,7 +62,7 @@ services:
       glance.description: Cloud Management
     
   collabora:
-    image: collabora/code:25.04.5.2.1@sha256:74031c1ecf6823dc9abd1a97142fef01797bdd7dc93aef0b8b09145ed2273cc3
+    image: collabora/code:25.04.10.3.1@sha256:a51dd5d1741dea5d19f49d9997de2c321bf582076015ec4015941f3f00a5f4c0
     restart: unless-stopped
     networks:
       - traefik
