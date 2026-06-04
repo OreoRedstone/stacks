@@ -97,7 +97,7 @@ services:
   #     glance.name: Create
   #     glance.category: Gaming
   vanilla:
-    image: iztg/minecraft-server:java21-alpine@sha256:b252835179e76b5cc91aefcd1d543c8b6d0fdaffe8a24776662691f6593d1eb9
+    image: itzg/minecraft-server:java21-alpine@sha256:b252835179e76b5cc91aefcd1d543c8b6d0fdaffe8a24776662691f6593d1eb9
     restart: unless-stopped
     environment:
       EULA: "TRUE"
