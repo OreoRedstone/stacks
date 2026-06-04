@@ -97,15 +97,15 @@ services:
   #     glance.name: Create
   #     glance.category: Gaming
   vanilla:
-    image: itzg/minecraft-server:java21-alpine@sha256:b252835179e76b5cc91aefcd1d543c8b6d0fdaffe8a24776662691f6593d1eb9
+    image: itzg/minecraft-server:2026.5.4-java25-alpine@sha256:dc1265d471e15c6b825079785ee7a9ab58b0d511cece9bc75faa6154147f56bb
     restart: unless-stopped
     environment:
       EULA: "TRUE"
       INIT_MEMORY: 1G
       MAX_MEMORY: 4G
-      OPS: rapscallimango
+      OPS: rapscallimango, oreoredstone
       ENABLE_WHITELIST: true
-      WHITELIST: rapscallimango, queerlittlerat
+      WHITELIST: rapscallimango, queerlittlerat, oreoredstone
       TYPE: PAPER
     volumes:
       - /mnt/docker-data/minecraft/vanilla:/data
