@@ -1,6 +1,6 @@
 services:
   grafana:
-    image: grafana/grafana-enterprise:12.1@sha256:1d6b24fd4121d97bde0dea8aa19a357306a48dbfb7f61303649c4b6db5d327b7
+    image: grafana/grafana-enterprise:13.0@sha256:c2dcc96197e07df991a666c7cc0895bc3aadf634e025491f2580b58b494a8aec
     restart: always
     user: 0:0 # Temp fix for permissions in the volume
     # ports:
