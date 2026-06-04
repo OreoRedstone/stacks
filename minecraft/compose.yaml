@@ -96,3 +96,21 @@ services:
   #     glance.parent: mc-router
   #     glance.name: Create
   #     glance.category: Gaming
+  vanilla:
+    image: iztg/minecraft-server:java21-alpine@sha256:b252835179e76b5cc91aefcd1d543c8b6d0fdaffe8a24776662691f6593d1eb9
+    restart: unless-stopped
+    environment:
+      EULA: "TRUE"
+      INIT_MEMORY: 1G
+      MAX_MEMORY: 4G
+      OPS: rapscallimango
+      ENABLE_WHITELIST: true
+      WHITELIST: rapscallimango, queerlittlerat
+      TYPE: PAPER
+    volumes:
+      - /mnt/docker-data/minecraft/vanilla:/data
+    labels:
+      mc-router.host: vanilla.play.74services.net
+      glance.parent: mc-router
+      glance.name: Vanilla MC
+      glance.category: Gaming
