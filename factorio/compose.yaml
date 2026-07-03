@@ -14,6 +14,7 @@ services:
       USERNAME: ${USERNAME}
       TOKEN: ${TOKEN}
       UPDATE_MODS_ON_START: TRUE
+      DLC_SPACE_AGE: FALSE
     labels:
       glance.name: Factorio Server
       glance.category: Gaming
