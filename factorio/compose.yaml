@@ -2,12 +2,14 @@ services:
   server:
     image: factoriotools/factorio:2.0.77@sha256:d98a1554e7de21c299f263fde85cbec5c577afae2cef656378be8b658e929d6a
     restart: unless-stopped
+    entrypoint: ["/bin/sh", "/start.sh"]
     ports:
       - 34197:34197/udp
     volumes:
       - /mnt/docker-data/factorio/space-exploration:/factorio
-      - ./mod-list.json:/factorio/mods/mod-list.json
-      - ./server-settings.json:/factorio/config/server-settings.json
+      - ./mod-list.json:/tmp/mod-list.json:ro
+      - ./server-settings.json:/tmp/server-settings.json:ro
+      - ./start.sh:/start.sh:ro
     environment:
       USERNAME: ${USERNAME}
       TOKEN: ${TOKEN}
