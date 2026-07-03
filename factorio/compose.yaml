@@ -1,6 +1,6 @@
 services:
   server:
-    image: factoriotools/factorio:1.1.110@sha256:6fb9b7bfb12fb51bf668fce7e29cb1e98053f248201e64dfee870ef73b2f31cb
+    image: factoriotools/factorio:2.0.77@sha256:d98a1554e7de21c299f263fde85cbec5c577afae2cef656378be8b658e929d6a
     restart: unless-stopped
     ports:
       - 34197:34197/udp
