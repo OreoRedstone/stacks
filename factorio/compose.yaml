@@ -1,0 +1,16 @@
+services:
+  server:
+    image: factoriotools/factorio
+    restart: unless-stopped
+    ports:
+      - 34197:34197/udp
+    volumes:
+      - /mnt/docker-data/factorio/space-exploration:/factorio
+      - ./mod-list.json:/factorio/mods/mod-list.json
+      - ./server-settings.json:/factorio/config/server-settings.json
+    environment:
+      USERNAME: ${USERNAME}
+      TOKEN: ${TOKEN}
+    labels:
+      glance.name: Factorio Server
+      glance.category: Gaming
