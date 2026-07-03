@@ -11,6 +11,7 @@ services:
     environment:
       USERNAME: ${USERNAME}
       TOKEN: ${TOKEN}
+      UPDATE_MODS_ON_START: TRUE
     labels:
       glance.name: Factorio Server
       glance.category: Gaming
