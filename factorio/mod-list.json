@@ -1,3 +1,4 @@
+
 {
   "mods": 
   [
@@ -38,6 +39,16 @@
     },
     
     {
+      "name": "belt-visualizer",
+      "enabled": true
+    },
+    
+    {
+      "name": "BottleneckLite",
+      "enabled": true
+    },
+    
+    {
       "name": "bullet-trails",
       "enabled": true
     },
@@ -48,13 +59,13 @@
     },
     
     {
-      "name": "equipment-gantry",
+      "name": "EditorExtensions",
       "enabled": true
     },
     
     {
-      "name": "factoryplanner",
-      "enabled": false
+      "name": "equipment-gantry",
+      "enabled": true
     },
     
     {
@@ -64,6 +75,11 @@
     
     {
       "name": "grappling-gun",
+      "enabled": true
+    },
+    
+    {
+      "name": "GUI_Unifyer",
       "enabled": true
     },
     
@@ -89,6 +105,16 @@
     
     {
       "name": "ModuleInserterSimplified",
+      "enabled": true
+    },
+    
+    {
+      "name": "RateCalculator",
+      "enabled": true
+    },
+    
+    {
+      "name": "RecipeBook",
       "enabled": true
     },
     
@@ -156,5 +182,6 @@
       "name": "textplates",
       "enabled": true
     }
+    
   ]
 }
