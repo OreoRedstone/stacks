@@ -53,7 +53,7 @@ services:
       - ./custom-templates:/templates
   
   db:
-    image: postgres:16-alpine@sha256:23e88eb049fd5d54894d70100df61d38a49ed97909263f79d4ff4c30a5d5fca2
+    image: postgres:18-alpine@sha256:9a8afca54e7861fd90fab5fdf4c42477a6b1cb7d293595148e674e0a3181de15
     env_file:
       - .env
     environment:
