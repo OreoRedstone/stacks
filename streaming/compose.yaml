@@ -9,6 +9,7 @@ services:
       - /mnt/nas/media/shows:/media/shows
       - /mnt/nas/media/Music:/media/music
       - /mnt/nas/othermedia/media:/othermedia
+      - /dev/dri:/dev/dri
     networks:
       - traefik
     restart: 'unless-stopped'
