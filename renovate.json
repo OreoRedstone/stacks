@@ -7,5 +7,12 @@
     "immich/**"
   ],
   "prConcurrentLimit": 0,
-  "prHourlyLimit": 0
+  "prHourlyLimit": 0,
+  "packageRules": [
+    {
+      "description": "Limit Nextcloud updates to 1 major version.",
+      "matchPackageNames": ["nextcloud"],
+      "maxMajorIncrement": 1
+    }
+  ]
 }
