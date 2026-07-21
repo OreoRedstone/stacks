@@ -1,6 +1,6 @@
 services:
   vpn:
-    image: qmcgaw/gluetun@sha256:c5411925f73f0721b1d6bb2bfd89d6236dc3c66ddf38a1336e45308dc33859f9
+    image: qmcgaw/gluetun@sha256:ad6b604e0cecc917a5cb6a8de55cd167ba415da8b7ec13456abb871a84be3c30
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
@@ -181,7 +181,7 @@ services:
       glance.url: https://bazarr.74services.net
 
   seerr:
-    image: ghcr.io/seerr-team/seerr:develop@sha256:8e09ce7cf42f6d84f1277397f586d74b077173fc38f5b2b9346aec3f0361675f
+    image: ghcr.io/seerr-team/seerr:develop@sha256:afc79b8763df4a9eb76e3811d06e1a0b9de9b1ad5146764cff1ea8d7a1bfe970
     init: true
     environment:
       LOG_LEVEL: debug
