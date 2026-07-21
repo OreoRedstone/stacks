@@ -18,6 +18,10 @@
       "description": "Auto-update wiksite on push.",
       "matchFileNames": ["wiksite/**"],
       "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
     }
   ]
 }
