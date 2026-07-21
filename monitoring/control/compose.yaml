@@ -33,7 +33,7 @@ services:
       glance.category: Management
 
   influxdb:
-    image: influxdb:2.7@sha256:23bc959dcb97f85e1fbc3a739805203eb3bcb779afede002cb205a37e14442bb
+    image: influxdb:2.9@sha256:9f29465df7a15d427e046681cfc7b3da9753e75825c6864f8d3cf5b3aa3cca3d
     restart: always
     ports:
       - 8086:8086
