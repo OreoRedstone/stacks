@@ -37,29 +37,29 @@ services:
   #     glance.parent: mc-router
   #     glance.name: All the Mods 8
   #     glance.category: Gaming
-  atm10:
-    image: itzg/minecraft-server:2025.10.5-java21-alpine@sha256:0ee2b6b5c53b8dbd5c4c5fe99bacd7200a66ee9b6f0a70179a9974e3a3609f75
-    restart: unless-stopped
-    user: 0:0
-    environment:
-      EULA: "TRUE"
-      MOTD: Running %MODPACK_NAME% version %MODPACK_VERSION%
-      TYPE: AUTO_CURSEFORGE
-      CF_API_KEY: ${CF_API_KEY}
-      CF_SLUG: all-the-mods-10
-      CF_FILENAME_MATCHER: 5.3.1
-      INIT_MEMORY: 1G
-      MAX_MEMORY: 12G
-    volumes:
-      - /mnt/docker-data/minecraft/atm10:/data
-      - /mnt/nas/backups/minecraft/atm10:/backups
-      - ./atm10-backup.conf:/config/simplebackups-common.toml
-      - ./atm10-ftbchunks.snbt:/config/ftbchunks-world.snbt
-    labels:
-      mc-router.host: atm10.play.74services.net
-      glance.parent: mc-router
-      glance.name: All the Mods 10
-      glance.category: Gaming
+  # atm10:
+  #   image: itzg/minecraft-server:2025.10.5-java21-alpine@sha256:0ee2b6b5c53b8dbd5c4c5fe99bacd7200a66ee9b6f0a70179a9974e3a3609f75
+  #   restart: unless-stopped
+  #   user: 0:0
+  #   environment:
+  #     EULA: "TRUE"
+  #     MOTD: Running %MODPACK_NAME% version %MODPACK_VERSION%
+  #     TYPE: AUTO_CURSEFORGE
+  #     CF_API_KEY: ${CF_API_KEY}
+  #     CF_SLUG: all-the-mods-10
+  #     CF_FILENAME_MATCHER: 5.3.1
+  #     INIT_MEMORY: 1G
+  #     MAX_MEMORY: 12G
+  #   volumes:
+  #     - /mnt/docker-data/minecraft/atm10:/data
+  #     - /mnt/nas/backups/minecraft/atm10:/backups
+  #     - ./atm10-backup.conf:/config/simplebackups-common.toml
+  #     - ./atm10-ftbchunks.snbt:/config/ftbchunks-world.snbt
+  #   labels:
+  #     mc-router.host: atm10.play.74services.net
+  #     glance.parent: mc-router
+  #     glance.name: All the Mods 10
+  #     glance.category: Gaming
   jjk:
     image: itzg/minecraft-server:2025.9.2-java17-alpine@sha256:a9c523654bfba587f114a5fc3bbfc8031d46c58979f47026fa877ee87c8fc043
     restart: unless-stopped
