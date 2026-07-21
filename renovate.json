@@ -7,6 +7,11 @@
   "prHourlyLimit": 0,
   "packageRules": [
     {
+      "matchManagers": ["docker-compose"],
+      "matchFileNames": ["**/compose.yaml"],
+      "groupName": "{{packageFileDir}} compose updates"
+    },
+    {
       "description": "Limit Nextcloud updates to 1 major version.",
       "matchPackageNames": ["nextcloud"],
       "maxMajorIncrement": 1
