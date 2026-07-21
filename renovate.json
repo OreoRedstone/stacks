@@ -16,7 +16,8 @@
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "groupName": "{{packageFileDir}} non-major",
       "automerge": true,
-      "automergeSchedule": ["* 0-4 * * *"]
+      "automergeSchedule": ["* 0-4 * * *"],
+      "platformAutomerge": false
     },
     {
       "description": "Limit Nextcloud updates to 1 major version.",
