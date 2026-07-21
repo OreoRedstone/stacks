@@ -3,12 +3,8 @@
   "extends": [
     "config:best-practices"
   ],
-  "ignorePaths": [
-    "immich/**"
-  ],
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
-  "automergeSchedule": ["* 0-4 * * *"],
   "packageRules": [
     {
       "description": "Limit Nextcloud updates to 1 major version.",
@@ -18,10 +14,12 @@
     {
       "description": "Auto-update wiksite on push.",
       "matchFileNames": ["wiksite/**"],
+      "automergeSchedule": ["at any time"],
       "automerge": true
     },
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automergeSchedule": ["* 0-4 * * *"],
       "automerge": true
     }
   ]
