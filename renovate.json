@@ -3,6 +3,7 @@
   "extends": [
     "config:best-practices"
   ],
+  "timezone": "Europe/London",
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
   "packageRules": [
