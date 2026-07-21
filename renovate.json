@@ -9,7 +9,7 @@
     {
       "matchManagers": ["docker-compose"],
       "matchFileNames": ["**/compose.yaml"],
-      "groupName": "{{packageFileDir}} compose updates"
+      "groupName": "{{packageFileDir}}"
     },
     {
       "description": "Limit Nextcloud updates to 1 major version.",
