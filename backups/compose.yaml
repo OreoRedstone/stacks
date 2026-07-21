@@ -1,6 +1,6 @@
 services:
   restic-backup:
-    image: restic/restic:latest
+    image: restic/restic:latest@sha256:9940e6c7421ab3a21ee9fdc4e91596d04c792b600d31b102696c75cbf3ac4481
 
     entrypoint: /bin/sh
 
