@@ -13,6 +13,11 @@
       "description": "Limit Nextcloud updates to 1 major version.",
       "matchPackageNames": ["nextcloud"],
       "maxMajorIncrement": 1
+    },
+    {
+      "description": "Auto-update wiksite on push.",
+      "matchFileNames": ["wiksite/**"],
+      "automerge": true
     }
   ]
 }
