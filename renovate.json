@@ -1,16 +1,22 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:best-practices"
-  ],
+  "extends": ["config:best-practices"],
   "timezone": "Europe/London",
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
   "packageRules": [
     {
       "matchManagers": ["docker-compose"],
-      "matchFileNames": ["**/compose.yaml"],
-      "groupName": "{{packageFileDir}}"
+      "matchUpdateTypes": ["major"],
+      "groupName": "{{packageFileDir}} major",
+      "dependencyDashboardApproval": true
+    },
+    {
+      "matchManagers": ["docker-compose"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "groupName": "{{packageFileDir}} non-major",
+      "automerge": true,
+      "automergeSchedule": ["* 0-4 * * *"]
     },
     {
       "description": "Limit Nextcloud updates to 1 major version.",
@@ -21,11 +27,6 @@
       "description": "Auto-update wiksite on push.",
       "matchFileNames": ["wiksite/**"],
       "automergeSchedule": ["at any time"],
-      "automerge": true
-    },
-    {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automergeSchedule": ["* 0-4 * * *"],
       "automerge": true
     }
   ]
