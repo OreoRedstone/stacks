@@ -16,7 +16,7 @@
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "groupName": "{{packageFileDir}} non-major",
       "automerge": true,
-      "automergeSchedule": ["* 0-4 * * *"],
+      "automergeSchedule": ["at any time"],
       "platformAutomerge": false
     },
     {
