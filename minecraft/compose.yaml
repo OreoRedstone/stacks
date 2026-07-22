@@ -61,7 +61,7 @@ services:
   #     glance.name: All the Mods 10
   #     glance.category: Gaming
   jjk:
-    image: itzg/minecraft-server:2025.9.2-java17-alpine@sha256:a9c523654bfba587f114a5fc3bbfc8031d46c58979f47026fa877ee87c8fc043
+    image: itzg/minecraft-server:2025.10.5-java17-alpine@sha256:ecc762c91690d3f5fbfd1051aa07f173025dcaccfbf201984ddf395c21a5264f
     restart: unless-stopped
     environment:
       EULA: "TRUE"
@@ -97,7 +97,7 @@ services:
   #     glance.name: Create
   #     glance.category: Gaming
   vanilla:
-    image: itzg/minecraft-server:2026.5.4-java25-alpine@sha256:dc1265d471e15c6b825079785ee7a9ab58b0d511cece9bc75faa6154147f56bb
+    image: itzg/minecraft-server:2026.7.2-java25-alpine@sha256:195e43c5b4fd17357e9a55ac11789d872e6995ea87d59c4f9881702eb777fb0a
     restart: unless-stopped
     environment:
       EULA: "TRUE"
