@@ -25,6 +25,7 @@ services:
       glance.icon: sh:jellyfin
       glance.url: https://stream.74services.net
       glance.description: Movies and TV
+
   wizarr:
     image: ghcr.io/wizarrrr/wizarr:v2026.7.1@sha256:606f9b88b0303daae11f595e424756b588d9365021c53dcb4d1369f2efc0543c
     restart: unless-stopped
@@ -68,6 +69,29 @@ services:
       glance.icon: sh:navidrome
       glance.url: https://music.74services.net
       glance.description: Music Streaming
+
+  kavita:
+    image: jvmilazz0/kavita:latest
+    user: 0:0
+    networks:
+      - traefik
+    volumes:
+      # - /your/path/to/manga:/manga
+      # - /your/path/to/comics:/comics
+      - /mnt/nas/othermedia/media/books:/books
+      - /mnt/docker-data/steeaming/kavita-config:/kavita/config     # /kavita/config must not be changed
+    environment:
+      - TZ=Europe/London
+    restart: unless-stopped
+    labels:
+      traefik.enable: true
+      traefik.http.routers.kavita.rule: Host(`books.74services.net`)
+      glance.name: Kavita
+      glance.id: kavita
+      glance.category: Media
+      glance.icon: sh:kavita
+      glance.url: https://books.74services.net
+      glance.description: Book Library
 
 networks:
   traefik:

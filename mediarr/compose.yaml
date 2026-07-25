@@ -201,7 +201,7 @@ services:
     restart: unless-stopped
     labels:
       traefik.enable: true
-      traefik.http.routers.seer.rule: Host(`seerr.74services.net`)
+      traefik.http.routers.seerr.rule: Host(`seerr.74services.net`)
       glance.name: Seerr
       glance.id: seerr
       glance.category: Arr
@@ -209,14 +209,27 @@ services:
       glance.description: Media Requests
       glance.url: https://seerr.74services.net
 
-  # torrent-pauser:
-  #   image: ghcr.io/oreoredstone/jellyfin-torrent-pauser:main
-  #   ports:
-  #     - 5002:80
-  #   restart: unless-stopped
-  #   environment:
-  #     DELUGE_PASSWORD: ${DELUGE_PASSWORD}
-  #     DELUGE_URL: ${DELUGE_URL}
+  bindery:
+    image: ghcr.io/vavallee/bindery:latest
+    networks:
+      - traefik
+      - arr
+    volumes:
+      - /mnt/docker-data/mediarr/bindery-config:/config
+      - /mnt/nas/othermedia/media/books:/books
+      - /mnt/nas/othermedia/downloads:/downloads
+    environment:
+      - BINDERY_LOG_LEVEL=info
+    restart: unless-stopped
+    labels:
+      traefik.enable: true
+      traefik.http.routers.bindery.rule: Host(`bindery.74services.net`)
+      glance.name: Bindery
+      glance.id: bindery
+      glance.category: Arr
+      glance.icon: sh:bindery
+      glance.description: Book Management
+      glance.url: https://bindery.74services.net
 
 networks:
   traefik:
