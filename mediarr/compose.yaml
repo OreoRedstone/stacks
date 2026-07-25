@@ -211,6 +211,7 @@ services:
 
   bindery:
     image: ghcr.io/vavallee/bindery:latest
+    user: 0:0
     networks:
       - traefik
       - arr
