@@ -13,9 +13,9 @@ services:
       - 8112:8112 # deluge web UI Port
       - 58846:58846
       # - 6881:6881 # more deluge
-    dns:
-      - 1.1.1.1
-      - 9.9.9.9
+    # dns:
+    #   - 1.1.1.1
+    #   - 9.9.9.9
     networks:
       - arr
     labels:
