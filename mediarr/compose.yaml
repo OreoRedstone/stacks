@@ -1,6 +1,6 @@
 services:
   vpn:
-    image: qmcgaw/gluetun@sha256:ad6b604e0cecc917a5cb6a8de55cd167ba415da8b7ec13456abb871a84be3c30
+    image: qmcgaw/gluetun:v3.41.1@sha256:1a5bf4b4820a879cdf8d93d7ef0d2d963af56670c9ebff8981860b6804ebc8ab
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
