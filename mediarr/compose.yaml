@@ -68,8 +68,8 @@ services:
       - /mnt/docker-data/mediarr/prowlarr-config:/config
     restart: unless-stopped
     dns:
-      - 1.1.1.1
       - 9.9.9.9
+      - 1.1.1.1
     networks:
       - arr
       - traefik
