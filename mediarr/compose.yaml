@@ -17,25 +17,15 @@ services:
     #   - 1.1.1.1
     #   - 9.9.9.9
     networks:
+      - traefik
       - arr
     labels:
+      traefik.enable: true
+      traefik.http.routers.prowlarr.rule: Host(`prowlarr.74services.net`)
+      traefik.http.services.prowlarr.loadbalancer.server.port: 9696
       glance.parent: deluge
       glance.name: Gluetun
       glance.category: Arr
-      
-  flaresolverr:
-    image: ghcr.io/flaresolverr/flaresolverr:latest@sha256:139dfee1c6f89249c8d665d1333a42e8ec74ec0a86bc6bb1c8461e10d3a66a47
-    environment:
-      LOG_LEVEL: ${LOG_LEVEL:-info}
-      LOG_FILE: ${LOG_FILE:-none}
-      LOG_HTML: ${LOG_HTML:-false}
-      CAPTCHA_SOLVER: ${CAPTCHA_SOLVER:-none}
-      TZ: Europe/London
-    networks:
-      - arr
-    volumes:
-      - /mnt/docker-data/mediarr/flaresolver-config:/config
-    restart: unless-stopped
 
   deluge:
     image: lscr.io/linuxserver/deluge:latest@sha256:33a939576f7ecfc1227db1a0cb2afce030ce983e620ec9d93c956e3700e21fe9
@@ -67,17 +57,12 @@ services:
     volumes:
       - /mnt/docker-data/mediarr/prowlarr-config:/config
     restart: unless-stopped
-    dns:
-      - 9.9.9.9
-      - 1.1.1.1
-    networks:
-      - arr
-      - traefik
+    network_mode: 'service:vpn'
+    depends_on:
+      - vpn
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=1
     labels:
-      traefik.enable: true
-      traefik.http.routers.prowlarr.rule: Host(`prowlarr.74services.net`)
       glance.name: Prowlarr
       glance.id: prowlarr
       glance.category: Arr
@@ -231,6 +216,20 @@ services:
       glance.icon: sh:bindery
       glance.description: Book Management
       glance.url: https://bindery.74services.net
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest@sha256:139dfee1c6f89249c8d665d1333a42e8ec74ec0a86bc6bb1c8461e10d3a66a47
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      LOG_FILE: ${LOG_FILE:-none}
+      LOG_HTML: ${LOG_HTML:-false}
+      CAPTCHA_SOLVER: ${CAPTCHA_SOLVER:-none}
+      TZ: Europe/London
+    networks:
+      - arr
+    volumes:
+      - /mnt/docker-data/mediarr/flaresolver-config:/config
+    restart: unless-stopped
 
 networks:
   traefik:
