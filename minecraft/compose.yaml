@@ -3,12 +3,9 @@ services:
     image: itzg/mc-router:1.46.4@sha256:92766cd72262e4e13569463708af2bb87457ee5b3ba914b72ccbc8b09f8eb384
     restart: unless-stopped
     command: "-debug -in-docker"
-    # environment:
-    #   MAPPING: |
-    #     lspace-atm8.play.74services.net=lspace-atm8:25565
-    #     vanilla.play.74services.net=vanilla:25565
     ports:
       - 25565:25565
+    user: root
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
