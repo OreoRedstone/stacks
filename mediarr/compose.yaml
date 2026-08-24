@@ -1,6 +1,6 @@
 services:
   vpn:
-    image: qmcgaw/gluetun:latest
+    image: qmcgaw/gluetun:latest@sha256:8e92dcb57ed64b0e4469c933f00ef1e09ee00867fee150e783a95fa6b53effa4
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
@@ -195,7 +195,7 @@ services:
       glance.url: https://seerr.74services.net
 
   bindery:
-    image: ghcr.io/vavallee/bindery:latest
+    image: ghcr.io/vavallee/bindery:latest@sha256:d0d3ad1675424e09a64c75da13d60f556c7626c4ee0aefced572d0ebc91274a9
     user: 0:0
     networks:
       - traefik

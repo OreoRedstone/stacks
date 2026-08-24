@@ -71,7 +71,7 @@ services:
       glance.description: Music Streaming
 
   kavita:
-    image: jvmilazz0/kavita:latest
+    image: jvmilazz0/kavita:latest@sha256:ca6af7a18d7124d014702983c2364e485294f808c1552e9555f2595b7cda7982
     user: 0:0
     networks:
       - traefik
