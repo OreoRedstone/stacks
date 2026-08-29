@@ -111,3 +111,23 @@ services:
       glance.parent: mc-router
       glance.name: Vanilla MC
       glance.category: Gaming
+deceased-craft:
+    image: itzg/minecraft-server:2025.10.5-java21-alpine@sha256:0ee2b6b5c53b8dbd5c4c5fe99bacd7200a66ee9b6f0a70179a9974e3a3609f75
+    restart: unless-stopped
+    environment:
+      EULA: "TRUE"
+      MOTD: Running %MODPACK_NAME% version %MODPACK_VERSION%
+      TYPE: AUTO_CURSEFORGE
+      CF_API_KEY: ${CF_API_KEY}
+      CF_SLUG: deceasedcraft
+      CF_FILENAME_MATCHER: 5.5.5
+      INIT_MEMORY: 1G
+      MAX_MEMORY: 12G
+    volumes:
+      - /mnt/docker-data/minecraft/deceased-craft:/data
+      - /mnt/nas/backups/minecraft/deceased-craft:/backups
+    labels:
+      mc-router.host: deceased-craft.play.74services.net
+      glance.parent: mc-router
+      glance.name: DeceasedCraft
+      glance.category: Gaming
