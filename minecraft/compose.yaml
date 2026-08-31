@@ -112,7 +112,7 @@ services:
       glance.name: Vanilla MC
       glance.category: Gaming
   deceased-craft:
-      image: itzg/minecraft-server:2025.10.5-java21-alpine@sha256:0ee2b6b5c53b8dbd5c4c5fe99bacd7200a66ee9b6f0a70179a9974e3a3609f75
+      image: itzg/minecraft-server:2026.8.2-java21-alpine@sha256:725243f4c274bb7fc3f2b9eb9326bbcc6bf3fef86a126c831d0ae1296e1b49b9
       restart: unless-stopped
       environment:
         EULA: "TRUE"
