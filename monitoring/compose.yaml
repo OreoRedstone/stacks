@@ -3,21 +3,19 @@ services:
     image: grafana/grafana-enterprise:12.1@sha256:063e0684335601dfef7301a6db1963b932b443141db176c590b53bb15debe770
     restart: always
     user: 0:0 # Temp fix for permissions in the volume
-    # ports:
-    #  - 3000:3000
     volumes:
-      - grafana-data:/var/lib/grafana
+      - /mnt/docker-data/monitoring/grafana-data:/var/lib/grafana
     networks:
       - traefik
       - default
     labels:
       traefik.enable: true
-      traefik.http.routers.grafana.rule: Host(`monitoring.control.74services.net`)
+      traefik.http.routers.grafana.rule: Host(`monitoring.74services.net`)
       glance.name: Grafana
       glance.id: grafana
       glance.category: Management
       glance.icon: sh:grafana
-      glance.url: http://192.168.0.20:3000
+      glance.url: https://monitoring.74services.net
       glance.description: Data Collection and Visualisation
 
   prometheus:
@@ -25,8 +23,6 @@ services:
     restart: always
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - 9090:9090
     labels:
       glance.parent: grafana
       glance.name: Prometheus
@@ -35,8 +31,6 @@ services:
   influxdb:
     image: influxdb:2.9@sha256:270145207873eb426e15a211063532fc6f966f4ffb6edf4114ffac83ac4696eb
     restart: always
-    ports:
-      - 8086:8086
     environment:
       DOCKER_INFLUXDB_INIT_MODE: setup
       DOCKER_INFLUXDB_INIT_USERNAME: admin
@@ -44,16 +38,27 @@ services:
       DOCKER_INFLUXDB_INIT_ORG: oreo-homelab
       DOCKER_INFLUXDB_INIT_BUCKET: proxmox
     volumes:
-      - influx-data:/var/lib/influxdb2
+      - /mnt/docker-data/monitoring/influx-data:/var/lib/influxdb2
       - ./influx-configs:/etc/influxdb2/influx-configs
     labels:
       glance.parent: grafana
       glance.name: InfluxDB
       glance.category: Management
-
-volumes:
-  influx-data:
-  grafana-data:
+  cadvisor:
+    image: ghcr.io/google/cadvisor:v0.60.5@sha256:763aecf1c32c2be8a1a75f9abfc2fc461005c9dbbaa39cb356b354aac1296dbe
+    restart: always
+    command:
+      - "--housekeeping_interval=10s"
+      - "--docker_only"
+    volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+    labels:
+      glance.parent: grafana
+      glance.name: cAdvisor
+      glance.category: Management
 
 networks:
   traefik:
