@@ -9,7 +9,7 @@ services:
     networks:
       - traefik
     volumes:
-      - cache:/var/cache/ntfy
+      - /mnt/docker-data/ntfy/cache:/var/cache/ntfy
       - ./server.yml:/etc/ntfy/server.yml
     healthcheck: # optional: remember to adapt the host:port to your environment
         test: ["CMD-SHELL", "wget -q --tries=1 http://localhost:80/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1"]
@@ -27,9 +27,6 @@ services:
       glance.icon: sh:ntfy
       glance.url: https://ntfy.74services.net
       glance.description: Notification Server
-
-volumes:
-  cache:
 
 networks:
   traefik:
