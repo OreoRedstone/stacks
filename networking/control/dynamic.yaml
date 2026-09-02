@@ -1,5 +1,0 @@
-http:
-  middlewares:
-    auth:
-      forwardAuth:
-        address: "https://auth.74services.net"
