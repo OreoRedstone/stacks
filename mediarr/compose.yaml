@@ -1,6 +1,6 @@
 services:
   vpn:
-    image: qmcgaw/gluetun:latest@sha256:8e92dcb57ed64b0e4469c933f00ef1e09ee00867fee150e783a95fa6b53effa4
+    image: qmcgaw/gluetun:latest@sha256:89e3cbe22e0d6f09a18d3e86269392fd9f7f08e8991040741e577f8f127cdfe4
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
@@ -28,7 +28,7 @@ services:
       glance.category: Arr
 
   deluge:
-    image: lscr.io/linuxserver/deluge:latest@sha256:33a939576f7ecfc1227db1a0cb2afce030ce983e620ec9d93c956e3700e21fe9
+    image: lscr.io/linuxserver/deluge:latest@sha256:9505c64720afa9e5f0ac1576e660dd6d1e9d4a6733b791f4821e8f496f19f41f
     restart: unless-stopped
     environment:
       PUID: 0
@@ -49,7 +49,7 @@ services:
       glance.url: http://192.168.0.100:8112
 
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:latest@sha256:1295cff29d10b486c0d8324d1559a552140a5932bf8b3d87e398654414f63f92
+    image: lscr.io/linuxserver/prowlarr:latest@sha256:91844fa2c927ad6ede5630127183cc7868b175f6223e83e6a5da1fffea2aa782
     environment:
       PUID: 0
       PGID: 0
@@ -119,7 +119,7 @@ services:
       glance.url: https://radarr.74services.net
 
   lidarr:
-    image: lscr.io/linuxserver/lidarr:latest@sha256:2e4cdc7c8d5fa36915f446a29976ee01d3f9cc9722b8530a09121c76fbabef55
+    image: lscr.io/linuxserver/lidarr:latest@sha256:c74c32408fdf6e7926ad62641fc1a5544206ee65c33f2188bb179edb30e28f5a
     environment:
       PUID: 0
       PGID: 0
@@ -142,7 +142,7 @@ services:
       glance.url: https://lidarr.74services.net
       
   bazarr:
-    image: lscr.io/linuxserver/bazarr:latest@sha256:ac284d3fda9ee7da8b15197dc51f0d7a2a1da98549bee99a3d924d3e94a5e7ed
+    image: lscr.io/linuxserver/bazarr:latest@sha256:a20fb11a440d704a9d61c283aa26462aad33dc63223b173f8d8c77d33e8e9d59
     restart: unless-stopped
     environment:
       PUID: 0
@@ -166,7 +166,7 @@ services:
       glance.url: https://bazarr.74services.net
 
   seerr:
-    image: ghcr.io/seerr-team/seerr:develop@sha256:d303cd1c7bb8bcd4ef46ec0978a4c90e886973f5d02d8a586e5438ea6f66816a
+    image: ghcr.io/seerr-team/seerr:develop@sha256:a05413ab39b25e418b3cec7f45962bccc69e75bf5b581f49c22053014f3bd626
     init: true
     environment:
       LOG_LEVEL: debug
@@ -195,7 +195,7 @@ services:
       glance.url: https://seerr.74services.net
 
   bindery:
-    image: ghcr.io/vavallee/bindery:latest@sha256:d0d3ad1675424e09a64c75da13d60f556c7626c4ee0aefced572d0ebc91274a9
+    image: ghcr.io/vavallee/bindery:latest@sha256:e34e37d91f54f5ae5cbdd7a2910f415be0056b0ad7b0265bf8ac56f46de22b63
     user: 0:0
     networks:
       - traefik
