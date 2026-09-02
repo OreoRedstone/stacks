@@ -1,7 +1,7 @@
 services:
   router:
     image: itzg/mc-router:1.46.4@sha256:92766cd72262e4e13569463708af2bb87457ee5b3ba914b72ccbc8b09f8eb384
-    restart: unless-stopped
+    restart: "no"
     command: "-debug -in-docker"
     ports:
       - 25565:25565
@@ -59,7 +59,7 @@ services:
   #     glance.category: Gaming
   jjk:
     image: itzg/minecraft-server:2025.10.5-java17-alpine@sha256:ecc762c91690d3f5fbfd1051aa07f173025dcaccfbf201984ddf395c21a5264f
-    restart: unless-stopped
+    restart: "no"
     environment:
       EULA: "TRUE"
       MOTD: Running %MODPACK_NAME% version %MODPACK_VERSION%
@@ -95,7 +95,7 @@ services:
   #     glance.category: Gaming
   vanilla:
     image: itzg/minecraft-server:2026.8.2-java25-alpine@sha256:4be1a83075ce4edb5821704b1eea91d3cee610c4dd879fb1d7bb09db8a6e7745
-    restart: unless-stopped
+    restart: "no"
     environment:
       EULA: "TRUE"
       INIT_MEMORY: 1G
@@ -113,7 +113,7 @@ services:
       glance.category: Gaming
   deceased-craft:
       image: itzg/minecraft-server:2026.8.2-java21-alpine@sha256:725243f4c274bb7fc3f2b9eb9326bbcc6bf3fef86a126c831d0ae1296e1b49b9
-      restart: unless-stopped
+      restart: "no"
       environment:
         EULA: "TRUE"
         MOTD: Running %MODPACK_NAME% version %MODPACK_VERSION%

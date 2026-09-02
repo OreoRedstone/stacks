@@ -21,7 +21,7 @@ services:
     networks:
       - default
       - traefik
-    restart: unless-stopped
+    restart: "no"
     volumes:
       - ./media:/media
       - ./custom-templates:/templates
@@ -44,7 +44,7 @@ services:
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
       AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
-    restart: unless-stopped
+    restart: "no"
     user: root
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -68,7 +68,7 @@ services:
       - CMD-SHELL
       - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
       timeout: 5s
-    restart: unless-stopped
+    restart: "no"
     volumes:
       - /mnt/docker-data/auth/db:/var/lib/postgresql/data
 
