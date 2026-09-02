@@ -1,7 +1,7 @@
 services:
   site:
     image: ghcr.io/insignificant74/wik_74site:main@sha256:c733c1a37cdf83bd4fa6e02b6dbef49ce233aefa15a3f37ae7523be8cd643df9
-    restart: unless-stopped
+    restart: "no"
     networks:
       - traefik
     labels:

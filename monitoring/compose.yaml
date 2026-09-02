@@ -1,7 +1,7 @@
 services:
   grafana:
     image: grafana/grafana-enterprise:12.1@sha256:063e0684335601dfef7301a6db1963b932b443141db176c590b53bb15debe770
-    restart: always
+    restart: "no"
     user: 0:0 # Temp fix for permissions in the volume
     volumes:
       - /mnt/docker-data/monitoring/grafana-data:/var/lib/grafana
@@ -20,7 +20,7 @@ services:
 
   prometheus:
     image: prom/prometheus:v3.14.0@sha256:5ce7540c3c00ef4ab0c9d2c995c6a5b9c421f44b4a115d97a2c7af3b1c21cbb0
-    restart: always
+    restart: "no"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     labels:
@@ -30,7 +30,7 @@ services:
 
   influxdb:
     image: influxdb:2.9@sha256:270145207873eb426e15a211063532fc6f966f4ffb6edf4114ffac83ac4696eb
-    restart: always
+    restart: "no"
     ports:
       - 8086:8086
     environment:
@@ -48,7 +48,7 @@ services:
       glance.category: Management
   cadvisor:
     image: ghcr.io/google/cadvisor:v0.60.5@sha256:763aecf1c32c2be8a1a75f9abfc2fc461005c9dbbaa39cb356b354aac1296dbe
-    restart: always
+    restart: "no"
     command:
       - "--housekeeping_interval=10s"
       - "--docker_only"

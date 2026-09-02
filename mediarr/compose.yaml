@@ -1,7 +1,7 @@
 services:
   vpn:
     image: qmcgaw/gluetun:latest@sha256:89e3cbe22e0d6f09a18d3e86269392fd9f7f08e8991040741e577f8f127cdfe4
-    restart: unless-stopped
+    restart: "no"
     cap_add:
       - NET_ADMIN
     devices:
@@ -29,7 +29,7 @@ services:
 
   deluge:
     image: lscr.io/linuxserver/deluge:latest@sha256:9505c64720afa9e5f0ac1576e660dd6d1e9d4a6733b791f4821e8f496f19f41f
-    restart: unless-stopped
+    restart: "no"
     environment:
       PUID: 0
       PGID: 0
@@ -56,7 +56,7 @@ services:
       TZ: Europe/London
     volumes:
       - /mnt/docker-data/mediarr/prowlarr-config:/config
-    restart: unless-stopped
+    restart: "no"
     network_mode: 'service:vpn'
     depends_on:
       - vpn
@@ -72,7 +72,7 @@ services:
 
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest@sha256:c19aa4ecdf03d73e1d5c901da33744cb7eb4d921f89bafed1ca264601d7fa224
-    restart: unless-stopped
+    restart: "no"
     environment:
       PUID: 0
       PGID: 0
@@ -96,7 +96,7 @@ services:
 
   radarr:
     image: lscr.io/linuxserver/radarr:latest@sha256:119aaa4a4f7349bcd2a136c5373a0d7925b5479915c7dfe0c0ad352db2a6d438
-    restart: unless-stopped
+    restart: "no"
     environment:
       PUID: 0
       PGID: 0
@@ -130,7 +130,7 @@ services:
     networks:
       - arr
       - traefik
-    restart: unless-stopped
+    restart: "no"
     labels:
       traefik.enable: true
       traefik.http.routers.lidarr.rule: Host(`lidarr.74services.net`)
@@ -143,7 +143,7 @@ services:
       
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest@sha256:a20fb11a440d704a9d61c283aa26462aad33dc63223b173f8d8c77d33e8e9d59
-    restart: unless-stopped
+    restart: "no"
     environment:
       PUID: 0
       PGID: 0
@@ -183,7 +183,7 @@ services:
       timeout: 3s
       interval: 15s
       retries: 3
-    restart: unless-stopped
+    restart: "no"
     labels:
       traefik.enable: true
       traefik.http.routers.seerr.rule: Host(`seerr.74services.net`)
@@ -206,7 +206,7 @@ services:
       - /mnt/nas/othermedia/downloads:/downloads
     environment:
       - BINDERY_LOG_LEVEL=info
-    restart: unless-stopped
+    restart: "no"
     labels:
       traefik.enable: true
       traefik.http.routers.bindery.rule: Host(`bindery.74services.net`)
@@ -230,7 +230,7 @@ services:
       - vpn
     volumes:
       - /mnt/docker-data/mediarr/flaresolver-config:/config
-    restart: unless-stopped
+    restart: "no"
 
 networks:
   traefik:
