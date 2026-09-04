@@ -23,7 +23,7 @@ Status values: `OPEN`, `IN PROGRESS`, and `DONE`.
 | Status | Finding | Location | Recommended fix |
 | --- | --- | --- | --- |
 | DONE | Administrative interfaces are published directly on all host interfaces. | Glance, InfluxDB, Tdarr, and Deluge Compose files | Remove direct publishing where possible; otherwise bind to `127.0.0.1`, route through Traefik, require authentication, and restrict access with firewall rules. |
-| OPEN | Traefik dashboard is enabled without a defined protected route. | [`networking/compose.yaml:11-12`](networking/compose.yaml#L11-L12) | Disable it unless needed. If enabled, expose it only behind TLS, authentication, and an IP allowlist. |
+| DONE | Traefik dashboard is enabled without a defined protected route. | [`networking/compose.yaml:11-12`](networking/compose.yaml#L11-L12) | Disable it unless needed. If enabled, expose it only behind TLS, authentication, and an IP allowlist. |
 | OPEN | Gluetun requires powerful networking privileges. | [`mediarr/compose.yaml:5-8`](mediarr/compose.yaml#L5-L8) | Retain only required capabilities, test the VPN kill switch, and do not expose Deluge management publicly. |
 | OPEN | Space Engineers public IP is hard-coded. | [`space-engineers/compose.yaml:10`](space-engineers/compose.yaml#L10) | Use `${PUBLIC_IP:?required}` or dynamic DNS, and expose only the required UDP port. |
 
