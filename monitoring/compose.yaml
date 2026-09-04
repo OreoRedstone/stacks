@@ -39,9 +39,9 @@ services:
       DOCKER_INFLUXDB_INIT_PASSWORD: ${INFLUXDB_INIT_PASSWORD:?required}
       DOCKER_INFLUXDB_INIT_ORG: oreo-homelab
       DOCKER_INFLUXDB_INIT_BUCKET: proxmox
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${INFLUXDB_INIT_ADMIN_TOKEN:?required}
     volumes:
       - /mnt/docker-data/monitoring/influx-data:/var/lib/influxdb2
-      - ./influx-configs:/etc/influxdb2/influx-configs
     labels:
       glance.parent: grafana
       glance.name: InfluxDB
