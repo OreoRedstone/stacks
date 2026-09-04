@@ -15,7 +15,7 @@ Status values: `OPEN`, `IN PROGRESS`, and `DONE`.
 | Status | Finding | Location | Recommended fix |
 | --- | --- | --- | --- |
 | OPEN | Glance can access the Docker socket. | [`glance/compose.yaml:9-10`](glance/compose.yaml#L9-L10) | Remove the socket or use a restricted read-only socket proxy. Treat `:ro` as insufficient API authorization. |
-| OPEN | cAdvisor has broad host mounts, including a writable `/var/run`. | [`monitoring/compose.yaml:55-59`](monitoring/compose.yaml#L55-L59) | Use only the documented mounts required by cAdvisor, make them read-only where possible, and drop unnecessary capabilities. |
+| DONE | cAdvisor has broad host mounts, including a writable `/var/run`. | [`monitoring/compose.yaml:55-59`](monitoring/compose.yaml#L55-L59) | Use only the documented mounts required by cAdvisor, make them read-only where possible, and drop unnecessary capabilities. |
 | OPEN | Several services run as root or use root-equivalent UIDs. | [`monitoring/compose.yaml:5`](monitoring/compose.yaml#L5), [`streaming/compose.yaml:4`](streaming/compose.yaml#L4), [`mediarr/compose.yaml:34-35`](mediarr/compose.yaml#L34-L35), [`tdarr/compose.yaml:10-11`](tdarr/compose.yaml#L10-L11) | Use dedicated unprivileged UIDs/GIDs, adjust host ownership, and make media mounts read-only unless writes are required. |
 
 ## Medium
