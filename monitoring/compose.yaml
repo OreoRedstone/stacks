@@ -32,7 +32,7 @@ services:
     image: influxdb:2.9@sha256:270145207873eb426e15a211063532fc6f966f4ffb6edf4114ffac83ac4696eb
     restart: "no"
     ports:
-      - 10.44.0.0.2:8086:8086
+      - 10.44.0.2:8086:8086
     environment:
       DOCKER_INFLUXDB_INIT_MODE: setup
       DOCKER_INFLUXDB_INIT_USERNAME: admin
