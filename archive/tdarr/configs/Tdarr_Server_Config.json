@@ -12,7 +12,7 @@
   "openBrowser": true,
   "cronPluginUpdate": "",
   "auth": false,
-  "authSecretKey": "tsec_Ez89U6cI16oHU5LgHNjLhFpx23ygH",
+  "authSecretKey": "",
   "maxLogSizeMB": 10,
   "seededApiKey": ""
 }
