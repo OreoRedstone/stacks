@@ -8,7 +8,7 @@ Status values: `OPEN`, `IN PROGRESS`, and `DONE`.
 
 | Status | Finding | Location | Recommended fix |
 | --- | --- | --- | --- |
-| OPEN | InfluxDB uses a hard-coded admin password. | [`monitoring/compose.yaml:38-41`](monitoring/compose.yaml#L38-L41) | Rotate the password and any existing tokens. Use an environment variable or Docker secret, and avoid publishing port `8086` publicly. |
+| DONE | InfluxDB uses a hard-coded admin password. | [`monitoring/compose.yaml:38-41`](monitoring/compose.yaml#L38-L41) | Rotate the password and any existing tokens. Use an environment variable or Docker secret, and avoid publishing port `8086` publicly. |
 
 ## High
 
