@@ -9,12 +9,12 @@ services:
       # Optionally, also mount docker socket if you want to use the docker containers widget
       - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
-      - 80:8080
+      - 10.44.0.2:80:8080
     env_file: .env
     labels:
       glance.name: Glance
       glance.id: glance
       glance.category: Management
       glance.icon: sh:glance
-      glance.url: http://192.168.0.100
+      glance.url: http://10.44.0.2
       glance.description: Dashboard
