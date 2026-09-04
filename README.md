@@ -22,7 +22,7 @@ Docker Compose definitions and service configuration for a self-hosted homelab. 
 | `romm` | ROMM and PostgreSQL |
 | `space-engineers` | Space Engineers server |
 | `streaming` | Jellyfin, Wizarr, Navidrome, and Kavita |
-| `tdarr` | Tdarr media processing |
+| `archive/tdarr` | Archived Tdarr media processing stack (inactive) |
 | `vaultwarden` | Vaultwarden |
 | `wiksite` | Wiki site |
 
@@ -82,7 +82,7 @@ Service-specific configuration lives alongside each Compose file. Examples inclu
 - `minecraft/` world and server configuration files
 - `ntfy/server.yml`
 - `romm/config.yml`
-- `tdarr/configs/`
+- `archive/tdarr/configs/`
 
 Do not commit passwords, tokens, private keys, or generated application data. The repository currently contains initialization values in some Compose files, so replace those values with secure secrets before exposing services and rotate any credentials that have been used outside a disposable environment. Files matching `.env` and `.log` are ignored by Git.
 
