@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/haveagitgat/tdarr:2.46.01@sha256:1376fc2c1bcbd8c3eabc210d1531cd4287334facfbf3a78e4b10387be0a4d223
+    image: ghcr.io/haveagitgat/tdarr:2.86.01@sha256:45742f00e51a58553844c8b13d97e7ae9b2ee9a056bd8e5993d9a8282a45a23f
     restart: "no"
     ports:
       # - 8265:8265 # webUI port
