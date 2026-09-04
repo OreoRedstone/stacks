@@ -32,7 +32,7 @@ Status values: `OPEN`, `IN PROGRESS`, and `DONE`.
 | Status | Finding | Location | Recommended fix |
 | --- | --- | --- | --- |
 | OPEN | Some images use unpinned `latest`, `develop`, or tag-only references. | Authentik, ROMM, MariaDB, media services, and Seerr | Pin reviewed release versions and immutable digests; avoid `latest` and `develop` in production. |
-| OPEN | Kavita data path appears misspelled as `steeaming`. | [`streaming/compose.yaml:82`](streaming/compose.yaml#L82) | Verify and correct it to `/mnt/docker-data/streaming/kavita-config` if that is the intended path. |
+| DONE | Kavita data path appears misspelled as `steeaming`. | [`streaming/compose.yaml:82`](streaming/compose.yaml#L82) | Verify and correct it to `/mnt/docker-data/streaming/kavita-config` if that is the intended path. |
 | OPEN | `monitoring/influx-configs` is a regular executable file, despite README wording implying a file/directory. | [`monitoring/influx-configs`](monitoring/influx-configs), [`README.md`](README.md) | Confirm its intended format and purpose; document it accurately and remove executable permission if it is configuration. |
 | OPEN | Traefik service ports are specified inconsistently. | Routed services across Compose files | Define `traefik.http.services.<name>.loadbalancer.server.port` consistently. |
 

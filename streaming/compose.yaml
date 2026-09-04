@@ -79,7 +79,7 @@ services:
       # - /your/path/to/manga:/manga
       # - /your/path/to/comics:/comics
       - /mnt/nas/othermedia/media/books:/books
-      - /mnt/docker-data/steeaming/kavita-config:/kavita/config     # /kavita/config must not be changed
+      - /mnt/docker-data/streaming/kavita-config:/kavita/config     # /kavita/config must not be changed
     environment:
       - TZ=Europe/London
     restart: "no"
