@@ -104,3 +104,12 @@ docker compose ps
 ```
 
 Check the service logs after updates and make sure persistent data and backups are healthy before removing old images.
+
+## Project plans and AI-agent guidance
+
+Detailed project plans are stored in the [`todo/`](todo/) directory:
+
+- [`todo/renovate.md`](todo/renovate.md) — Renovate, Git hosting, and Komodo execution
+- [`todo/authentication.md`](todo/authentication.md) — backend/frontend access control and identity-provider options
+
+Repository-reading and safe-change guidance for AI agents is in [`AGENTS.md`](AGENTS.md). Agents should read it before modifying infrastructure, then consult the relevant project plan and [`SECURITY.md`](SECURITY.md).
