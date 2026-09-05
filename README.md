@@ -20,6 +20,7 @@ Docker Compose definitions and service configuration for a self-hosted homelab. 
 | `nextcloud` | Nextcloud, Collabora, and PostgreSQL |
 | `ntfy` | ntfy notifications |
 | `romm` | ROMM and PostgreSQL |
+| `renovate` | One-shot dependency update runner for this repository |
 | `space-engineers` | Space Engineers server |
 | `streaming` | Jellyfin, Wizarr, Navidrome, and Kavita |
 | `archive/tdarr` | Archived Tdarr media processing stack (inactive) |
@@ -83,6 +84,11 @@ Service-specific configuration lives alongside each Compose file. Examples inclu
 - `ntfy/server.yml`
 - `romm/config.yml`
 - `archive/tdarr/configs/`
+
+Renovate is defined in `renovate/compose.yaml` and is intended to be run as a
+transient service by Komodo. Its GitHub credentials should be supplied as
+Komodo stack environment variables, not committed to the repository. Archived
+stacks under `archive/` are excluded by `renovate.json`.
 
 Do not commit passwords, tokens, private keys, or generated application data. The repository currently contains initialization values in some Compose files, so replace those values with secure secrets before exposing services and rotate any credentials that have been used outside a disposable environment. Files matching `.env` and `.log` are ignored by Git.
 

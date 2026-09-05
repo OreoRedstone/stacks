@@ -1,0 +1,13 @@
+services:
+  renovate:
+    # Keep this as an exact release tag. Pin the digest after selecting the
+    # version you want to run in production.
+    image: renovate/renovate:44.64.0
+    restart: "no"
+    environment:
+      RENOVATE_PLATFORM: github
+      RENOVATE_REPOSITORIES: oreoredstone/stacks
+      RENOVATE_TOKEN: ${RENOVATE_TOKEN:?required}
+      # Optional read-only GitHub token used for changelogs and API lookups.
+      RENOVATE_GITHUB_COM_TOKEN: ${RENOVATE_GITHUB_COM_TOKEN:-}
+      LOG_LEVEL: info
