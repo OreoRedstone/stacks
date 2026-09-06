@@ -306,6 +306,7 @@ The monitoring stack now has the first broader observability layer defined in Gi
 - Traefik exposes Prometheus metrics only on the internal `monitoring` Docker network; its metrics port is not published to the host.
 - Blackbox Exporter probes selected public HTTPS endpoints and accepts normal success, redirect, and authentication statuses. This tests reachability/TLS/routing without needing application credentials.
 - `Homelab Overview` provides a starting point for target health, host resource pressure, container count, Traefik traffic/errors, and public endpoint availability.
+- `Homelab Hosts` provides a selectable per-host view covering Node Exporter status, CPU, memory, load, filesystems, disk/network throughput, swap, and scrape duration. The overview links to it.
 
 ## Provisioning and existing dashboards
 
