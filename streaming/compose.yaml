@@ -4,7 +4,7 @@ services:
     user: 0:0
     volumes:
       - /mnt/docker-data/streaming/jellyfin-config:/config
-      - /home/oreo/jellyfin-cache:/cache
+      - /mnt/docker-data/streaming/jellyfin-cache:/cache
       - /mnt/nas/media/films:/media/films
       - /mnt/nas/media/shows:/media/shows
       - /mnt/nas/media/Music:/media/music
