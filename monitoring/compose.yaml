@@ -28,9 +28,40 @@ services:
     restart: "no"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - default
+      - monitoring
     labels:
       glance.parent: grafana
       glance.name: Prometheus
+      glance.category: Management
+
+  node-exporter:
+    image: prom/node-exporter:v1.12.1
+    restart: "no"
+    command:
+      - "--path.rootfs=/host"
+      - "--path.procfs=/host/proc"
+      - "--path.sysfs=/host/sys"
+    volumes:
+      - "/:/host:ro,rslave"
+    labels:
+      glance.parent: grafana
+      glance.name: Node Exporter
+      glance.category: Management
+
+  blackbox-exporter:
+    image: prom/blackbox-exporter:v0.28.0
+    restart: "no"
+    cap_drop:
+      - ALL
+    volumes:
+      - ./blackbox.yml:/etc/blackbox_exporter/config.yml:ro
+    command:
+      - "--config.file=/etc/blackbox_exporter/config.yml"
+    labels:
+      glance.parent: grafana
+      glance.name: Blackbox Exporter
       glance.category: Management
 
   influxdb:
@@ -69,4 +100,6 @@ services:
 
 networks:
   traefik:
+    external: true
+  monitoring:
     external: true

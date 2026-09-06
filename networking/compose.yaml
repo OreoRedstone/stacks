@@ -8,12 +8,17 @@ services:
       - "--providers.docker.network=traefik"
       - "--providers.docker.exposedByDefault=false"
       - "--entrypoints.web.address=:80"
+      - "--entrypoints.metrics.address=:8082"
+      - "--metrics.prometheus=true"
+      - "--metrics.prometheus.entrypoint=metrics"
+      - "--metrics.prometheus.addrouterslabels=true"
       - "--providers.file.filename=/etc/traefik/dynamic.yaml"
     volumes:
       - ./dynamic.yaml:/etc/traefik/dynamic.yaml
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - traefik
+      - monitoring
     ports:
       - 9999:80
     labels:
@@ -29,3 +34,5 @@ networks:
     ipam:
       config:
         - subnet: 172.32.0.0/16
+  monitoring:
+    name: monitoring

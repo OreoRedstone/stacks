@@ -297,3 +297,36 @@ Cons:
 - Homarr: https://homarr.dev/docs/
 - Dashy: https://dashy.to/docs/
 - Grafana: https://grafana.com/docs/grafana/latest/
+# Implemented observability expansion
+
+The monitoring stack now has the first broader observability layer defined in Git:
+
+- Node Exporter collects host CPU, memory, filesystem, load, and network metrics from the Docker host. Its host mount is read-only and it does not need the Docker socket.
+- Prometheus scrapes itself, cAdvisor, Node Exporter, Traefik, and Blackbox Exporter.
+- Traefik exposes Prometheus metrics only on the internal `monitoring` Docker network; its metrics port is not published to the host.
+- Blackbox Exporter probes selected public HTTPS endpoints and accepts normal success, redirect, and authentication statuses. This tests reachability/TLS/routing without needing application credentials.
+- `Homelab Overview` provides a starting point for target health, host resource pressure, container count, Traefik traffic/errors, and public endpoint availability.
+
+## Provisioning and existing dashboards
+
+The existing Docker and Proxmox dashboards retain their UIDs and remain managed by the existing file provider. Grafana will reconcile a provisioned dashboard when its JSON has the same UID as a dashboard already in Grafana. Therefore, changes to those JSON files can overwrite UI edits to those dashboards. The provider currently has `allowUiUpdates: false`, so edits should be made in Git and redeployed.
+
+The new overview dashboard has a new UID and will be created in the `Homelab` folder. Existing dashboards with other UIDs remain in place because `disableDeletion: true`; removing a JSON file from Git does not delete the corresponding dashboard from Grafana. This is intentionally conservative, but it also means stale provisioned dashboards must be removed manually if they are ever retired.
+
+## Rollout
+
+1. Deploy or restart the networking stack first so it creates the external `monitoring` network and Traefik starts its internal metrics entrypoint.
+2. Deploy or restart the monitoring stack.
+3. In Grafana, check `Connections > Data sources` and confirm Prometheus is healthy.
+4. Check Prometheus `Status > Targets`; `prometheus`, `cadvisor`, `node`, and `traefik` should be `UP`. Blackbox targets should be `UP` when the host can resolve and reach the public domains (hairpin NAT/DNS can affect this).
+5. Open `Homelab Overview` and confirm the panels have data.
+
+The new exporter images currently use version tags rather than digests because the image digests have not yet been verified. Pin them after pulling/inspecting the exact images, and keep them under Renovate management.
+
+## Follow-up improvements
+
+- Install Node Exporter on Proxmox and any other hosts through the infrastructure Ansible repository; the Compose instance only covers this Docker host.
+- Add explicit backup-freshness metrics and alerting for restic/borg/Komodo jobs.
+- Add SMART, ZFS, UPS/NUT, GPU, database, Redis, Jellyfin, and WireGuard exporters where those systems expose useful data.
+- Add Prometheus alert rules for target loss, high disk usage, memory pressure, certificate expiry, elevated HTTP 5xx rates, and stale backups.
+- Review the public Blackbox target list and add/remove endpoints according to the actual externally required services.
