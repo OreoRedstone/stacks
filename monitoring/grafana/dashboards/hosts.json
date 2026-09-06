@@ -27,14 +27,15 @@
   "templating": {
     "list": [
       {
-        "name": "instance",
+        "name": "host",
         "label": "Host",
         "type": "query",
         "datasource": {
           "type": "prometheus",
           "uid": "stacks-prometheus"
         },
-        "query": "label_values(node_uname_info, instance)",
+        "definition": "label_values(up{job=\"node\"}, host)",
+        "query": "label_values(up{job=\"node\"}, host)",
         "refresh": 1,
         "multi": true,
         "includeAll": true,
@@ -70,7 +71,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "min(up{job=\"node\",instance=~\"$instance\"})",
+          "expr": "min(up{job=\"node\",host=~\"$host\"})",
           "instant": true
         }
       ],
@@ -125,7 +126,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "100 * (1 - sum(node_memory_MemAvailable_bytes{instance=~\"$instance\"}) / sum(node_memory_MemTotal_bytes{instance=~\"$instance\"}))",
+          "expr": "100 * (1 - sum(node_memory_MemAvailable_bytes{host=~\"$host\"}) / sum(node_memory_MemTotal_bytes{host=~\"$host\"}))",
           "instant": true
         }
       ],
@@ -185,7 +186,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "100 * (1 - sum(node_filesystem_avail_bytes{instance=~\"$instance\",mountpoint=\"/\",fstype!~\"tmpfs|overlay\"}) / sum(node_filesystem_size_bytes{instance=~\"$instance\",mountpoint=\"/\",fstype!~\"tmpfs|overlay\"}))",
+          "expr": "100 * (1 - sum(node_filesystem_avail_bytes{host=~\"$host\",mountpoint=\"/\",fstype!~\"tmpfs|overlay\"}) / sum(node_filesystem_size_bytes{host=~\"$host\",mountpoint=\"/\",fstype!~\"tmpfs|overlay\"}))",
           "instant": true
         }
       ],
@@ -245,7 +246,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "max(node_load1{instance=~\"$instance\"})",
+          "expr": "max(node_load1{host=~\"$host\"})",
           "instant": true
         }
       ],
@@ -288,8 +289,8 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{instance=~\"$instance\",mode=\"idle\"}[5m])) * 100)",
-          "legendFormat": "{{instance}}"
+          "expr": "100 - (avg by (host) (rate(node_cpu_seconds_total{host=~\"$host\",mode=\"idle\"}[5m])) * 100)",
+          "legendFormat": "{{host}}"
         }
       ],
       "fieldConfig": {
@@ -327,8 +328,8 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "100 * (1 - node_memory_MemAvailable_bytes{instance=~\"$instance\"} / node_memory_MemTotal_bytes{instance=~\"$instance\"})",
-          "legendFormat": "{{instance}}"
+          "expr": "100 * (1 - node_memory_MemAvailable_bytes{host=~\"$host\"} / node_memory_MemTotal_bytes{host=~\"$host\"})",
+          "legendFormat": "{{host}}"
         }
       ],
       "fieldConfig": {
@@ -366,18 +367,18 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "node_load1{instance=~\"$instance\"}",
-          "legendFormat": "1m {{instance}}"
+          "expr": "node_load1{host=~\"$host\"}",
+          "legendFormat": "1m {{host}}"
         },
         {
           "refId": "B",
-          "expr": "node_load5{instance=~\"$instance\"}",
-          "legendFormat": "5m {{instance}}"
+          "expr": "node_load5{host=~\"$host\"}",
+          "legendFormat": "5m {{host}}"
         },
         {
           "refId": "C",
-          "expr": "node_load15{instance=~\"$instance\"}",
-          "legendFormat": "15m {{instance}}"
+          "expr": "node_load15{host=~\"$host\"}",
+          "legendFormat": "15m {{host}}"
         }
       ],
       "fieldConfig": {
@@ -414,8 +415,8 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "100 * (1 - node_filesystem_avail_bytes{instance=~\"$instance\",fstype!~\"tmpfs|overlay|squashfs\"} / node_filesystem_size_bytes{instance=~\"$instance\",fstype!~\"tmpfs|overlay|squashfs\"})",
-          "legendFormat": "{{instance}} {{mountpoint}}"
+          "expr": "100 * (1 - node_filesystem_avail_bytes{host=~\"$host\",fstype!~\"tmpfs|overlay|squashfs\"} / node_filesystem_size_bytes{host=~\"$host\",fstype!~\"tmpfs|overlay|squashfs\"})",
+          "legendFormat": "{{host}} {{mountpoint}}"
         }
       ],
       "fieldConfig": {
@@ -453,13 +454,13 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "sum by (instance, device) (rate(node_disk_read_bytes_total{instance=~\"$instance\",device!~\"^(sr|loop|dm-|ram)\"}[5m]))",
-          "legendFormat": "read {{instance}} {{device}}"
+          "expr": "sum by (host, device) (rate(node_disk_read_bytes_total{host=~\"$host\",device!~\"^(sr|loop|dm-|ram)\"}[5m]))",
+          "legendFormat": "read {{host}} {{device}}"
         },
         {
           "refId": "B",
-          "expr": "sum by (instance, device) (rate(node_disk_written_bytes_total{instance=~\"$instance\",device!~\"^(sr|loop|dm-|ram)\"}[5m]))",
-          "legendFormat": "write {{instance}} {{device}}"
+          "expr": "sum by (host, device) (rate(node_disk_written_bytes_total{host=~\"$host\",device!~\"^(sr|loop|dm-|ram)\"}[5m]))",
+          "legendFormat": "write {{host}} {{device}}"
         }
       ],
       "fieldConfig": {
@@ -495,13 +496,13 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "sum by (instance, device) (rate(node_network_receive_bytes_total{instance=~\"$instance\",device!~\"^(lo|docker.*|veth.*)\"}[5m]))",
-          "legendFormat": "rx {{instance}} {{device}}"
+          "expr": "sum by (host, device) (rate(node_network_receive_bytes_total{host=~\"$host\",device!~\"^(lo|docker.*|veth.*)\"}[5m]))",
+          "legendFormat": "rx {{host}} {{device}}"
         },
         {
           "refId": "B",
-          "expr": "sum by (instance, device) (rate(node_network_transmit_bytes_total{instance=~\"$instance\",device!~\"^(lo|docker.*|veth.*)\"}[5m]))",
-          "legendFormat": "tx {{instance}} {{device}}"
+          "expr": "sum by (host, device) (rate(node_network_transmit_bytes_total{host=~\"$host\",device!~\"^(lo|docker.*|veth.*)\"}[5m]))",
+          "legendFormat": "tx {{host}} {{device}}"
         }
       ],
       "fieldConfig": {
@@ -537,8 +538,8 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "100 * (1 - node_memory_SwapFree_bytes{instance=~\"$instance\"} / node_memory_SwapTotal_bytes{instance=~\"$instance\"})",
-          "legendFormat": "{{instance}}"
+          "expr": "100 * (1 - node_memory_SwapFree_bytes{host=~\"$host\"} / node_memory_SwapTotal_bytes{host=~\"$host\"})",
+          "legendFormat": "{{host}}"
         }
       ],
       "fieldConfig": {
@@ -576,8 +577,8 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "scrape_duration_seconds{job=\"node\",instance=~\"$instance\"}",
-          "legendFormat": "{{instance}}"
+          "expr": "scrape_duration_seconds{job=\"node\",host=~\"$host\"}",
+          "legendFormat": "{{host}}"
         }
       ],
       "fieldConfig": {
