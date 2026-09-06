@@ -9,7 +9,7 @@ services:
       - ./grafana/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
       - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
     environment:
-      INFLUXDB_INIT_ADMIN_TOKEN: ${INFLUXDB_INIT_ADMIN_TOKEN:?required}
+      INFLUXDB_GRAFANA_TOKEN: ${INFLUXDB_GRAFANA_TOKEN:?required}
     networks:
       - traefik
       - default
