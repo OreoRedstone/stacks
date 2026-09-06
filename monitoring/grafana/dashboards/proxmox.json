@@ -26,20 +26,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "links": [
-    {
-      "title": "Homelab Overview",
-      "type": "dashboards",
-      "url": "/d/homelab-overview/homelab-overview",
-      "includeVars": true
-    },
-    {
-      "title": "Host Metrics",
-      "type": "dashboards",
-      "url": "/d/homelab-hosts/homelab-hosts",
-      "includeVars": true
-    }
-  ],
+  "links": [],
   "liveNow": true,
   "panels": [
     {
@@ -2374,5 +2361,5 @@
   "timezone": "",
   "title": "Proxmox",
   "uid": "IfgdXjtnk",
-  "version": 4
+  "version": 5
 }

@@ -17,8 +17,8 @@ folder by `../dashboards.yaml`.
 2. Remove the database-generated `id` and keep a stable unique `uid`.
 3. Use the provisioned datasource UIDs: `stacks-prometheus` or
    `stacks-influxdb`.
-4. Add a dashboard link back to `homelab-overview` and, where relevant,
-   `homelab-hosts`.
+4. Add cross-dashboard navigation only to `overview.json`; detail dashboards
+   should remain focused and should not create reciprocal menu entries.
 5. Add the file to this directory and validate it with `jq empty`.
 
 The provider intentionally keeps all dashboards in one Grafana folder. The
@@ -34,7 +34,8 @@ investigation features.
 
 The intended navigation is:
 
-1. `Homelab Overview` for a quick operational summary.
+1. `Homelab Overview` for a quick operational summary and the only
+   cross-dashboard navigation menu.
 2. `Homelab Hosts` for Ansible-managed host and Node Exporter metrics.
 3. `Docker` for container-level resource and network metrics.
 4. `Proxmox` for hypervisor, guest, and storage metrics from InfluxDB.

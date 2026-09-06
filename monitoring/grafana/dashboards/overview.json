@@ -8,7 +8,7 @@
   ],
   "timezone": "browser",
   "schemaVersion": 39,
-  "version": 1,
+  "version": 2,
   "refresh": "30s",
   "time": {
     "from": "now-6h",
@@ -101,115 +101,13 @@
       }
     },
     {
-      "id": 2,
-      "type": "stat",
-      "title": "Containers observed",
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 6,
-        "y": 0
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "stacks-prometheus"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "expr": "count(container_last_seen{image!=\"\",name!=\"\"})",
-          "instant": true
-        }
-      ],
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "textMode": "auto"
-      }
-    },
-    {
-      "id": 3,
-      "type": "stat",
-      "title": "Host memory used",
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 12,
-        "y": 0
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "stacks-prometheus"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "expr": "100 * (1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)",
-          "instant": true
-        }
-      ],
-      "fieldConfig": {
-        "defaults": {
-          "unit": "percent",
-          "decimals": 1,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 75
-              },
-              {
-                "color": "red",
-                "value": 90
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "textMode": "auto"
-      }
-    },
-    {
       "id": 4,
       "type": "stat",
       "title": "Public endpoints up",
       "gridPos": {
         "h": 4,
         "w": 6,
-        "x": 18,
+        "x": 6,
         "y": 0
       },
       "datasource": {
@@ -258,101 +156,6 @@
       }
     },
     {
-      "id": 5,
-      "type": "timeseries",
-      "title": "Host CPU usage",
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 4
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "stacks-prometheus"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "legendFormat": "{{instance}}"
-        }
-      ],
-      "fieldConfig": {
-        "defaults": {
-          "unit": "percent",
-          "min": 0,
-          "max": 100
-        },
-        "overrides": []
-      },
-      "options": {
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "multi"
-        }
-      }
-    },
-    {
-      "id": 6,
-      "type": "timeseries",
-      "title": "Root filesystem usage",
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 4
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "stacks-prometheus"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "expr": "100 * (1 - node_filesystem_avail_bytes{mountpoint=\"/\",fstype!~\"tmpfs|overlay\"} / node_filesystem_size_bytes{mountpoint=\"/\",fstype!~\"tmpfs|overlay\"})",
-          "legendFormat": "{{instance}} {{mountpoint}}"
-        }
-      ],
-      "fieldConfig": {
-        "defaults": {
-          "unit": "percent",
-          "min": 0,
-          "max": 100,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 75
-              },
-              {
-                "color": "red",
-                "value": 90
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "options": {
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "multi"
-        }
-      }
-    },
-    {
       "id": 7,
       "type": "timeseries",
       "title": "Traefik request rate",
@@ -360,7 +163,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 12
+        "y": 4
       },
       "datasource": {
         "type": "prometheus",
@@ -397,7 +200,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 12
+        "y": 4
       },
       "datasource": {
         "type": "prometheus",
@@ -450,7 +253,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 12
       },
       "datasource": {
         "type": "prometheus",
@@ -481,5 +284,6 @@
         ]
       }
     }
-  ]
+  ],
+  "description": "Owner-only operational landing dashboard. Detailed host, Docker, and Proxmox metrics live in their dedicated dashboards."
 }

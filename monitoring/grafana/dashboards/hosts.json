@@ -10,32 +10,13 @@
   ],
   "timezone": "browser",
   "schemaVersion": 39,
-  "version": 1,
+  "version": 2,
   "refresh": "30s",
   "time": {
     "from": "now-6h",
     "to": "now"
   },
-  "links": [
-    {
-      "title": "Homelab Overview",
-      "type": "dashboards",
-      "url": "/d/homelab-overview/homelab-overview",
-      "includeVars": true
-    },
-    {
-      "title": "Docker Metrics",
-      "type": "dashboards",
-      "url": "/d/ee75b6b8-f1c6-4ef1-9d39-fe50cc55a274/docker",
-      "includeVars": true
-    },
-    {
-      "title": "Proxmox Metrics",
-      "type": "dashboards",
-      "url": "/d/IfgdXjtnk/proxmox",
-      "includeVars": true
-    }
-  ],
+  "links": [],
   "templating": {
     "list": [
       {

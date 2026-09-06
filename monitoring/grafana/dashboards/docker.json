@@ -20,20 +20,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
   "id": null,
-  "links": [
-    {
-      "title": "Homelab Overview",
-      "type": "dashboards",
-      "url": "/d/homelab-overview/homelab-overview",
-      "includeVars": true
-    },
-    {
-      "title": "Host Metrics",
-      "type": "dashboards",
-      "url": "/d/homelab-hosts/homelab-hosts",
-      "includeVars": true
-    }
-  ],
+  "links": [],
   "panels": [
     {
       "datasource": {
@@ -705,5 +692,5 @@
   "timezone": "browser",
   "title": "Docker",
   "uid": "ee75b6b8-f1c6-4ef1-9d39-fe50cc55a274",
-  "version": 1
+  "version": 2
 }
