@@ -2312,18 +2312,20 @@
           "text": "proxmox",
           "value": "proxmox"
         },
-        "datasource": {
-          "type": "influxdb",
-          "uid": "stacks-influxdb"
-        },
-        "definition": "buckets()",
+        "definition": "proxmox",
         "includeAll": false,
         "name": "Bucket",
-        "options": [],
-        "query": "buckets()",
+        "options": [
+          {
+            "selected": true,
+            "text": "proxmox",
+            "value": "proxmox"
+          }
+        ],
+        "query": "proxmox",
         "refresh": 1,
         "regex": "",
-        "type": "query"
+        "type": "custom"
       },
       {
         "current": {
