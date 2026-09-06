@@ -15,12 +15,25 @@
       }
     ]
   },
-  "description": "Docker monitoring with Prometheus and cAdvisor",
+  "description": "Container resource and network metrics from cAdvisor. Use Homelab Overview for fleet status and Homelab Hosts for underlying host health.",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
   "id": null,
-  "links": [],
+  "links": [
+    {
+      "title": "Homelab Overview",
+      "type": "dashboards",
+      "url": "/d/homelab-overview/homelab-overview",
+      "includeVars": true
+    },
+    {
+      "title": "Host Metrics",
+      "type": "dashboards",
+      "url": "/d/homelab-hosts/homelab-hosts",
+      "includeVars": true
+    }
+  ],
   "panels": [
     {
       "datasource": {
@@ -694,4 +707,3 @@
   "uid": "ee75b6b8-f1c6-4ef1-9d39-fe50cc55a274",
   "version": 1
 }
-

@@ -20,6 +20,18 @@
       "type": "dashboards",
       "url": "/d/homelab-hosts/homelab-hosts",
       "includeVars": true
+    },
+    {
+      "title": "Docker Metrics",
+      "type": "dashboards",
+      "url": "/d/ee75b6b8-f1c6-4ef1-9d39-fe50cc55a274/docker",
+      "includeVars": true
+    },
+    {
+      "title": "Proxmox Metrics",
+      "type": "dashboards",
+      "url": "/d/IfgdXjtnk/proxmox",
+      "includeVars": true
     }
   ],
   "templating": {
