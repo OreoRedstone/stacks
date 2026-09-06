@@ -2,7 +2,7 @@
 
 ## Goal
 
-Protect the backend and management plane first, then optionally provide convenient access for household users to frontend services without creating a lockout or circular dependency.
+Protect the owner-only backend and management plane first, then provide appropriate multi-user access to frontend services without creating a lockout or circular dependency. Dashboard and monitoring access is owner-only; services such as Jellyfin and Seerr have additional users.
 
 ## Service groups
 
@@ -12,11 +12,11 @@ Komodo, Traefik dashboard, Grafana, InfluxDB, Prometheus, Prowlarr, Sonarr, Rada
 
 These should be owner/admin-only, preferably LAN/VPN-only as well as authenticated.
 
-### Frontend / household
+### Frontend / multi-user services
 
 Jellyfin, Seerr, Wizarr, Navidrome, Kavita, Nextcloud user access, Immich user access, ntfy, and game endpoints.
 
-These may need separate administrator, household, and guest policies. Do not assume that proxy authentication works with mobile apps, APIs, WebSockets, invitation links, or desktop clients.
+These need separate administrator, household, and possibly guest policies. Do not assume that proxy authentication works with mobile apps, APIs, WebSockets, invitation links, or desktop clients.
 
 ## Recommended architecture
 
@@ -74,7 +74,7 @@ Tasks:
 - [ ] Store its database password and secret key outside Git.
 - [ ] Back up database, media, and configuration.
 - [ ] Remove the worker Docker socket unless a specific integration requires it.
-- [ ] Create administrator, household, and guest groups.
+- [ ] Create administrator, household, and guest groups where appropriate for frontend services.
 - [ ] Configure MFA and recovery.
 - [ ] Reconcile the existing `authentik@docker` reference in Actual Budget with the `auth` middleware in `networking/dynamic.yaml`.
 - [ ] Apply verified middleware to one service at a time.
@@ -100,7 +100,7 @@ Tasks:
 - [ ] Deploy Authelia with persistent configuration and storage.
 - [ ] Configure MFA and account recovery.
 - [ ] Configure Traefik forward authentication.
-- [ ] Create separate administrator and household rules.
+- [ ] Create separate administrator, household, and guest rules for frontend services.
 - [ ] Test redirects, WebSockets, APIs, and mobile clients.
 
 Documentation: https://www.authelia.com/integration/proxies/traefik/
@@ -135,7 +135,7 @@ Use Tailscale, WireGuard, or another VPN for management services and retain nati
 
 Pros: lowest complexity, excellent backend compatibility, and reduced public attack surface.
 
-Cons: no SSO; household users need VPN access; every application retains separate accounts.
+Cons: no SSO; the owner must use the VPN for private services; every application retains separate accounts.
 
 - [ ] Make Komodo, monitoring, databases, and media automation tools LAN/VPN-only.
 - [ ] Keep public frontend routes separate.
@@ -150,4 +150,5 @@ Cons: no SSO; household users need VPN access; every application retains separat
 - [ ] Identity-provider backups tested: [ ]
 - [ ] Komodo remains independently recoverable: [ ]
 - [ ] One backend service tested: ____________________
-- [ ] Household/guest groups tested: [ ]
+- [ ] Dashboard owner-only access tested: [ ]
+- [ ] Frontend multi-user access tested: [ ]
