@@ -301,7 +301,7 @@ Cons:
 
 The monitoring stack now has the first broader observability layer defined in Git:
 
-- Node Exporter collects host CPU, memory, filesystem, load, and network metrics from the Docker host. Its host mount is read-only and it does not need the Docker socket.
+- Node Exporter is installed and managed by the infrastructure Ansible playbook on every inventory host. Prometheus scrapes the hosts over the WireGuard management network, so host metrics are no longer coupled to the monitoring Compose stack.
 - Prometheus scrapes itself, cAdvisor, Node Exporter, Traefik, and Blackbox Exporter.
 - Traefik exposes Prometheus metrics only on the internal `monitoring` Docker network; its metrics port is not published to the host.
 - Blackbox Exporter probes selected public HTTPS endpoints and accepts normal success, redirect, and authentication statuses. This tests reachability/TLS/routing without needing application credentials.
@@ -325,7 +325,7 @@ The new exporter images currently use version tags rather than digests because t
 
 ## Follow-up improvements
 
-- Install Node Exporter on Proxmox and any other hosts through the infrastructure Ansible repository; the Compose instance only covers this Docker host.
+- Confirm Node Exporter is reachable on all three WireGuard addresses after the Ansible run. The firewall permits port 9100 only from the management VPN and local Docker bridge ranges.
 - Add explicit backup-freshness metrics and alerting for restic/borg/Komodo jobs.
 - Add SMART, ZFS, UPS/NUT, GPU, database, Redis, Jellyfin, and WireGuard exporters where those systems expose useful data.
 - Add Prometheus alert rules for target loss, high disk usage, memory pressure, certificate expiry, elevated HTTP 5xx rates, and stale backups.
