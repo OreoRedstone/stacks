@@ -6,8 +6,9 @@ services:
       - ./config:/app/config
       - ./assets:/app/assets
       - /etc/localtime:/etc/localtime:ro
-      # Optionally, also mount docker socket if you want to use the docker containers widget
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - default
+      - docker-socket-proxy
     ports:
       - 10.44.0.2:80:8080
     env_file: .env
@@ -18,3 +19,7 @@ services:
       glance.icon: sh:glance
       glance.url: http://10.44.0.2
       glance.description: Dashboard
+
+networks:
+  docker-socket-proxy:
+    external: true

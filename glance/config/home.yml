@@ -34,26 +34,32 @@
             - type: docker-containers
               title: Media
               category: Media
+              sock-path: http://docker-socket-proxy:2375
 
             - type: docker-containers
               title: Mediarr
               category: Arr
+              sock-path: http://docker-socket-proxy:2375
 
             - type: docker-containers
               title: Management
               category: Management
+              sock-path: http://docker-socket-proxy:2375
 
             - type: docker-containers
               title: Security
               category: Security
+              sock-path: http://docker-socket-proxy:2375
 
             - type: docker-containers
               title: Gaming
               category: Gaming
+              sock-path: http://docker-socket-proxy:2375
               
             - type: docker-containers
               title: Networking
               category: Networking
+              sock-path: http://docker-socket-proxy:2375
 
         - type: rss
           title: News

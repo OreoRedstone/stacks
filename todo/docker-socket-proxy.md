@@ -33,14 +33,15 @@ Required proxy permissions: `CONTAINERS`, `EVENTS`, `INFO`, `NETWORKS`, and
 `VERSION`. Traefik is the most important migration because a proxy failure can
 remove all dynamically discovered routes.
 
-### Glance — low operational risk
+### Glance — migrated
 
-In `glance/compose.yaml`:
+Implemented in `glance/compose.yaml` and `glance/config/home.yml`:
 
-1. Attach Glance to the external `docker-socket-proxy` network.
-2. Set `DOCKER_HOST=tcp://docker-socket-proxy:2375`.
-3. Remove the direct socket mount.
-4. Confirm the Docker containers widget still displays the expected labels.
+1. Glance attaches to the external `docker-socket-proxy` network.
+2. Each Docker Containers widget uses the documented `sock-path` setting with
+   `http://docker-socket-proxy:2375`.
+3. The direct socket mount is removed.
+4. Confirm the Docker containers widgets still display the expected labels.
 
 If the widget is no longer important, remove the Docker integration instead of
 granting Glance Docker metadata access.

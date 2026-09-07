@@ -18,6 +18,12 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - docker-socket-proxy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "-q", "-O", "/dev/stdout", "http://localhost:2375/version"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+      start_period: 10s
 
 networks:
   docker-socket-proxy:
