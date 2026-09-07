@@ -73,7 +73,7 @@ services:
       homelab.canonical-route: https://prowlarr.74services.net
 
   sonarr:
-    image: lscr.io/linuxserver/sonarr:latest@sha256:c19aa4ecdf03d73e1d5c901da33744cb7eb4d921f89bafed1ca264601d7fa224
+    image: lscr.io/linuxserver/sonarr:latest@sha256:4d9df314875e1249ab7d6170c2b9b3dc1d8e6383f168ceb10dc9a5ad9b324739
     restart: "no"
     environment:
       PUID: 0
@@ -98,7 +98,7 @@ services:
       glance.url: https://sonarr.74services.net
 
   radarr:
-    image: lscr.io/linuxserver/radarr:latest@sha256:119aaa4a4f7349bcd2a136c5373a0d7925b5479915c7dfe0c0ad352db2a6d438
+    image: lscr.io/linuxserver/radarr:latest@sha256:95ba0801df4d9d1d79d0d9a3849f656542497dab061d91b87ad4f53a71aff3ef
     restart: "no"
     environment:
       PUID: 0
@@ -172,7 +172,7 @@ services:
       glance.url: https://bazarr.74services.net
 
   seerr:
-    image: ghcr.io/seerr-team/seerr:develop@sha256:a05413ab39b25e418b3cec7f45962bccc69e75bf5b581f49c22053014f3bd626
+    image: ghcr.io/seerr-team/seerr:develop@sha256:b46b75a8221912a2eb65bebe4bb361bb1379a5e862d374ea9b835f8c054a84fa
     init: true
     environment:
       LOG_LEVEL: debug
@@ -202,7 +202,7 @@ services:
       glance.url: https://seerr.74services.net
 
   bindery:
-    image: ghcr.io/vavallee/bindery:latest@sha256:e34e37d91f54f5ae5cbdd7a2910f415be0056b0ad7b0265bf8ac56f46de22b63
+    image: ghcr.io/vavallee/bindery:latest@sha256:9fd4be38de18295511637930934ba713bcf81239c4e8614210f65cb4227a4c96
     user: 0:0
     networks:
       - traefik
