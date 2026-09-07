@@ -44,6 +44,15 @@ safe reconciliation and URL stability.
 
 ### Metrics
 
+- [ ] Prioritise Jellyfin metrics: server health, active sessions, playback
+  method, transcoding activity, stream errors, bandwidth, and library or
+  scheduled-task health where supported.
+- [ ] Prioritise mediarr metrics: Sonarr, Radarr, Lidarr, Bazarr, Prowlarr,
+  Seerr, Bindery, Deluge, Gluetun, and FlareSolverr availability, queue size,
+  download activity, indexer health, failures, and VPN status.
+- [ ] Decide which Jellyfin and mediarr metrics should be collected through
+  native exporters, application APIs, Docker healthchecks, or existing
+  cAdvisor/Traefik metrics before adding exporters.
 - [ ] Add Node Exporter to future hosts through Ansible and assign each a
   friendly Prometheus `host` label.
 - [ ] Add backup freshness, backup size, and backup failure metrics for restic,

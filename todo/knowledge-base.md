@@ -44,270 +44,104 @@ Home
 
 Keep secrets out of the knowledge base. Store only secret locations, rotation procedures, and recovery instructions. Never document passwords, private keys, recovery codes, or API tokens in plain text.
 
-## Option 1: SilverBullet
+## Deferred alternatives
 
-SilverBullet is a browser-based, self-hosted personal knowledge database built around Markdown pages, wiki links, backlinks, queries, tasks, and programmable Lua extensions.
+BookStack, Wiki.js, Outline, Docmost, and DokuWiki remain possible fallback
+choices if collaboration, structured manuals, or database-free operation become
+more important than a personal Markdown workflow. They are intentionally not
+the current evaluation focus. Revisit them only if Obsidian plus the selected
+publishing workflow fails a requirement.
 
-Pros:
+## Primary direction: Git-backed Markdown
 
-- Closest match to the previous workflow.
-- Markdown files are portable and easy to back up.
-- Powerful linking, queries, templates, and scripting.
-- Lightweight compared with full team wiki platforms.
-- Good for personal notes and homelab operations journals.
-
-Cons:
-
-- More personal/programmable than structured team documentation.
-- Permissions and multi-user workflows need careful evaluation.
-- Lua customisations can become difficult to maintain.
-- Application and plugin compatibility should be checked before committing to a long-term space.
-
-Compatibility:
-
-- Traefik: straightforward web routing.
-- Authentication: test native authentication and future SSO/forward-auth before exposing it to others.
-- Storage: simple Markdown space is easy to back up.
-- AI tooling: Markdown and APIs/scripts are promising, but verify the exact integration desired.
-
-Tasks:
-
-- [ ] Deploy a temporary SilverBullet instance.
-- [ ] Import or reconstruct a sample of previous notes.
-- [ ] Test attachments, search, backlinks, queries, and mobile use.
-- [ ] Test multi-user access and permissions.
-- [ ] Test the selected authentication provider.
-- [ ] Test backup and restore of the Markdown space.
-- [ ] Decide whether Lua extensions are worth the maintenance cost.
-
-Documentation: https://silverbullet.md/
-
-## Option 2: BookStack
-
-BookStack uses a structured hierarchy of shelves, books, chapters, and pages. It is designed for readable documentation and operational manuals rather than free-form linked notes.
+Keep the source of truth as Markdown in a private Git repository. Use Obsidian
+for authoring and choose a separate frontend only if browser access for other
+household users is needed.
 
 Pros:
 
-- Very approachable for household users and collaborators.
-- Strong hierarchy and navigation.
-- Good revision history, permissions, and page organisation.
-- Official documentation covers OIDC, SAML, LDAP, and other authentication methods.
-- Good fit for service runbooks and how-to documentation.
+- Maximum portability, version history, and recovery confidence.
+- Works naturally with AI agents, VS Code, scripts, and pull requests.
+- No application database is required for the source content.
+- Publishing can be added without changing the authoring workflow.
 
 Cons:
 
-- Less natural than SilverBullet for graph-like notes and rapid capture.
-- Requires an application and database.
-- Content is not naturally a directory of standalone Markdown files, so export testing matters.
-- More structured authoring may feel slower for personal notes.
-
-Compatibility:
-
-- Traefik: good.
-- Authentik, Authelia, or Keycloak: good through supported OIDC/SAML/LDAP options; test the chosen provider.
-- Backups: back up the database, uploaded files, and configuration together.
-- Existing services: excellent for documenting runbooks, recovery steps, and user guides.
-
-Tasks:
-
-- [ ] Deploy BookStack and its database in a test stack.
-- [ ] Configure Traefik and HTTPS.
-- [ ] Test OIDC with the selected identity provider.
-- [ ] Configure admin, household, and guest roles.
-- [ ] Test export and restore.
-- [ ] Create sample books for infrastructure and household documentation.
-
-Documentation: https://www.bookstackapp.com/docs/
-
-## Option 3: Wiki.js
-
-Wiki.js is a general-purpose wiki with a modern editor, multiple storage options, versioning, search, and broad authentication support.
-
-Pros:
-
-- Good balance between personal and collaborative documentation.
-- Strong authentication and permissions options.
-- Supports Markdown and multiple content/storage backends.
-- Familiar wiki model for household and technical users.
-- Suitable for public and private sections.
-
-Cons:
-
-- More operational complexity than a file-based system.
-- Database and storage configuration need to be backed up together.
-- Migration/export behavior should be verified before adoption.
-- Some advanced integrations may require more administration.
-
-Compatibility:
-
-- Traefik: good.
-- Authentik, Authelia, and Keycloak: generally good through OIDC or proxy authentication; verify current versions.
-
-- AI tooling: API support should be evaluated for the intended agent workflow.
-
-Tasks:
-
-- [ ] Test Wiki.js with the planned database and storage layout.
-- [ ] Test OIDC, group permissions, Markdown import, and export.
-- [ ] Test public/private page boundaries.
-- [ ] Test backup and disaster recovery.
-
-Documentation: https://docs.requarks.io/
-
-## Option 4: Outline
-
-Outline is a polished collaborative knowledge base organised around collections, documents, permissions, comments, revision history, and a modern editor.
-
-Pros:
-
-- Excellent collaborative editing experience.
-- Strong collections, groups, permissions, comments, and revision history.
-- OIDC-compatible authentication is supported.
-- Good fit if the knowledge base will become a shared household or team system.
-- Markdown and API export options are available.
-
-Cons:
-
-- More infrastructure than SilverBullet or BookStack.
-- Requires database and object/file storage planning.
-- Self-hosted authentication and storage configuration require careful setup.
-- May be excessive for a single-user homelab notebook.
-
-Compatibility:
-
-- Traefik: good.
-- Authentik, Authelia OIDC, and Keycloak: test OIDC configuration.
-- Backups: include database, object storage, attachments, and encryption/configuration secrets.
-- AI tooling: has API and MCP-related capabilities, but review access controls carefully before enabling agents.
-
-Tasks:
-
-- [ ] Review self-hosted deployment requirements.
-- [ ] Test OIDC with the planned identity provider.
-- [ ] Test attachment storage and restore.
-- [ ] Test Markdown/JSON export.
-- [ ] Evaluate whether collaboration and MCP/API access justify the operational cost.
-
-Documentation: https://docs.getoutline.com/
-
-## Option 5: Docmost
-
-Docmost is a collaborative wiki/documentation platform with real-time editing, permissions, pages, databases/boards, and self-hosted features.
-
-Pros:
-
-- Modern collaborative editor.
-- Useful for pages, tables, boards, and shared documentation.
-- Designed for team-style knowledge management.
-- Potentially useful if household documentation grows beyond simple pages.
-
-Cons:
-
-- Newer project and should receive a careful upgrade/backup review.
-- May require a paid or limited edition for some advanced features; verify before choosing.
-- Less proven for long-term Markdown portability than SilverBullet or a Git-backed wiki.
-- Additional operational complexity for a small homelab.
-
-Compatibility:
-
-- Traefik: should be straightforward through its web service.
-- Authentication: verify exact OIDC/LDAP support in the edition selected.
-- Backups and exports: test before storing authoritative runbooks.
-- AI tooling: attractive if self-hosted AI/MCP is a goal, but review privacy and permissions.
-
-Tasks:
-
-- [ ] Confirm licensing and feature availability for self-hosting.
-- [ ] Test authentication, permissions, export, and restore.
-- [ ] Compare resource use with Outline and Wiki.js.
-
-Documentation: https://docmost.com/
-
-## Option 6: DokuWiki
-
-DokuWiki is a mature file-based wiki with a low infrastructure footprint and no database requirement.
-
-Pros:
-
-- Very reliable and lightweight.
-- Pages and media are stored as files, simplifying backup and recovery.
-- Mature permissions and plugin ecosystem.
-- Excellent fallback if database availability is a concern.
-
-Cons:
-
-- Older-looking editing experience.
-- Less fluid for modern collaborative editing.
-- Plugins and themes require maintenance.
-- Weaker fit for highly linked, programmable personal notes than SilverBullet.
-
-Compatibility:
-
-- Traefik: good.
-- Authentication: supports multiple integrations; verify OIDC/LDAP needs.
-- Backups: excellent because the data is file-based.
-- Existing services: good for stable runbooks and reference documentation.
-
-Tasks:
-
-- [ ] Test the editor and mobile experience.
-- [ ] Test authentication and namespace permissions.
-- [ ] Test media backup and restore.
-
-Documentation: https://www.dokuwiki.org/dokuwiki
-
-## Option 7: Git-backed Markdown with Obsidian or a static site
-
-Keep the source of truth as Markdown in Git and use Obsidian, VS Code, MkDocs, Quartz, Hugo, or a similar frontend.
-
-Pros:
-
-- Maximum portability and version history.
-- Works naturally with this repository and AI agents.
-- Easy to review changes and automate publishing.
-- No application database required for the source content.
-
-Cons:
-
-- Multi-user editing and permissions are weaker.
-- Mobile editing and synchronisation require additional tooling.
-- Private/public publishing boundaries need careful repository and deployment design.
-- Search, backlinks, comments, and uploads vary by frontend.
+- Multi-user editing and permissions are weaker than a collaborative wiki.
+- Mobile editing and synchronisation require an explicit strategy.
+- Private/public publishing boundaries need careful repository and deployment
+  design.
+- Attachments, comments, and search vary by frontend.
 
 Compatibility:
 
 - Traefik: excellent for a static frontend.
-- Authentication: protect the published site at Traefik or keep it VPN-only; authoring access is controlled by Git.
+- Authentication: protect any published site at Traefik or keep it VPN-only;
+  authoring access is controlled by Git.
 - Backups: excellent through Git plus repository backups.
-- Existing `wiksite`: is intentionally separate as a personal website/blog for the owner and a friend; do not assume it is the knowledge-base frontend.
+- Existing `wiksite`: remains separate as a personal website/blog for the
+  owner and a friend; it is not the knowledge-base frontend.
 
-Tasks:
+### Obsidian authoring
 
-- [ ] Decide whether the source content should live in this repository or a separate private repository.
-- [ ] Test Obsidian/VS Code editing and mobile synchronisation.
-- [ ] Choose a static frontend if household browser access is required.
-- [ ] Define private/public content boundaries.
+Obsidian is the preferred first test because it provides local Markdown files,
+backlinks, graph navigation, templates, properties, and a strong desktop/mobile
+workflow without making the repository depend on a database.
+
+- [ ] Create a private knowledge-base repository or a clearly separated
+  directory; do not mix private notes into the public `wiksite` source.
+- [ ] Test Obsidian desktop and mobile editing against the chosen sync method.
+- [ ] Compare Git sync, Syncthing, and Obsidian Sync for conflict handling,
+  offline use, and multi-device recovery.
+- [ ] Decide how attachments, plugins, templates, and workspace files are
+  handled in Git.
+- [ ] Keep community plugins to a reviewed allowlist.
+
+### Frontend options
+
+| Frontend | Strength | Main trade-off |
+| --- | --- | --- |
+| Obsidian Publish | Lowest maintenance and native Obsidian integration | Hosted service and less control over private infrastructure |
+| MkDocs Material | Excellent documentation, search, navigation, and Git workflow | Structured documentation rather than a personal graph-oriented workspace |
+| Quartz | Strong Obsidian-style backlinks, graph features, and static publishing | More customisation and frontend maintenance |
+| Hugo | Fast, mature static publishing and themes | Requires more authoring conventions and theme work |
+| Gitiles/Git web UI | Minimal and close to the source repository | Weak household-facing navigation and search |
+
+Preferred order: Obsidian alone first, then MkDocs Material for operational
+documentation, or Quartz if backlinks and graph navigation are central.
+
+### Publishing and sharing
+
+- [ ] Decide whether the source content should live in this repository or a
+  separate private repository.
+- [ ] Define private infrastructure, household, and optionally public content
+  boundaries using separate directories or repositories.
+- [ ] Choose MkDocs Material, Quartz, or Hugo only if a browser frontend is
+  actually needed.
+- [ ] Keep publishing read-only and build it from a controlled branch.
 - [ ] Test publishing, rollback, and backup recovery.
 
 ## Comparison summary
 
-| Option | Best for | Operational cost | Portability | Multi-user access | Auth integration |
-| --- | --- | ---: | ---: | ---: | ---: |
-| SilverBullet | Personal linked notes | Low | High | Medium | Verify per deployment |
-| BookStack | Structured runbooks | Medium | Medium | High | Good |
-| Wiki.js | General-purpose wiki | Medium | Medium | High | Good |
-| Outline | Polished collaboration | Medium/high | Medium | High | Good OIDC |
-| Docmost | Modern collaborative workspace | Medium/high | Medium | High | Verify edition/version |
-| DokuWiki | Stable lightweight wiki | Low | High | Medium/high | Good with plugins |
-| Git + Markdown | Versioned technical docs | Low | Very high | Low/medium | Git/VPN/proxy |
+| Approach | Best for | Operational cost | Portability | Multi-user access |
+| --- | --- | ---: | ---: | ---: |
+| Approach | Best for | Operational cost | Portability | Multi-user access |
+| --- | --- | ---: | ---: | ---: |
+| Obsidian + Git | Personal notes and infrastructure source material | Low | Very high | Low/medium |
+| Obsidian + MkDocs | Searchable operational documentation | Low/medium | Very high | Medium |
+| Obsidian + Quartz | Linked notes with a web frontend | Medium | Very high | Medium |
+| Obsidian + Hugo | Custom static publishing | Medium | Very high | Medium |
+| Deferred wiki platform | Collaboration-first requirements | Medium/high | Medium | High |
 
 ## Recommended evaluation order
 
-1. SilverBullet, because it matches the previous workflow.
-2. BookStack, because it is a strong choice for durable household and operational runbooks.
-3. Wiki.js, if broader wiki/authentication flexibility is required.
-4. Outline or Docmost, if collaborative editing becomes the priority.
-5. DokuWiki or Git-backed Markdown if minimal infrastructure and portability matter most.
+1. Obsidian with a private Git-backed Markdown vault.
+2. Obsidian plus MkDocs Material for searchable operational documentation.
+3. Obsidian plus Quartz if backlinks and graph navigation should be visible in
+   the browser.
+4. Hugo if the publishing experience needs substantial customisation.
+5. Revisit the deferred wiki platforms only if collaborative editing or
+   permissions become more important than portability.
 
 ## Deployment and integration checklist
 
