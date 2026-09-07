@@ -17,11 +17,6 @@ services:
       glance.icon: sh:minecraft
       glance.url: https://play.74services.net
       glance.description: Minecraft Server System
-
-networks:
-  docker-socket-proxy:
-    external: true
-
   # lspace-atm8:
   #   image: itzg/minecraft-server:2025.9.2-java17-alpine@sha256:a9c523654bfba587f114a5fc3bbfc8031d46c58979f47026fa877ee87c8fc043
   #   restart: unless-stopped
@@ -138,3 +133,7 @@ networks:
         glance.parent: mc-router
         glance.name: DeceasedCraft
         glance.category: Gaming
+
+networks:
+  docker-socket-proxy:
+    external: true
