@@ -15484,7 +15484,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Hosts",
+  "title": "Homelab Hosts",
   "uid": "homelab-hosts",
   "version": 102,
   "weekStart": ""
