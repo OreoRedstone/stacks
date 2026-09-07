@@ -4,9 +4,6 @@ services:
     container_name: docker-socket-proxy
     restart: "no"
     privileged: true
-    read_only: true
-    tmpfs:
-      - /tmp
     environment:
       # Read-only API sections required by current Docker-aware consumers.
       CONTAINERS: "1"
