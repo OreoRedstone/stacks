@@ -11,6 +11,7 @@ services:
       - default
       - docker-socket-proxy
     labels:
+      homelab.canonical-route: tcp://play.74services.net:25565
       glance.name: Minecraft
       glance.id: mc-router
       glance.category: Gaming
@@ -75,6 +76,7 @@ services:
       - /mnt/docker-data/minecraft/jjk:/data
     labels:
       mc-router.host: jjk.play.74services.net
+      homelab.canonical-route: tcp://jjk.play.74services.net:25565
       glance.parent: mc-router
       glance.name: JujutsuCraft
       glance.category: Gaming
@@ -110,6 +112,7 @@ services:
       - /mnt/docker-data/minecraft/vanilla:/data
     labels:
       mc-router.host: vanilla.play.74services.net
+      homelab.canonical-route: tcp://vanilla.play.74services.net:25565
       glance.parent: mc-router
       glance.name: Vanilla MC
       glance.category: Gaming
@@ -130,6 +133,7 @@ services:
         - /mnt/nas/backups/minecraft/deceased-craft:/backups
       labels:
         mc-router.host: deceased-craft.play.74services.net
+        homelab.canonical-route: tcp://deceased-craft.play.74services.net:25565
         glance.parent: mc-router
         glance.name: DeceasedCraft
         glance.category: Gaming

@@ -37,6 +37,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.immich.rule: Host(`photos.74services.net`) || Host(`immich.74services.net`)
+      homelab.canonical-route: https://photos.74services.net
       glance.name: Immich
       glance.id: immich
       glance.category: Media

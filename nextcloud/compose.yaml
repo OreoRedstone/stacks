@@ -54,6 +54,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.nextcloud.rule: Host(`cloud.74services.net`)
+      homelab.canonical-route: https://cloud.74services.net
       glance.name: Nextcloud
       glance.id: nextcloud
       glance.category: Media
@@ -73,9 +74,12 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.collabora.rule: Host(`collabora.74services.net`)
+      homelab.canonical-route: https://collabora.74services.net
       glance.parent: nextcloud
+      glance.id: collabora
       glance.name: Collabora
       glance.category: Media
+      glance.url: https://collabora.74services.net
 
 networks:
   traefik:

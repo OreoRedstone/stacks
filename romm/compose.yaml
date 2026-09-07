@@ -30,6 +30,7 @@ services:
       traefik.enable: true
       traefik.http.routers.romm.rule: Host(`romm.74services.net`)
       traefik.http.services.romm.loadbalancer.server.port: 8080
+      homelab.canonical-route: https://romm.74services.net
       glance.name: Romm
       glance.id: romm
       glance.category: Media

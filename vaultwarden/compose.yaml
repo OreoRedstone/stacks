@@ -11,6 +11,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.vaultwarden.rule: Host(`vault.74services.net`) || Host(`vw.74services.net`)
+      homelab.canonical-route: https://vault.74services.net
       glance.name: Vaultwarden
       glance.id: vaultwarden
       glance.category: Security

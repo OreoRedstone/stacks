@@ -19,6 +19,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.jellyfin.rule: Host(`stream.74services.net`)
+      homelab.canonical-route: https://stream.74services.net
       glance.name: Jellyfin
       glance.id: jellyfin
       glance.category: Media
@@ -41,6 +42,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.wizarr.rule: Host(`wizarr.74services.net`)
+      homelab.canonical-route: https://wizarr.74services.net
       glance.name: Wizarr
       glance.id: wizarr
       glance.category: Media
@@ -63,6 +65,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.navidrome.rule: Host(`music.74services.net`)
+      homelab.canonical-route: https://music.74services.net
       glance.name: Navidrome
       glance.id: navidrome
       glance.category: Media
@@ -86,6 +89,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.kavita.rule: Host(`books.74services.net`)
+      homelab.canonical-route: https://books.74services.net
       glance.name: Kavita
       glance.id: kavita
       glance.category: Media

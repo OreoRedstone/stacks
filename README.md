@@ -67,6 +67,23 @@ Traefik is defined in `networking/compose.yaml`. It listens on host port `9999` 
 
 The `monitoring` stack exposes InfluxDB on host port `8086`. Grafana is routed through Traefik at the hostname configured in its labels. Hostnames and TLS behavior are managed through the Traefik configuration in `networking/dynamic.yaml` and the labels in each stack.
 
+### Service labels and canonical routes
+
+Intentionally reachable services should carry one neutral canonical route:
+
+```yaml
+homelab.canonical-route: https://service.74services.net
+```
+
+This is the single preferred route for dashboards, future endpoint discovery,
+and operational documentation. HTTP routes use `https://`; non-HTTP services
+may use an appropriate scheme such as `tcp://`. Traefik aliases may remain in
+the router rule, but only one hostname should be used as the canonical route.
+Internal-only containers, databases, and infrastructure services should not
+define this label. Consumer-specific labels such as `traefik.*`, `mc-router.*`,
+and `glance.*` remain necessary for those applications and should not be
+treated as the canonical inventory.
+
 ## Monitoring
 
 `monitoring/prometheus.yml` scrapes cAdvisor every five seconds. The monitoring stack stores Grafana and InfluxDB data in:

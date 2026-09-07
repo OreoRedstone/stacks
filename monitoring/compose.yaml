@@ -16,6 +16,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.grafana.rule: Host(`monitoring.74services.net`)
+      homelab.canonical-route: https://monitoring.74services.net
       glance.name: Grafana
       glance.id: grafana
       glance.category: Management

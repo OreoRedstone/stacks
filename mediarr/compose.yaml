@@ -41,12 +41,13 @@ services:
     depends_on:
       - vpn
     labels:
+      homelab.canonical-route: http://10.44.0.2:8112
       glance.name: Deluge
       glance.id: deluge
       glance.category: Arr
       glance.icon: sh:deluge
       glance.description: Media Acquisition
-      glance.url: http://192.168.0.100:8112
+      glance.url: http://10.44.0.2:8112
 
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest@sha256:91844fa2c927ad6ede5630127183cc7868b175f6223e83e6a5da1fffea2aa782
@@ -69,6 +70,7 @@ services:
       glance.icon: sh:prowlarr
       glance.description: Media Indexing
       glance.url: https://prowlarr.74services.net
+      homelab.canonical-route: https://prowlarr.74services.net
 
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest@sha256:c19aa4ecdf03d73e1d5c901da33744cb7eb4d921f89bafed1ca264601d7fa224
@@ -87,6 +89,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.sonarr.rule: Host(`sonarr.74services.net`)
+      homelab.canonical-route: https://sonarr.74services.net
       glance.name: Sonarr
       glance.id: sonarr
       glance.category: Arr
@@ -111,6 +114,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.radarr.rule: Host(`radarr.74services.net`)
+      homelab.canonical-route: https://radarr.74services.net
       glance.name: Radarr
       glance.id: radarr
       glance.category: Arr
@@ -134,6 +138,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.lidarr.rule: Host(`lidarr.74services.net`)
+      homelab.canonical-route: https://lidarr.74services.net
       glance.name: Lidarr
       glance.id: lidarr
       glance.category: Arr
@@ -158,6 +163,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.bazarr.rule: Host(`bazarr.74services.net`)
+      homelab.canonical-route: https://bazarr.74services.net
       glance.name: Bazarr
       glance.id: bazarr
       glance.category: Arr
@@ -187,6 +193,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.seerr.rule: Host(`seerr.74services.net`)
+      homelab.canonical-route: https://seerr.74services.net
       glance.name: Seerr
       glance.id: seerr
       glance.category: Arr
@@ -210,6 +217,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.bindery.rule: Host(`bindery.74services.net`)
+      homelab.canonical-route: https://bindery.74services.net
       glance.name: Bindery
       glance.id: bindery
       glance.category: Arr

@@ -13,6 +13,7 @@ services:
       traefik.enable: true
       traefik.http.routers.home-assistant.rule: Host(`ha.74services.net`)
       traefik.http.services.home-assistant.loadbalancer.server.port: 8123
+      homelab.canonical-route: https://ha.74services.net
       glance.name: Home Assistant
       glance.id: home-assistant
       glance.category: Management

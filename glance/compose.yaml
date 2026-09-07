@@ -12,6 +12,7 @@ services:
       - 10.44.0.2:80:8080
     env_file: .env
     labels:
+      homelab.canonical-route: http://10.44.0.2
       glance.name: Glance
       glance.id: glance
       glance.category: Management

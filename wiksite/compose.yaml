@@ -7,6 +7,11 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.wiksite.rule: Host(`blog.74services.net`)
+      homelab.canonical-route: https://blog.74services.net
+      glance.name: Wiksite
+      glance.id: wiksite
+      glance.category: Personal
+      glance.url: https://blog.74services.net
 
 networks:
   traefik:

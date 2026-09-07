@@ -30,6 +30,7 @@ services:
       traefik.http.routers.actual-budget.rule: Host(`budget.74services.net`)
       traefik.http.services.actual-budget.loadbalancer.server.port: 5006
       traefik.http.routers.actual-budget.middlewares: authentik@docker
+      homelab.canonical-route: https://budget.74services.net
       glance.name: Actual Budget
       glance.id: actual-budget
       glance.category: Management

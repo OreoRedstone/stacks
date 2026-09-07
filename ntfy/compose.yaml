@@ -21,6 +21,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.ntfy.rule: Host(`ntfy.74services.net`)
+      homelab.canonical-route: https://ntfy.74services.net
       glance.name: Ntfy
       glance.id: ntfy
       glance.category: Management
