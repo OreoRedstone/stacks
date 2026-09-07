@@ -7,8 +7,6 @@ Docker Compose definitions and service configuration for a self-hosted homelab. 
 | Directory | Services / purpose |
 | --- | --- |
 | `actual-budget` | Actual Budget |
-| `auth` | Authentik and PostgreSQL |
-| `backups` | Restic backup job |
 | `factorio` | Factorio server and server configuration |
 | `glance` | Glance dashboard |
 | `home-assistant` | Home Assistant |
@@ -59,7 +57,10 @@ Stop a stack with:
 docker compose down
 ```
 
-The Compose files pin container images by digest where applicable. Review image updates and configuration changes before recreating services.
+Most Compose files pin container images by digest. The Exportarr images in
+`mediarr` are currently tag-only and should be pinned before being treated as
+a production baseline. Review image updates and configuration changes before
+recreating services.
 
 ## Reverse proxy and networking
 
@@ -91,8 +92,6 @@ treated as the canonical inventory.
 - `/mnt/docker-data/monitoring/grafana-data`
 - `/mnt/docker-data/monitoring/influx-data`
 
-The `monitoring/influx-configs` file/directory is mounted into InfluxDB for additional configuration.
-
 Application metrics are also defined in Git:
 
 - Jellyfin is scraped directly at `jellyfin:8096/metrics` over the private
@@ -100,11 +99,11 @@ Application metrics are also defined in Git:
   `system.xml` before expecting data; do not expose `/metrics` through Traefik.
 - Exportarr runs one private exporter per supported *arr application in
   `mediarr/compose.yaml`. API keys are supplied through the ignored
-  `mediarr/.env` file or Komodo variables named in
-  [`mediarr/.env.example`](mediarr/.env.example).
-- Exportarr targets Sonarr, Radarr, Lidarr, Prowlarr, and Bazarr. Bazarr is
-  scraped every 60 seconds because its episode walk can be expensive; the
-  other Exportarr targets are scraped every 10 seconds by the global default.
+  `mediarr/.env` file or Komodo variables matching the `*_API_KEY` names used
+  by the Compose file. No example environment file is currently tracked.
+- Exportarr targets Sonarr, Radarr, Lidarr, Prowlarr, and Bazarr. The first
+  four are scraped every 30 seconds; Bazarr is scraped every 60 seconds
+  because its episode walk can be expensive.
 
 The exporters do not publish host ports or receive Traefik routes. Prometheus
 and the exporters use the external `monitoring` network, while exporters also
@@ -122,11 +121,17 @@ Service-specific configuration lives alongside each Compose file. Examples inclu
 - `archive/tdarr/configs/`
 
 Renovate is defined in `renovate/compose.yaml` and is intended to be run as a
-transient service by Komodo. Its GitHub credentials should be supplied as
-Komodo stack environment variables, not committed to the repository. Archived
-stacks under `archive/` are excluded by `renovate.json`.
+transient service by Komodo. Its Git credentials should be supplied as Komodo
+stack environment variables, not committed to the repository. Archived stacks
+under `archive/` are excluded by `renovate.json`.
 
-Do not commit passwords, tokens, private keys, or generated application data. The repository currently contains initialization values in some Compose files, so replace those values with secure secrets before exposing services and rotate any credentials that have been used outside a disposable environment. Files matching `.env` and `.log` are ignored by Git.
+Do not commit passwords, tokens, private keys, or generated application data.
+Current Compose files use required environment-variable substitutions for
+application secrets; provide those values through Komodo, an ignored local
+environment file, Docker secrets, or another secret manager. Review
+[`SECURITY.md`](SECURITY.md) before exposing a new service. Files matching
+`.env` and `.log` are ignored by Git, but this is only a convenience and is not
+a substitute for secret scanning or a secret manager.
 
 ## Updating services
 

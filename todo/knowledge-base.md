@@ -125,8 +125,6 @@ documentation, or Quartz if backlinks and graph navigation are central.
 
 | Approach | Best for | Operational cost | Portability | Multi-user access |
 | --- | --- | ---: | ---: | ---: |
-| Approach | Best for | Operational cost | Portability | Multi-user access |
-| --- | --- | ---: | ---: | ---: |
 | Obsidian + Git | Personal notes and infrastructure source material | Low | Very high | Low/medium |
 | Obsidian + MkDocs | Searchable operational documentation | Low/medium | Very high | Medium |
 | Obsidian + Quartz | Linked notes with a web frontend | Medium | Very high | Medium |

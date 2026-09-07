@@ -23,6 +23,10 @@ The current split is:
   Applications VM, and Proxmox, selected by friendly host name.
 - `Docker` — cAdvisor container resource and network metrics.
 - `Proxmox` — Proxmox and guest metrics from InfluxDB.
+- `Media Applications` — Jellyfin and Exportarr service health, media
+  automation state, queues, storage, and application metric groups.
+- `Endpoints` — Blackbox reachability, response timing, TLS, and certificate
+  expiry for intentionally monitored public endpoints.
 
 Dashboard JSON is stored in `monitoring/grafana/dashboards/`. All dashboards
 are provisioned into Grafana's `Homelab` folder. Stable UIDs are required for
@@ -50,7 +54,7 @@ safe reconciliation and URL stability.
 - [x] Add an initial focused dashboard from the returned Jellyfin and
   Exportarr metrics. Expand its service-specific panels after observing the
   metric inventory in production.
-- [ ] Build further service-specific panels from the returned Jellyfin and
+- [ ] Build further service-specific panels from the collected Jellyfin and
   Exportarr metrics:
   server health, active sessions, playback
   method, transcoding activity, stream errors, bandwidth, and library or
