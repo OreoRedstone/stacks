@@ -241,7 +241,7 @@ services:
     restart: "no"
 
   exportarr-sonarr:
-    image: ghcr.io/onedr0p/exportarr:v2.3.0
+    image: ghcr.io/onedr0p/exportarr:v2.3.0@sha256:af535d94061cf97a52e1661945ffba78c03f9443eae7c0da1a80a5a4be56b520
     command: [sonarr]
     restart: "no"
     environment:
@@ -254,7 +254,7 @@ services:
       - monitoring
 
   exportarr-radarr:
-    image: ghcr.io/onedr0p/exportarr:v2.3.0
+    image: ghcr.io/onedr0p/exportarr:v2.3.0@sha256:af535d94061cf97a52e1661945ffba78c03f9443eae7c0da1a80a5a4be56b520
     command: [radarr]
     restart: "no"
     environment:
@@ -267,7 +267,7 @@ services:
       - monitoring
 
   exportarr-lidarr:
-    image: ghcr.io/onedr0p/exportarr:v2.3.0
+    image: ghcr.io/onedr0p/exportarr:v2.3.0@sha256:af535d94061cf97a52e1661945ffba78c03f9443eae7c0da1a80a5a4be56b520
     command: [lidarr]
     restart: "no"
     environment:
@@ -280,7 +280,7 @@ services:
       - monitoring
 
   exportarr-prowlarr:
-    image: ghcr.io/onedr0p/exportarr:v2.3.0
+    image: ghcr.io/onedr0p/exportarr:v2.3.0@sha256:af535d94061cf97a52e1661945ffba78c03f9443eae7c0da1a80a5a4be56b520
     command: [prowlarr]
     restart: "no"
     environment:
@@ -293,7 +293,7 @@ services:
       - monitoring
 
   exportarr-bazarr:
-    image: ghcr.io/onedr0p/exportarr:v2.3.0
+    image: ghcr.io/onedr0p/exportarr:v2.3.0@sha256:af535d94061cf97a52e1661945ffba78c03f9443eae7c0da1a80a5a4be56b520
     command: [bazarr]
     restart: "no"
     environment:
