@@ -93,6 +93,24 @@ treated as the canonical inventory.
 
 The `monitoring/influx-configs` file/directory is mounted into InfluxDB for additional configuration.
 
+Application metrics are also defined in Git:
+
+- Jellyfin is scraped directly at `jellyfin:8096/metrics` over the private
+  `monitoring` network. Enable Jellyfin's native metrics in its persistent
+  `system.xml` before expecting data; do not expose `/metrics` through Traefik.
+- Exportarr runs one private exporter per supported *arr application in
+  `mediarr/compose.yaml`. API keys are supplied through the ignored
+  `mediarr/.env` file or Komodo variables named in
+  [`mediarr/.env.example`](mediarr/.env.example).
+- Exportarr targets Sonarr, Radarr, Lidarr, Prowlarr, and Bazarr. Bazarr is
+  scraped every 60 seconds because its episode walk can be expensive; the
+  other Exportarr targets are scraped every 10 seconds by the global default.
+
+The exporters do not publish host ports or receive Traefik routes. Prometheus
+and the exporters use the external `monitoring` network, while exporters also
+join the application network needed to query their target. The Prowlarr
+exporter queries the VPN network namespace through the `vpn` service.
+
 ## Configuration and secrets
 
 Service-specific configuration lives alongside each Compose file. Examples include:

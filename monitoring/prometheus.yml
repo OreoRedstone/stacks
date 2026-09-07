@@ -33,6 +33,42 @@ scrape_configs:
       - targets:
           - traefik:8082
 
+  - job_name: jellyfin
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - jellyfin:8096
+        labels:
+          service: Jellyfin
+
+  - job_name: exportarr
+    scrape_interval: 30s
+    static_configs:
+      - targets:
+          - exportarr-sonarr:9707
+        labels:
+          app: Sonarr
+      - targets:
+          - exportarr-radarr:9707
+        labels:
+          app: Radarr
+      - targets:
+          - exportarr-lidarr:9707
+        labels:
+          app: Lidarr
+      - targets:
+          - exportarr-prowlarr:9707
+        labels:
+          app: Prowlarr
+
+  - job_name: exportarr-bazarr
+    scrape_interval: 60s
+    static_configs:
+      - targets:
+          - exportarr-bazarr:9707
+        labels:
+          app: Bazarr
+
   - job_name: blackbox
     metrics_path: /probe
     params:

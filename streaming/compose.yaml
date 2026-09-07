@@ -13,6 +13,7 @@ services:
       - /dev/dri:/dev/dri
     networks:
       - traefik
+      - monitoring
     restart: "no"
     environment:
       - JELLYFIN_PublishedServerUrl=https://stream.74services.net
@@ -99,4 +100,6 @@ services:
 
 networks:
   traefik:
+    external: true
+  monitoring:
     external: true
