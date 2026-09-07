@@ -11,7 +11,7 @@
   ],
   "timezone": "browser",
   "schemaVersion": 41,
-  "version": 1,
+  "version": 2,
   "refresh": "30s",
   "time": {
     "from": "now-6h",
@@ -46,11 +46,19 @@
   },
   "panels": [
     {
+      "id": 10,
+      "type": "row",
+      "title": "Service health",
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+      "collapsed": false,
+      "panels": []
+    },
+    {
       "id": 1,
       "type": "stat",
       "title": "Jellyfin scrape",
       "description": "Whether Prometheus can scrape Jellyfin's native metrics endpoint.",
-      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
+      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 1 },
       "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
       "targets": [
         { "refId": "A", "expr": "up{job=\"jellyfin\"}", "instant": true }
@@ -74,7 +82,7 @@
       "type": "stat",
       "title": "Exportarr targets",
       "description": "Number of Exportarr instances currently being scraped successfully.",
-      "gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 },
+      "gridPos": { "h": 4, "w": 6, "x": 6, "y": 1 },
       "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
       "targets": [
         { "refId": "A", "expr": "sum(up{job=~\"exportarr.*\",app=~\"$app\"})", "instant": true }
@@ -93,7 +101,7 @@
       "type": "stat",
       "title": "Exportarr collector errors",
       "description": "A collector error can leave the exporter target up while a metric group is incomplete.",
-      "gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 },
+      "gridPos": { "h": 4, "w": 6, "x": 12, "y": 1 },
       "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
       "targets": [
         { "refId": "A", "expr": "sum({job=~\"exportarr.*\",app=~\"$app\",__name__=~\".*_collector_error\"})", "instant": true }
@@ -108,11 +116,19 @@
       "options": { "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "colorMode": "value", "graphMode": "none", "justifyMode": "auto", "orientation": "auto", "textMode": "auto" }
     },
     {
+      "id": 11,
+      "type": "row",
+      "title": "Jellyfin",
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 5 },
+      "collapsed": false,
+      "panels": []
+    },
+    {
       "id": 4,
       "type": "timeseries",
       "title": "Jellyfin process resources",
       "description": "Jellyfin process CPU and resident memory, when exposed by the native metrics endpoint.",
-      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 6 },
       "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
       "targets": [
         { "refId": "A", "expr": "rate(process_cpu_seconds_total{job=\"jellyfin\"}[5m])", "legendFormat": "CPU cores" },
@@ -125,11 +141,19 @@
       "options": { "legend": { "displayMode": "list", "placement": "bottom" }, "tooltip": { "mode": "multi", "sort": "desc" } }
     },
     {
+      "id": 12,
+      "type": "row",
+      "title": "Exportarr operations",
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 22 },
+      "collapsed": false,
+      "panels": []
+    },
+    {
       "id": 5,
       "type": "timeseries",
       "title": "Exportarr queue totals",
       "description": "Queue items reported by Sonarr, Radarr, Lidarr, Prowlarr and Bazarr.",
-      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 23 },
       "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
       "targets": [
         { "refId": "A", "expr": "sum by (app) ({job=\"exportarr\",app=~\"$app\",__name__=~\".*_queue_total\"})", "legendFormat": "{{app}}" }
@@ -145,7 +169,7 @@
       "type": "timeseries",
       "title": "Media wanted and missing",
       "description": "Metrics whose names include wanted or missing, where supported by the exporter version and application.",
-      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 12 },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 31 },
       "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
       "targets": [
         { "refId": "A", "expr": "sum by (__name__, app) ({job=\"exportarr\",app=~\"$app\",__name__=~\".*(wanted|missing).*\"})", "legendFormat": "{{app}} {{__name__}}" }
@@ -161,7 +185,7 @@
       "type": "table",
       "title": "Jellyfin metric inventory",
       "description": "A quick inventory of metrics currently returned by Jellyfin. This is intentionally dynamic as the native endpoint varies by version and enabled features.",
-      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 12 },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 14 },
       "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
       "targets": [
         { "refId": "A", "expr": "count by (__name__) ({job=\"jellyfin\"})", "instant": true, "format": "table" }
@@ -170,11 +194,40 @@
       "options": { "showHeader": true, "footer": { "show": false }, "sortBy": [ { "displayName": "Value", "desc": true } ] }
     },
     {
+      "id": 13,
+      "type": "row",
+      "title": "Storage",
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 39 },
+      "collapsed": false,
+      "panels": []
+    },
+    {
       "id": 8,
+      "type": "table",
+      "title": "Exportarr storage",
+      "description": "File sizes and free-space metrics returned by the selected Exportarr applications.",
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 40 },
+      "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
+      "targets": [
+        { "refId": "A", "expr": "sum by (__name__, app) ({job=~\"exportarr.*\",app=~\"$app\",__name__=~\".*(filesize|free.?space).*\"})", "instant": true, "format": "table" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "decbytes" }, "overrides": [] },
+      "options": { "showHeader": true, "footer": { "show": false }, "sortBy": [ { "displayName": "Value", "desc": true } ] }
+    },
+    {
+      "id": 14,
+      "type": "row",
+      "title": "Metric discovery",
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 48 },
+      "collapsed": false,
+      "panels": []
+    },
+    {
+      "id": 9,
       "type": "table",
       "title": "Exportarr metric inventory",
       "description": "Metric families returned by the selected Exportarr applications, useful when expanding this dashboard with service-specific panels.",
-      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 20 },
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 49 },
       "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
       "targets": [
         { "refId": "A", "expr": "sum by (__name__, app) ({job=~\"exportarr.*\",app=~\"$app\"})", "instant": true, "format": "table" }
