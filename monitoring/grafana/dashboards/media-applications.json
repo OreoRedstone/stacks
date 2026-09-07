@@ -202,48 +202,100 @@
       "panels": []
     },
     {
-      "id": 8,
-      "type": "table",
-      "title": "Library sizes",
-      "description": "Library and media file sizes reported across the selected Exportarr applications.",
-      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 40 },
-      "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
-      "targets": [
-        { "refId": "A", "expr": "sum by (__name__, app) ({job=~\"exportarr.*\",app=~\"$app\",__name__=~\".*filesize.*\"})", "instant": true, "format": "table" }
-      ],
-      "fieldConfig": { "defaults": { "unit": "decbytes" }, "overrides": [] },
-      "options": { "showHeader": true, "footer": { "show": false }, "sortBy": [ { "displayName": "Value", "desc": true } ] }
-    },
-    {
       "id": 14,
       "type": "row",
-      "title": "Metric discovery",
+      "title": "Exportarr value groups",
       "gridPos": { "h": 1, "w": 24, "x": 0, "y": 48 },
       "collapsed": false,
       "panels": []
     },
     {
-      "id": 20,
+      "id": 15,
       "type": "table",
-      "title": "Free space",
-      "description": "Root-folder and download free-space metrics reported across the selected Exportarr applications.",
-      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 40 },
+      "title": "Counts",
+      "description": "Count and total metrics across the selected Exportarr applications.",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 49 },
       "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
       "targets": [
-        { "refId": "A", "expr": "sum by (__name__, app) ({job=~\"exportarr.*\",app=~\"$app\",__name__=~\".*free.?space.*\"})", "instant": true, "format": "table" }
+        { "refId": "A", "expr": "sum by (__name__, app) ({job=~\"exportarr.*\",app=~\"$app\",__name__=~\".*(_total|_count|_number|_items).*\",__name__!~\".*(queue|wanted|missing|cutoff|filesize|size_bytes|freespace|free_space).*\"})", "instant": true, "format": "table" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
+      "options": { "showHeader": true, "footer": { "show": false }, "sortBy": [ { "displayName": "Value", "desc": true } ] }
+    },
+    {
+      "id": 16,
+      "type": "table",
+      "title": "File sizes",
+      "description": "Library and media file size metrics across the selected Exportarr applications.",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 40 },
+      "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
+      "targets": [
+        { "refId": "A", "expr": "sum by (__name__, app) ({job=~\"exportarr.*\",app=~\"$app\",__name__=~\".*(filesize|size_bytes).*\"})", "instant": true, "format": "table" }
       ],
       "fieldConfig": { "defaults": { "unit": "decbytes" }, "overrides": [] },
       "options": { "showHeader": true, "footer": { "show": false }, "sortBy": [ { "displayName": "Value", "desc": true } ] }
     },
     {
-      "id": 15,
+      "id": 17,
       "type": "table",
-      "title": "Exportarr metric inventory",
-      "description": "All metric families returned by the selected Exportarr applications, grouped together for discovery.",
-      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 49 },
+      "title": "Free space",
+      "description": "Free-space metrics across the selected Exportarr applications.",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 40 },
       "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
       "targets": [
-        { "refId": "A", "expr": "sum by (__name__, app) ({job=~\"exportarr.*\",app=~\"$app\"})", "instant": true, "format": "table" }
+        { "refId": "A", "expr": "sum by (__name__, app) ({job=~\"exportarr.*\",app=~\"$app\",__name__=~\".*(freespace|free_space).*\"})", "instant": true, "format": "table" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "decbytes" }, "overrides": [] },
+      "options": { "showHeader": true, "footer": { "show": false }, "sortBy": [ { "displayName": "Value", "desc": true } ] }
+    },
+    {
+      "id": 19,
+      "type": "table",
+      "title": "Rates and activity",
+      "description": "Download, upload, speed, bandwidth and activity metrics across the selected Exportarr applications.",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 65 },
+      "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
+      "targets": [
+        { "refId": "A", "expr": "sum by (__name__, app) ({job=~\"exportarr.*\",app=~\"$app\",__name__=~\".*(rate|speed|bandwidth|download|upload|activity).*\"})", "instant": true, "format": "table" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
+      "options": { "showHeader": true, "footer": { "show": false }, "sortBy": [ { "displayName": "Value", "desc": true } ] }
+    },
+    {
+      "id": 21,
+      "type": "table",
+      "title": "Durations",
+      "description": "Scrape, query and collector duration metrics across the selected Exportarr applications.",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 65 },
+      "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
+      "targets": [
+        { "refId": "A", "expr": "sum by (__name__, app) ({job=~\"exportarr.*\",app=~\"$app\",__name__=~\".*(duration|latency).*\"})", "instant": true, "format": "table" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "s" }, "overrides": [] },
+      "options": { "showHeader": true, "footer": { "show": false }, "sortBy": [ { "displayName": "Value", "desc": true } ] }
+    },
+    {
+      "id": 22,
+      "type": "table",
+      "title": "Errors and health",
+      "description": "Collector errors, failures, health and status metrics across the selected Exportarr applications.",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 73 },
+      "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
+      "targets": [
+        { "refId": "A", "expr": "sum by (__name__, app) ({job=~\"exportarr.*\",app=~\"$app\",__name__=~\".*(error|failed|health|status).*\"})", "instant": true, "format": "table" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
+      "options": { "showHeader": true, "footer": { "show": false }, "sortBy": [ { "displayName": "Value", "desc": true } ] }
+    },
+    {
+      "id": 23,
+      "type": "table",
+      "title": "Other Exportarr metrics",
+      "description": "Metrics not matched by the primary value groups above, retained for discovery without mixing them into operational panels.",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 73 },
+      "datasource": { "type": "prometheus", "uid": "stacks-prometheus" },
+      "targets": [
+        { "refId": "A", "expr": "sum by (__name__, app) ({job=~\"exportarr.*\",app=~\"$app\",__name__!~\".*(filesize|size_bytes|freespace|free_space|_total|_count|_number|_items|queue|wanted|missing|cutoff|rate|speed|bandwidth|download|upload|activity|duration|latency|error|failed|health|status).*\"})", "instant": true, "format": "table" }
       ],
       "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
       "options": { "showHeader": true, "footer": { "show": false }, "sortBy": [ { "displayName": "Value", "desc": true } ] }
