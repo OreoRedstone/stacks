@@ -28,6 +28,12 @@
       "includeVars": true
     },
     {
+      "title": "Media Applications",
+      "type": "dashboards",
+      "url": "/d/media-applications/media-applications",
+      "includeVars": true
+    },
+    {
       "title": "Proxmox Metrics",
       "type": "dashboards",
       "url": "/d/IfgdXjtnk/proxmox",

@@ -10,6 +10,8 @@ folder by `../dashboards.yaml`.
   and Proxmox, selected with the `Host` variable.
 - `docker.json` — container metrics from cAdvisor.
 - `proxmox.json` — Proxmox metrics from InfluxDB.
+- `media-applications.json` — Jellyfin native metrics and Exportarr metrics
+  for Sonarr, Radarr, Lidarr, Prowlarr, and Bazarr.
 
 ## Adding a dashboard
 

@@ -47,7 +47,11 @@ safe reconciliation and URL stability.
 - [x] Add the initial Jellyfin native scrape and private monitoring network.
 - [x] Add private Exportarr instances for Sonarr, Radarr, Lidarr, Prowlarr,
   and Bazarr, with a slower Bazarr scrape interval.
-- [ ] Build dashboards from the returned Jellyfin and Exportarr metrics:
+- [x] Add an initial focused dashboard from the returned Jellyfin and
+  Exportarr metrics. Expand its service-specific panels after observing the
+  metric inventory in production.
+- [ ] Build further service-specific panels from the returned Jellyfin and
+  Exportarr metrics:
   server health, active sessions, playback
   method, transcoding activity, stream errors, bandwidth, and library or
   scheduled-task health where supported.
