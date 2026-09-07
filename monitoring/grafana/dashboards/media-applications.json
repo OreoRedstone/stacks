@@ -119,7 +119,7 @@
         { "refId": "B", "expr": "process_resident_memory_bytes{job=\"jellyfin\"}", "legendFormat": "Resident memory" }
       ],
       "fieldConfig": {
-        "defaults": { "unit": "bytes", "custom": { "drawStyle": "line", "lineInterpolation": "smooth", "lineWidth": 1, "fillOpacity": 10, "showPoints": "auto", "stacking": { "mode": "none", "group": "A" } } },
+        "defaults": { "unit": "decbytes", "custom": { "drawStyle": "line", "lineInterpolation": "smooth", "lineWidth": 1, "fillOpacity": 10, "showPoints": "auto", "stacking": { "mode": "none", "group": "A" } } },
         "overrides": [ { "matcher": { "id": "byName", "options": "CPU cores" }, "properties": [ { "id": "unit", "value": "cores" } ] } ]
       },
       "options": { "legend": { "displayMode": "list", "placement": "bottom" }, "tooltip": { "mode": "multi", "sort": "desc" } }
