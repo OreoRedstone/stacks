@@ -10,6 +10,10 @@ proxy, and `POST=0` blocks Docker API write operations. The proxy still has
 significant access to Docker metadata, so only explicitly trusted consumers
 should join its network.
 
+The container root filesystem is read-only; `/tmp` is provided as an in-memory
+filesystem because the image entrypoint generates its HAProxy configuration
+there when it starts.
+
 ## Start
 
 ```sh

@@ -5,6 +5,7 @@ services:
     restart: "no"
     command:
       - "--providers.docker=true"
+      - "--providers.docker.endpoint=tcp://docker-socket-proxy:2375"
       - "--providers.docker.network=traefik"
       - "--providers.docker.exposedByDefault=false"
       - "--entrypoints.web.address=:80"
@@ -15,9 +16,9 @@ services:
       - "--providers.file.filename=/etc/traefik/dynamic.yaml"
     volumes:
       - ./dynamic.yaml:/etc/traefik/dynamic.yaml
-      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - traefik
+      - docker-socket-proxy
       - monitoring
     ports:
       - 9999:80
@@ -36,3 +37,5 @@ networks:
         - subnet: 172.32.0.0/16
   monitoring:
     name: monitoring
+  docker-socket-proxy:
+    external: true
