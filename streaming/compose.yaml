@@ -20,6 +20,12 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.jellyfin.rule: Host(`stream.74services.net`)
+      traefik.http.routers.jellyfin-metrics.rule: Host(`stream.74services.net`) && PathPrefix(`/metrics`)
+      traefik.http.routers.jellyfin-metrics.priority: 100
+      traefik.http.routers.jellyfin-metrics.middlewares: jellyfin-metrics-deny
+      traefik.http.routers.jellyfin-metrics.service: jellyfin
+      traefik.http.middlewares.jellyfin-metrics-deny.ipallowlist.sourcerange: 127.0.0.1/32,::1/128
+      traefik.http.services.jellyfin.loadbalancer.server.port: 8096
       homelab.canonical-route: https://stream.74services.net
       glance.name: Jellyfin
       glance.id: jellyfin
