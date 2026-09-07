@@ -16,6 +16,7 @@ Docker Compose definitions and service configuration for a self-hosted homelab. 
 | `mediarr` | Deluge, Prowlarr, Sonarr, Radarr, Lidarr, Bazarr, Seerr, Bindery, and FlareSolverr |
 | `minecraft` | Minecraft router and multiple servers, including ATM10 and JJK worlds |
 | `monitoring` | Grafana, Prometheus, InfluxDB, and cAdvisor |
+| `docker-socket-proxy` | Restricted read-only Docker API for Docker-aware consumers |
 | `networking` | Traefik reverse proxy |
 | `nextcloud` | Nextcloud, Collabora, and PostgreSQL |
 | `ntfy` | ntfy notifications |
@@ -113,6 +114,7 @@ Detailed project plans are stored in the [`todo/`](todo/) directory:
 - [`todo/authentication.md`](todo/authentication.md) — backend/frontend access control and identity-provider options
 - [`todo/knowledge-base.md`](todo/knowledge-base.md) — homelab knowledge organisation system options and deployment plan
 - [`todo/dashboard.md`](todo/dashboard.md) — dashboard, service portal, and monitoring overhaul options
+- [`todo/docker-socket-proxy.md`](todo/docker-socket-proxy.md) — Docker socket proxy migration plan and consumer integrations
 - [`todo/paperless.md`](todo/paperless.md) — Paperless-ngx document archive evaluation and deployment plan
 
 Repository-reading and safe-change guidance for AI agents is in [`AGENTS.md`](AGENTS.md). Agents should read it before modifying infrastructure, then consult the relevant project plan and [`SECURITY.md`](SECURITY.md).
