@@ -14,8 +14,6 @@ Status values: `OPEN`, `IN PROGRESS`, and `DONE`.
 
 | Status | Finding | Location | Recommended fix |
 | --- | --- | --- | --- |
-| OPEN | Glance can access the Docker socket. | [`glance/compose.yaml:9-10`](glance/compose.yaml#L9-L10) | Remove the socket or use a restricted Docker socket proxy. Treat `:ro` as insufficient API authorization. |
-| OPEN | Minecraft router runs as root and can access the Docker socket. | [`minecraft/compose.yaml:8-10`](minecraft/compose.yaml#L8-L10) | Remove the socket if dynamic discovery is unnecessary; otherwise use a restricted proxy and run the router with the least privileges supported. |
 | OPEN | Several active services run as root or use root-equivalent UIDs. | [`monitoring/compose.yaml:5`](monitoring/compose.yaml#L5), [`streaming/compose.yaml:4`](streaming/compose.yaml#L4), [`mediarr/compose.yaml:34-35`](mediarr/compose.yaml#L34-L35), [`mediarr/compose.yaml:199`](mediarr/compose.yaml#L199) | Use dedicated unprivileged UIDs/GIDs, adjust host ownership, and make media mounts read-only unless writes are required. |
 
 ## Medium
@@ -37,7 +35,7 @@ Status values: `OPEN`, `IN PROGRESS`, and `DONE`.
 
 - [ ] Archived Tdarr configuration is securely updated before any reactivation.
 - [ ] Public port scans show only intentionally exposed services.
-- [ ] Docker socket access is removed or constrained through a socket proxy.
+- [x] Docker socket access is removed or constrained through a socket proxy.
 - [ ] Root services have been migrated to dedicated unprivileged UIDs where supported.
 - [ ] All Internet-facing applications require authentication.
 - [ ] Stable image tags and reviewed digests are used consistently.

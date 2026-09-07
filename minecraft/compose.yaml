@@ -3,11 +3,13 @@ services:
     image: itzg/mc-router:1.46.4@sha256:92766cd72262e4e13569463708af2bb87457ee5b3ba914b72ccbc8b09f8eb384
     restart: "no"
     command: "-debug -in-docker"
+    environment:
+      DOCKER_SOCKET: tcp://docker-socket-proxy:2375
     ports:
       - 25565:25565
-    user: root
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - default
+      - docker-socket-proxy
     labels:
       glance.name: Minecraft
       glance.id: mc-router
@@ -15,6 +17,11 @@ services:
       glance.icon: sh:minecraft
       glance.url: https://play.74services.net
       glance.description: Minecraft Server System
+
+networks:
+  docker-socket-proxy:
+    external: true
+
   # lspace-atm8:
   #   image: itzg/minecraft-server:2025.9.2-java17-alpine@sha256:a9c523654bfba587f114a5fc3bbfc8031d46c58979f47026fa877ee87c8fc043
   #   restart: unless-stopped
