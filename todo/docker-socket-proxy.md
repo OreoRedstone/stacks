@@ -46,16 +46,16 @@ Implemented in `glance/compose.yaml` and `glance/config/home.yml`:
 If the widget is no longer important, remove the Docker integration instead of
 granting Glance Docker metadata access.
 
-### cAdvisor — test carefully
+### cAdvisor — migrated; verify metrics
 
-In `monitoring/compose.yaml`:
+Implemented in `monitoring/compose.yaml`:
 
-1. Attach cAdvisor to the external proxy network.
-2. Change its Docker endpoint to
+1. cAdvisor attaches to the external `docker-socket-proxy` network.
+2. Its Docker endpoint is set to
    `--docker=tcp://docker-socket-proxy:2375`.
 3. Keep `/`, `/sys`, and `/var/lib/docker` read-only mounts because cAdvisor
    uses host filesystem and cgroup data as well as Docker API data.
-4. Confirm container metrics continue to arrive before removing the socket.
+4. Confirm container metrics continue to arrive after removing the socket.
 
 The cAdvisor endpoint flag is documented upstream. If the proxy does not
 provide an endpoint cAdvisor needs, keep cAdvisor's direct read-only socket

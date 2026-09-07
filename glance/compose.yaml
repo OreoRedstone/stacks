@@ -7,7 +7,6 @@ services:
       - ./assets:/app/assets
       - /etc/localtime:/etc/localtime:ro
     networks:
-      - default
       - docker-socket-proxy
     ports:
       - 10.44.0.2:80:8080

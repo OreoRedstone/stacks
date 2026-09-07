@@ -29,7 +29,7 @@ The repository currently contains direct socket mounts in:
 | --- | --- |
 | `networking/` / Traefik | Implemented. Traefik joins this external network and uses `--providers.docker.endpoint=tcp://docker-socket-proxy:2375`; the proxy retains `CONTAINERS`, `EVENTS`, `INFO`, `NETWORKS`, and `VERSION`. |
 | `glance/` | Implemented. Glance joins this external network and each Docker Containers widget uses `sock-path: http://docker-socket-proxy:2375`; the direct socket mount is removed. |
-| `monitoring/` / cAdvisor | Attach cAdvisor to this external network and set `--docker=tcp://docker-socket-proxy:2375`; keep its host filesystem mounts because those provide cgroup and filesystem metrics, independently of the Docker API. |
+| `monitoring/` / cAdvisor | Implemented. cAdvisor joins this external network and uses `--docker=tcp://docker-socket-proxy:2375`; its host filesystem mounts remain because they provide cgroup and filesystem metrics independently of the Docker API. |
 | `minecraft/` / mc-router | Verify that the image honours `DOCKER_HOST` for `-in-docker`; migrate only after testing server discovery and event handling. |
 
 Prometheus can later use Docker service discovery through this proxy for

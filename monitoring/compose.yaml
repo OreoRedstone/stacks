@@ -74,11 +74,14 @@ services:
     command:
       - "--housekeeping_interval=10s"
       - "--docker_only"
+      - "--docker=tcp://docker-socket-proxy:2375"
     volumes:
     - /:/rootfs:ro
-    - /var/run/docker.sock:/var/run/docker.sock:ro
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+      - default
+      - docker-socket-proxy
     labels:
       glance.parent: grafana
       glance.name: cAdvisor
@@ -88,4 +91,6 @@ networks:
   traefik:
     external: true
   monitoring:
+    external: true
+  docker-socket-proxy:
     external: true
