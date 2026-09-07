@@ -12,6 +12,8 @@ folder by `../dashboards.yaml`.
 - `proxmox.json` — Proxmox metrics from InfluxDB.
 - `media-applications.json` — Jellyfin native metrics and Exportarr metrics
   for Sonarr, Radarr, Lidarr, Prowlarr, and Bazarr.
+- `endpoints.json` — Blackbox Exporter HTTP reachability, status, timing, IP,
+  TLS, and certificate-expiry metrics.
 
 ## Adding a dashboard
 
