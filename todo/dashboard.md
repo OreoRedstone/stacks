@@ -20,7 +20,8 @@ The current split is:
 - `Homelab Overview` — fleet status, host summary, container count, public
   probes, and links to detailed views.
 - `Homelab Hosts` — Ansible-managed Node Exporter metrics for VPS,
-  Applications VM, and Proxmox, selected by friendly host name.
+  Applications VM, both Proxmox hosts, and future managed hosts, selected by
+  friendly host name.
 - `Docker` — cAdvisor container resource and network metrics.
 - `Proxmox` — Proxmox and guest metrics from InfluxDB.
 - `Media Applications` — Jellyfin and Exportarr service health, media
@@ -65,8 +66,8 @@ safe reconciliation and URL stability.
 - [ ] Add healthchecks and application-level alerts for services not covered
   by native metrics or Exportarr, especially Seerr, Bindery, Gluetun,
   FlareSolverr, and Deluge.
-- [ ] Add Node Exporter to future hosts through Ansible and assign each a
-  friendly Prometheus `host` label.
+- [x] Add the off-site Backup Proxmox host through Ansible and assign it the
+  friendly Prometheus `host` label `Backup Proxmox`.
 - [ ] Add backup freshness, backup size, and backup failure metrics for restic,
   Borg, and Komodo jobs.
 - [ ] Add SMART, ZFS, UPS/NUT, GPU, database, Redis, Jellyfin, and WireGuard

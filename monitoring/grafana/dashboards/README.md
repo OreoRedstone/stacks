@@ -7,7 +7,8 @@ folder by `../dashboards.yaml`.
 
 - `overview.json` — fleet-level status and links to detailed dashboards.
 - `hosts.json` — Ansible-managed Node Exporter metrics for VPS, Applications VM,
-  and Proxmox, selected with the `Host` variable.
+  the Proxmox hosts, and future managed hosts, selected with the `Host`
+  variable.
 - `docker.json` — container metrics from cAdvisor.
 - `proxmox.json` — Proxmox metrics from InfluxDB.
 - `media-applications.json` — Jellyfin native metrics and Exportarr metrics
@@ -61,8 +62,9 @@ The intended navigation is:
 
 ### Metrics and data sources
 
-- [ ] Add Node Exporter to any future hosts through Ansible and add their named
-  targets to the host dashboard.
+- [x] Add the off-site Backup Proxmox Node Exporter target through Ansible and
+  Prometheus; the host dashboard discovers its `Backup Proxmox` label
+  automatically.
 - [ ] Add backup freshness and backup size metrics for restic, Borg, or Komodo
   jobs.
 - [ ] Add SMART, ZFS, UPS/NUT, GPU, database, Redis, Jellyfin, and WireGuard
