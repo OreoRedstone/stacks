@@ -171,6 +171,37 @@ services:
       glance.description: Subtitle Management
       glance.url: https://bazarr.74services.net
 
+  arr-cleanup:
+    image: ghcr.io/oreoredstone/arr-cleanup:latest@sha256:fce6180c8179aa87474accac24539d38bab9e3f1ad16190c44e1693fda031118
+    user: "1000:1000"
+    restart: unless-stopped
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    environment:
+      RADARR_URL: http://radarr:7878
+      SONARR_URL: http://sonarr:8989
+      RADARR_API_KEY: ${RADARR_API_KEY:?required}
+      SONARR_API_KEY: ${SONARR_API_KEY:?required}
+      WEBHOOK_SECRET_RADARR: ${ARR_CLEANUP_RADARR_SECRET:?required}
+      WEBHOOK_SECRET_SONARR: ${ARR_CLEANUP_SONARR_SECRET:?required}
+      ADMIN_SECRET: ${ARR_CLEANUP_ADMIN_SECRET:?required}
+      MEDIA_ROOT: /data
+      DB_PATH: /state/arr-cleanup.sqlite3
+      CLEANUP_MODE: dry-run
+    networks:
+      - arr
+    volumes:
+      - /mnt/nas/othermedia:/data:ro
+      - /mnt/docker-data/mediarr/arr-cleanup:/state
+    depends_on:
+      - radarr
+      - sonarr
+
   seerr:
     image: ghcr.io/seerr-team/seerr:develop@sha256:b46b75a8221912a2eb65bebe4bb361bb1379a5e862d374ea9b835f8c054a84fa
     init: true
