@@ -176,6 +176,8 @@ services:
     user: "1000:1000"
     restart: unless-stopped
     read_only: true
+    ports:
+      10.44.0.2:8080:8080
     cap_drop:
       - ALL
     security_opt:
