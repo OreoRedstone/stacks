@@ -1,7 +1,7 @@
 services:
   jellyfin:
     image: jellyfin/jellyfin:10.11@sha256:aefb67e6a7ff1debdd154a78a7bbb780fd0c873d8639210a7f6a2016ad2b35db
-    user: 0:0
+    user: 1000:1000
     volumes:
       - /mnt/docker-data/streaming/jellyfin-config:/config
       - /mnt/docker-data/streaming/jellyfin-cache:/cache
@@ -59,7 +59,7 @@ services:
 
   navidrome:
     image: deluan/navidrome:latest@sha256:9012939114fbb1bb641b81cf96dec5ded15f0aafefe8d47a511d7cb919658e40
-    user: 0:0 # should be owner of volumes
+    user: 1000:1000
     networks:
       - traefik
     restart: "no"
@@ -82,7 +82,7 @@ services:
 
   kavita:
     image: jvmilazz0/kavita:latest@sha256:ca6af7a18d7124d014702983c2364e485294f808c1552e9555f2595b7cda7982
-    user: 0:0
+    user: 1000:1000
     networks:
       - traefik
     volumes:

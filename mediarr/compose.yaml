@@ -31,8 +31,8 @@ services:
     image: lscr.io/linuxserver/deluge:latest@sha256:9505c64720afa9e5f0ac1576e660dd6d1e9d4a6733b791f4821e8f496f19f41f
     restart: "no"
     environment:
-      PUID: 0
-      PGID: 0
+      PUID: 1000
+      PGID: 1000
       TZ: Europe/London
     volumes:
       - /mnt/docker-data/mediarr/deluge-config:/config
@@ -52,8 +52,8 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest@sha256:91844fa2c927ad6ede5630127183cc7868b175f6223e83e6a5da1fffea2aa782
     environment:
-      PUID: 0
-      PGID: 0
+      PUID: 1000
+      PGID: 1000
       TZ: Europe/London
     volumes:
       - /mnt/docker-data/mediarr/prowlarr-config:/config
@@ -76,8 +76,8 @@ services:
     image: lscr.io/linuxserver/sonarr:latest@sha256:4d9df314875e1249ab7d6170c2b9b3dc1d8e6383f168ceb10dc9a5ad9b324739
     restart: "no"
     environment:
-      PUID: 0
-      PGID: 0
+      PUID: 1000
+      PGID: 1000
       TZ: Europe/London
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -101,8 +101,8 @@ services:
     image: lscr.io/linuxserver/radarr:latest@sha256:95ba0801df4d9d1d79d0d9a3849f656542497dab061d91b87ad4f53a71aff3ef
     restart: "no"
     environment:
-      PUID: 0
-      PGID: 0
+      PUID: 1000
+      PGID: 1000
       TZ: Europe/London
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -125,8 +125,8 @@ services:
   lidarr:
     image: lscr.io/linuxserver/lidarr:latest@sha256:c74c32408fdf6e7926ad62641fc1a5544206ee65c33f2188bb179edb30e28f5a
     environment:
-      PUID: 0
-      PGID: 0
+      PUID: 1000
+      PGID: 1000
       TZ: Europe/London
     volumes:
       - /mnt/docker-data/mediarr/lidarr-config:/config
@@ -150,8 +150,8 @@ services:
     image: lscr.io/linuxserver/bazarr:latest@sha256:a20fb11a440d704a9d61c283aa26462aad33dc63223b173f8d8c77d33e8e9d59
     restart: "no"
     environment:
-      PUID: 0
-      PGID: 0
+      PUID: 1000
+      PGID: 1000
       TZ: Europe/London
       UMASK_SET: 022
     volumes:
@@ -203,7 +203,7 @@ services:
 
   bindery:
     image: ghcr.io/vavallee/bindery:latest@sha256:9fd4be38de18295511637930934ba713bcf81239c4e8614210f65cb4227a4c96
-    user: 0:0
+    user: 1000:1000
     networks:
       - traefik
       - arr
