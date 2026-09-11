@@ -172,7 +172,7 @@ services:
       glance.url: https://bazarr.74services.net
 
   arr-cleanup:
-    image: ghcr.io/oreoredstone/arr-cleanup:latest@sha256:197ff7858258dcdd0eb37623a6367c5584e26278fff858731b2ee560fb095e54 
+    image: ghcr.io/oreoredstone/arr-cleanup:latest@sha256:cd68317a8ca972d4db28177e4c04f4f8865d50937ac49d913e715bdcf485662b
     user: "1000:1000"
     restart: unless-stopped
     read_only: true
