@@ -12,6 +12,7 @@ services:
       - /mnt/nas/media/shows:/media/shows
       - /mnt/nas/media/Music:/media/music
       - /mnt/nas/othermedia/media:/othermedia
+      - /mnt/nas/othermedia/downloads:/data/downloads:ro
     devices:
       - /dev/dri:/dev/dri
     networks:
