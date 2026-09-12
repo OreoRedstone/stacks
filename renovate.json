@@ -9,16 +9,14 @@
     {
       "matchManagers": ["docker-compose"],
       "matchUpdateTypes": ["major"],
-      "groupName": "{{packageFileDir}} major",
-      "dependencyDashboardApproval": true
+      "groupName": "{{packageFileDir}} major"
     },
     {
       "matchManagers": ["docker-compose"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "groupName": "{{packageFileDir}} non-major",
       "automerge": true,
-      "automergeSchedule": ["at any time"],
-      "platformAutomerge": false
+      "automergeSchedule": ["at any time"]
     },
     {
       "description": "Limit Nextcloud updates to 1 major version.",
