@@ -17,7 +17,7 @@ services:
     networks:
       - traefik
       - monitoring
-    restart: "no"
+    restart: unless-stopped
     environment:
       - JELLYFIN_PublishedServerUrl=https://stream.74services.net
     labels:
@@ -39,7 +39,7 @@ services:
 
   wizarr:
     image: ghcr.io/wizarrrr/wizarr:v2026.7.1@sha256:606f9b88b0303daae11f595e424756b588d9365021c53dcb4d1369f2efc0543c
-    restart: "no"
+    restart: unless-stopped
     networks:
       - traefik
     volumes:
@@ -65,7 +65,7 @@ services:
     user: 1000:1000
     networks:
       - traefik
-    restart: "no"
+    restart: unless-stopped
     # environment:
       # Optional: put your config options customization here. Examples:
       # ND_LOGLEVEL: debug
@@ -95,7 +95,7 @@ services:
       - /mnt/docker-data/streaming/kavita-config:/kavita/config     # /kavita/config must not be changed
     environment:
       - TZ=Europe/London
-    restart: "no"
+    restart: unless-stopped
     labels:
       traefik.enable: true
       traefik.http.routers.kavita.rule: Host(`books.74services.net`)

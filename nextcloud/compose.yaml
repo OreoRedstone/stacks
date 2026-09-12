@@ -4,7 +4,7 @@ services:
   db:
     # Note: Check the recommend version here: https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html#server
     image: mariadb:11.8@sha256:24e76fcec8c003a0362d0dd53f4806e7e79458d7fdeaf47437760e19496f5a9c
-    restart: "no"
+    restart: unless-stopped
     command: --transaction-isolation=READ-COMMITTED
     volumes:
       - /mnt/docker-data/nextcloud/db:/var/lib/mysql
@@ -30,7 +30,7 @@ services:
 
   app:
     image: nextcloud:34.0-apache@sha256:368cd1c75bc4a32c2aee8a119cae31bcebff80c374782f404c440c3295726814
-    restart: "no"
+    restart: unless-stopped
     user: 1000:1000
     depends_on:
       # - redis
@@ -64,7 +64,7 @@ services:
     
   collabora:
     image: collabora/code:26.04.3.1.1@sha256:6b70f91f0b6e9c76f75f162f58ef0a12cf9415d78e14713d33c0318ddc4a2cc0
-    restart: "no"
+    restart: unless-stopped
     networks:
       - traefik
       - default

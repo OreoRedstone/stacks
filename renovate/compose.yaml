@@ -3,7 +3,7 @@ services:
     # Keep this as an exact release tag. Pin the digest after selecting the
     # version you want to run in production.
     image: renovate/renovate:44.64.0@sha256:4912c3b8d0b09e157e6e8045fa7c45c3355b13ea717b0772fdca9eaa0fc422cf
-    restart: "no"
+    restart: unless-stopped
     environment:
       RENOVATE_PLATFORM: github
       RENOVATE_REPOSITORIES: oreoredstone/stacks

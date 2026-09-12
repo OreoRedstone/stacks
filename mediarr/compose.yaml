@@ -1,7 +1,7 @@
 services:
   vpn:
     image: qmcgaw/gluetun:latest@sha256:89e3cbe22e0d6f09a18d3e86269392fd9f7f08e8991040741e577f8f127cdfe4
-    restart: "no"
+    restart: unless-stopped
     cap_add:
       - NET_ADMIN
     devices:
@@ -29,7 +29,7 @@ services:
 
   deluge:
     image: lscr.io/linuxserver/deluge:latest@sha256:9505c64720afa9e5f0ac1576e660dd6d1e9d4a6733b791f4821e8f496f19f41f
-    restart: "no"
+    restart: unless-stopped
     environment:
       PUID: 1000
       PGID: 1000
@@ -57,7 +57,7 @@ services:
       TZ: Europe/London
     volumes:
       - /mnt/docker-data/mediarr/prowlarr-config:/config
-    restart: "no"
+    restart: unless-stopped
     network_mode: 'service:vpn'
     depends_on:
       - vpn
@@ -74,7 +74,7 @@ services:
 
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest@sha256:4d9df314875e1249ab7d6170c2b9b3dc1d8e6383f168ceb10dc9a5ad9b324739
-    restart: "no"
+    restart: unless-stopped
     environment:
       PUID: 1000
       PGID: 1000
@@ -99,7 +99,7 @@ services:
 
   radarr:
     image: lscr.io/linuxserver/radarr:latest@sha256:95ba0801df4d9d1d79d0d9a3849f656542497dab061d91b87ad4f53a71aff3ef
-    restart: "no"
+    restart: unless-stopped
     environment:
       PUID: 1000
       PGID: 1000
@@ -134,7 +134,7 @@ services:
     networks:
       - arr
       - traefik
-    restart: "no"
+    restart: unless-stopped
     labels:
       traefik.enable: true
       traefik.http.routers.lidarr.rule: Host(`lidarr.74services.net`)
@@ -148,7 +148,7 @@ services:
       
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest@sha256:a20fb11a440d704a9d61c283aa26462aad33dc63223b173f8d8c77d33e8e9d59
-    restart: "no"
+    restart: unless-stopped
     environment:
       PUID: 1000
       PGID: 1000
@@ -222,7 +222,7 @@ services:
       timeout: 3s
       interval: 15s
       retries: 3
-    restart: "no"
+    restart: unless-stopped
     labels:
       traefik.enable: true
       traefik.http.routers.seerr.rule: Host(`seerr.74services.net`)
@@ -246,7 +246,7 @@ services:
       - /mnt/nas/othermedia/downloads:/downloads
     environment:
       - BINDERY_LOG_LEVEL=info
-    restart: "no"
+    restart: unless-stopped
     labels:
       traefik.enable: true
       traefik.http.routers.bindery.rule: Host(`bindery.74services.net`)
@@ -271,12 +271,12 @@ services:
       - vpn
     volumes:
       - /mnt/docker-data/mediarr/flaresolver-config:/config
-    restart: "no"
+    restart: unless-stopped
 
   exportarr-sonarr:
     image: ghcr.io/onedr0p/exportarr:v2.3.0@sha256:af535d94061cf97a52e1661945ffba78c03f9443eae7c0da1a80a5a4be56b520
     command: [sonarr]
-    restart: "no"
+    restart: unless-stopped
     environment:
       PORT: 9707
       URL: http://sonarr:8989
@@ -289,7 +289,7 @@ services:
   exportarr-radarr:
     image: ghcr.io/onedr0p/exportarr:v2.3.0@sha256:af535d94061cf97a52e1661945ffba78c03f9443eae7c0da1a80a5a4be56b520
     command: [radarr]
-    restart: "no"
+    restart: unless-stopped
     environment:
       PORT: 9707
       URL: http://radarr:7878
@@ -302,7 +302,7 @@ services:
   exportarr-lidarr:
     image: ghcr.io/onedr0p/exportarr:v2.3.0@sha256:af535d94061cf97a52e1661945ffba78c03f9443eae7c0da1a80a5a4be56b520
     command: [lidarr]
-    restart: "no"
+    restart: unless-stopped
     environment:
       PORT: 9707
       URL: http://lidarr:8686
@@ -315,7 +315,7 @@ services:
   exportarr-prowlarr:
     image: ghcr.io/onedr0p/exportarr:v2.3.0@sha256:af535d94061cf97a52e1661945ffba78c03f9443eae7c0da1a80a5a4be56b520
     command: [prowlarr]
-    restart: "no"
+    restart: unless-stopped
     environment:
       PORT: 9707
       URL: http://vpn:9696
@@ -328,7 +328,7 @@ services:
   exportarr-bazarr:
     image: ghcr.io/onedr0p/exportarr:v2.3.0@sha256:af535d94061cf97a52e1661945ffba78c03f9443eae7c0da1a80a5a4be56b520
     command: [bazarr]
-    restart: "no"
+    restart: unless-stopped
     environment:
       PORT: 9707
       URL: http://bazarr:6767
