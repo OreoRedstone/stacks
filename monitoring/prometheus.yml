@@ -31,6 +31,10 @@ scrape_configs:
           - 10.44.0.5:9100
         labels:
           host: Backup Proxmox
+      - targets:
+          - 10.44.0.6:9100
+        labels:
+          host: Immich2 VM
 
   - job_name: traefik
     static_configs:
