@@ -83,11 +83,28 @@ scrape_configs:
       module: [http_any]
     static_configs:
       - targets:
+          - https://budget.74services.net
+          - https://ha.74services.net
+          - https://photos.74services.net
+          - https://immich.74services.net
+          - https://prowlarr.74services.net
+          - https://sonarr.74services.net
+          - https://radarr.74services.net
+          - https://lidarr.74services.net
+          - https://bazarr.74services.net
+          - https://seerr.74services.net
+          - https://bindery.74services.net
           - https://monitoring.74services.net
           - https://cloud.74services.net
+          - https://collabora.74services.net
+          - https://ntfy.74services.net
+          - https://romm.74services.net
+          - https://books.74services.net
           - https://stream.74services.net
-          - https://seerr.74services.net
-          - https://photos.74services.net
+          - https://wizarr.74services.net
+          - https://music.74services.net
+          - https://vault.74services.net
+          - https://blog.74services.net
         labels:
           service_type: public-web
     relabel_configs:
