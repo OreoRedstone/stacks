@@ -139,7 +139,7 @@
         "h": 6,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 8
       },
       "id": 30,
       "links": [],
@@ -224,9 +224,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 12,
+        "h": 8,
+        "w": 24,
+        "x": 0,
         "y": 0
       },
       "id": 2,
@@ -237,7 +237,7 @@
         "colorMode": "background",
         "graphMode": "none",
         "justifyMode": "auto",
-        "orientation": "horizontal",
+          "orientation": "vertical",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -245,11 +245,11 @@
           "fields": "",
           "values": false
         },
-        "text": {
-          "titleSize": 12,
-          "valueSize": 12
-        },
-        "textMode": "auto"
+          "text": {
+            "titleSize": 12,
+            "valueSize": 12
+          },
+          "textMode": "auto"
       },
       "pluginVersion": "8.1.0",
       "repeat": null,
@@ -258,15 +258,16 @@
         {
           "exemplar": true,
           "expr": "probe_success{job=\"blackbox\",instance=~\"$target\"}",
-          "format": "time_series",
-          "interval": "$interval",
+          "format": "table",
+          "instant": true,
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
-      "title": "Status",
-      "type": "stat"
+      "title": "Endpoint Status",
+      "type": "table"
     },
     {
       "cacheTimeout": null,
@@ -324,7 +325,7 @@
         "h": 6,
         "w": 4,
         "x": 16,
-        "y": 0
+        "y": 8
       },
       "id": 20,
       "interval": null,
@@ -405,7 +406,7 @@
         "h": 6,
         "w": 4,
         "x": 20,
-        "y": 0
+        "y": 8
       },
       "id": 27,
       "interval": null,
@@ -506,7 +507,7 @@
         "h": 6,
         "w": 12,
         "x": 0,
-        "y": 6
+        "y": 14
       },
       "id": 17,
       "links": [],
@@ -584,7 +585,7 @@
         "h": 6,
         "w": 4,
         "x": 12,
-        "y": 6
+        "y": 14
       },
       "id": 23,
       "interval": null,
@@ -669,7 +670,7 @@
         "h": 6,
         "w": 4,
         "x": 16,
-        "y": 6
+        "y": 14
       },
       "id": 24,
       "interval": null,
@@ -750,7 +751,7 @@
         "h": 6,
         "w": 4,
         "x": 20,
-        "y": 6
+        "y": 14
       },
       "id": 28,
       "interval": null,
@@ -846,7 +847,7 @@
         "h": 6,
         "w": 12,
         "x": 0,
-        "y": 12
+        "y": 20
       },
       "id": 25,
       "links": [],
@@ -935,7 +936,7 @@
         "h": 6,
         "w": 4,
         "x": 12,
-        "y": 12
+        "y": 20
       },
       "id": 19,
       "interval": null,
@@ -1032,7 +1033,7 @@
         "h": 6,
         "w": 4,
         "x": 16,
-        "y": 12
+        "y": 20
       },
       "id": 18,
       "interval": null,
@@ -1118,7 +1119,7 @@
         "h": 6,
         "w": 4,
         "x": 20,
-        "y": 12
+        "y": 20
       },
       "id": 29,
       "interval": null,
