@@ -10,9 +10,9 @@ services:
         protocol: udp
         mode: host
     environment:
-      - WINEDEBUG=-all
-      - INSTANCE_NAME=SpaceEngineersDedicated
-      - PUBLIC_IP: ${PUBLIC_IP:?required}
+      WINEDEBUG: -all
+      INSTANCE_NAME: SpaceEngineersDedicated
+      PUBLIC_IP: ${PUBLIC_IP:?required}
       # public ip required for healthcheck
     labels:
       glance.name: Space Engineers
