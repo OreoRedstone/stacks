@@ -1,5 +1,10 @@
 http:
   middlewares:
+    arr-forwarded-https:
+      headers:
+        customRequestHeaders:
+          X-Forwarded-Proto: https
+          X-Forwarded-Port: "443"
     auth:
       forwardAuth:
         address: "https://auth.74services.net"

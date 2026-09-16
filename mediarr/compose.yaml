@@ -22,6 +22,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.prowlarr.rule: Host(`prowlarr.74services.net`)
+      traefik.http.routers.prowlarr.middlewares: arr-forwarded-https@file
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
       glance.parent: deluge
       glance.name: Gluetun
@@ -89,6 +90,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.sonarr.rule: Host(`sonarr.74services.net`)
+      traefik.http.routers.sonarr.middlewares: arr-forwarded-https@file
       homelab.canonical-route: https://sonarr.74services.net
       glance.name: Sonarr
       glance.id: sonarr
@@ -114,6 +116,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.radarr.rule: Host(`radarr.74services.net`)
+      traefik.http.routers.radarr.middlewares: arr-forwarded-https@file
       homelab.canonical-route: https://radarr.74services.net
       glance.name: Radarr
       glance.id: radarr
@@ -138,6 +141,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.lidarr.rule: Host(`lidarr.74services.net`)
+      traefik.http.routers.lidarr.middlewares: arr-forwarded-https@file
       homelab.canonical-route: https://lidarr.74services.net
       glance.name: Lidarr
       glance.id: lidarr
@@ -163,6 +167,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.bazarr.rule: Host(`bazarr.74services.net`)
+      traefik.http.routers.bazarr.middlewares: arr-forwarded-https@file
       homelab.canonical-route: https://bazarr.74services.net
       glance.name: Bazarr
       glance.id: bazarr
