@@ -9,6 +9,10 @@ services:
       - "--providers.docker.network=traefik"
       - "--providers.docker.exposedByDefault=false"
       - "--entrypoints.web.address=:80"
+      # Nginx on the VPS terminates TLS and forwards the original request
+      # scheme to Traefik. Trust only that proxy when accepting forwarded
+      # headers so Traefik passes https through to backend applications.
+      - "--entrypoints.web.forwardedHeaders.trustedIPs=10.44.0.1/32"
       - "--entrypoints.metrics.address=:8082"
       - "--metrics.prometheus=true"
       - "--metrics.prometheus.entrypoint=metrics"
