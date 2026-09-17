@@ -1,6 +1,6 @@
 # Grafana alerting
 
-Alerting resources in this directory are provisioned into Grafana at startup.
+Alerting resources in `alerting/` are provisioned into Grafana at startup.
 Grafana-managed rules query the provisioned Prometheus datasource and send
 notifications through the `ntfy` webhook contact point.
 
@@ -25,4 +25,5 @@ applications from generating notifications. Arr routes are currently marked
 `disabled` while their HTTPS redirect behavior is being repaired.
 
 Provisioned resources are managed from Git and should not be edited in the
-Grafana UI. Change the files here and redeploy or reload Grafana provisioning.
+Grafana UI. Change the files in `alerting/` and redeploy or reload Grafana
+provisioning.

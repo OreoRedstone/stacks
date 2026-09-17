@@ -41,7 +41,7 @@ groups:
               conditions:
                 - evaluator:
                     params:
-                      - 0
+                      - 1
                     type: lt
                   operator:
                     type: and
@@ -89,7 +89,7 @@ groups:
             model:
               conditions:
                 - evaluator:
-                    params: [0]
+                    params: [1]
                     type: lt
                   operator:
                     type: and
@@ -142,8 +142,8 @@ groups:
             model:
               conditions:
                 - evaluator:
-                    params: [0]
-                    type: gt
+                    params: [10]
+                    type: lt
                   operator:
                     type: and
                   query:
@@ -189,8 +189,8 @@ groups:
             model:
               conditions:
                 - evaluator:
-                    params: [0]
-                    type: gt
+                    params: [10]
+                    type: lt
                   operator:
                     type: and
                   query:
@@ -236,7 +236,7 @@ groups:
             model:
               conditions:
                 - evaluator:
-                    params: [0]
+                    params: [90]
                     type: gt
                   operator:
                     type: and
