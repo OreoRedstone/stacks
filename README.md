@@ -153,6 +153,7 @@ Detailed project plans are stored in the [`todo/`](todo/) directory:
 
 - [`todo/renovate.md`](todo/renovate.md) — Renovate, Git hosting, and Komodo execution
 - [`todo/komodo.md`](todo/komodo.md) — Komodo monorepo change detection and stack deployment
+- [`todo/game-servers.md`](todo/game-servers.md) — Minecraft, Factorio, and Space Engineers upgrades
 - [`todo/authentication.md`](todo/authentication.md) — backend/frontend access control and identity-provider options
 - [`todo/knowledge-base.md`](todo/knowledge-base.md) — homelab knowledge organisation system options and deployment plan
 - [`todo/dashboard.md`](todo/dashboard.md) — dashboard, service portal, and monitoring overhaul options
