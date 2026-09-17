@@ -9,7 +9,8 @@ notifications through the `ntfy` webhook contact point.
 Set these as Komodo stack variables or in an ignored local `.env` file for the
 `monitoring` stack:
 
-- `NTFY_ALERT_URL` — the HTTPS ntfy topic URL used for publishing alerts.
+- `NTFY_ALERT_URL` — the HTTPS ntfy topic URL used for publishing alerts. The
+  Grafana template query parameter is added by the provisioned contact point.
 - `NTFY_ALERT_TOKEN` — an ntfy access token with publish permission for that
   topic.
 

@@ -8,7 +8,7 @@ contactPoints:
         type: webhook
         disableResolveMessage: false
         settings:
-          url: $NTFY_ALERT_URL
+          url: $NTFY_ALERT_URL?template=grafana
           httpMethod: POST
           authorization_scheme: Bearer
           authorization_credentials: $NTFY_ALERT_TOKEN
