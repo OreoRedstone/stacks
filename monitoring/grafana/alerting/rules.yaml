@@ -10,6 +10,8 @@ groups:
         title: Public endpoint down
         condition: B
         for: 5m
+        noDataState: OK
+        execErrState: Alerting
         labels:
           severity: critical
         annotations:
@@ -61,6 +63,8 @@ groups:
         title: Prometheus scrape target down
         condition: B
         for: 5m
+        noDataState: OK
+        execErrState: Alerting
         labels:
           severity: warning
         annotations:
@@ -111,6 +115,8 @@ groups:
         title: Host filesystem space low
         condition: B
         for: 15m
+        noDataState: OK
+        execErrState: Alerting
         labels:
           severity: warning
         annotations:
@@ -128,7 +134,7 @@ groups:
                 type: prometheus
                 uid: stacks-prometheus
               editorMode: code
-              expr: 100 * node_filesystem_avail_bytes{job="node",fstype!~"tmpfs|overlay",mountpoint!~"/(proc|sys|dev|run).*"} / node_filesystem_size_bytes{job="node",fstype!~"tmpfs|overlay",mountpoint!~"/(proc|sys|dev|run).*"} < 10
+              expr: 100 * node_filesystem_avail_bytes{job="node",fstype!~"tmpfs|overlay",mountpoint!~"/(proc|sys|dev|run).*"} / node_filesystem_size_bytes{job="node",fstype!~"tmpfs|overlay",mountpoint!~"/(proc|sys|dev|run).*"}
               instant: true
               refId: A
           - refId: B
@@ -157,6 +163,8 @@ groups:
         title: Host memory available low
         condition: B
         for: 10m
+        noDataState: OK
+        execErrState: Alerting
         labels:
           severity: warning
         annotations:
@@ -173,7 +181,7 @@ groups:
                 type: prometheus
                 uid: stacks-prometheus
               editorMode: code
-              expr: 100 * node_memory_MemAvailable_bytes{job="node"} / node_memory_MemTotal_bytes{job="node"} < 10
+              expr: 100 * node_memory_MemAvailable_bytes{job="node"} / node_memory_MemTotal_bytes{job="node"}
               instant: true
               refId: A
           - refId: B
@@ -202,6 +210,8 @@ groups:
         title: Host CPU usage high
         condition: B
         for: 15m
+        noDataState: OK
+        execErrState: Alerting
         labels:
           severity: warning
         annotations:
@@ -218,7 +228,7 @@ groups:
                 type: prometheus
                 uid: stacks-prometheus
               editorMode: code
-              expr: 100 * (1 - avg by (host) (rate(node_cpu_seconds_total{job="node",mode="idle"}[5m]))) > 90
+              expr: 100 * (1 - avg by (host) (rate(node_cpu_seconds_total{job="node",mode="idle"}[5m])))
               instant: true
               refId: A
           - refId: B
@@ -247,6 +257,8 @@ groups:
         title: Traefik elevated 5xx rate
         condition: B
         for: 10m
+        noDataState: OK
+        execErrState: Alerting
         labels:
           severity: warning
         annotations:
@@ -292,6 +304,8 @@ groups:
         title: TLS certificate expiring soon
         condition: B
         for: 1h
+        noDataState: OK
+        execErrState: Alerting
         labels:
           severity: warning
         annotations:
@@ -309,7 +323,7 @@ groups:
                 type: prometheus
                 uid: stacks-prometheus
               editorMode: code
-              expr: probe_ssl_earliest_cert_expiry{job="blackbox",alerting="enabled"} - time() < 14 * 24 * 3600
+              expr: probe_ssl_earliest_cert_expiry{job="blackbox",alerting="enabled"} - time()
               instant: true
               refId: A
           - refId: B
@@ -317,8 +331,8 @@ groups:
             model:
               conditions:
                 - evaluator:
-                    params: [0]
-                    type: gt
+                    params: [1209600]
+                    type: lt
                   operator:
                     type: and
                   query:

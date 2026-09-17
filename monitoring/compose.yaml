@@ -13,6 +13,7 @@ services:
       INFLUXDB_GRAFANA_TOKEN: ${INFLUXDB_GRAFANA_TOKEN:?required}
       NTFY_ALERT_URL: ${NTFY_ALERT_URL:?required}
       NTFY_ALERT_TOKEN: ${NTFY_ALERT_TOKEN:?required}
+      GF_SERVER_ROOT_URL: https://monitoring.74services.net
     networks:
       - traefik
       - default
