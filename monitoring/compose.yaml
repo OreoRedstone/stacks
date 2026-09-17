@@ -7,9 +7,12 @@ services:
       - /mnt/docker-data/monitoring/grafana-data:/var/lib/grafana
       - ./grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml:ro
       - ./grafana/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
+      - ./grafana/alerting:/etc/grafana/provisioning/alerting:ro
       - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
     environment:
       INFLUXDB_GRAFANA_TOKEN: ${INFLUXDB_GRAFANA_TOKEN:?required}
+      NTFY_ALERT_URL: ${NTFY_ALERT_URL:?required}
+      NTFY_ALERT_TOKEN: ${NTFY_ALERT_TOKEN:?required}
     networks:
       - traefik
       - default

@@ -87,11 +87,6 @@ scrape_configs:
           - https://ha.74services.net
           - https://photos.74services.net
           - https://immich.74services.net
-          - https://prowlarr.74services.net
-          - https://sonarr.74services.net
-          - https://radarr.74services.net
-          - https://lidarr.74services.net
-          - https://bazarr.74services.net
           - https://seerr.74services.net
           - https://bindery.74services.net
           - https://monitoring.74services.net
@@ -107,6 +102,18 @@ scrape_configs:
           - https://blog.74services.net
         labels:
           service_type: public-web
+          alerting: enabled
+      # Arr routes are deliberately excluded until their HTTPS redirect is
+      # fixed; opt them in after a successful end-to-end probe.
+      - targets:
+          - https://prowlarr.74services.net
+          - https://sonarr.74services.net
+          - https://radarr.74services.net
+          - https://lidarr.74services.net
+          - https://bazarr.74services.net
+        labels:
+          service_type: public-web
+          alerting: disabled
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target

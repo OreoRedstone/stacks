@@ -1,0 +1,335 @@
+apiVersion: 1
+
+groups:
+  - orgId: 1
+    name: homelab-availability
+    folder: Homelab Alerts
+    interval: 1m
+    rules:
+      - uid: blackbox-endpoint-down
+        title: Public endpoint down
+        condition: B
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: '{{ $labels.instance }} is unreachable'
+          description: 'Blackbox has failed to reach this endpoint for at least five minutes.'
+          runbook_url: https://monitoring.74services.net/d/homelab-endpoints/endpoints
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: stacks-prometheus
+            model:
+              datasource:
+                type: prometheus
+                uid: stacks-prometheus
+              editorMode: code
+              expr: probe_success{job="blackbox",alerting="enabled"}
+              instant: true
+              refId: A
+          - refId: B
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: -100
+            model:
+              conditions:
+                - evaluator:
+                    params:
+                      - 0
+                    type: lt
+                  operator:
+                    type: and
+                  query:
+                    params:
+                      - A
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+              datasource:
+                type: __expr__
+                uid: -100
+              expression: A
+              refId: B
+              type: threshold
+
+      - uid: prometheus-target-down
+        title: Prometheus scrape target down
+        condition: B
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: '{{ $labels.job }} target {{ $labels.instance }} is down'
+          description: 'Prometheus has failed to scrape this target for at least five minutes.'
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: stacks-prometheus
+            model:
+              datasource:
+                type: prometheus
+                uid: stacks-prometheus
+              editorMode: code
+              expr: up{job!="blackbox"}
+              instant: true
+              refId: A
+          - refId: B
+            datasourceUid: -100
+            model:
+              conditions:
+                - evaluator:
+                    params: [0]
+                    type: lt
+                  operator:
+                    type: and
+                  query:
+                    params: [A]
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+              datasource:
+                type: __expr__
+                uid: -100
+              expression: A
+              refId: B
+              type: threshold
+
+  - orgId: 1
+    name: homelab-resources
+    folder: Homelab Alerts
+    interval: 1m
+    rules:
+      - uid: node-filesystem-low
+        title: Host filesystem space low
+        condition: B
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: '{{ $labels.host }} {{ $labels.mountpoint }} has less than 10% free space'
+          description: 'Review disk usage before services become read-only or fail.'
+          runbook_url: https://monitoring.74services.net/d/homelab-hosts/homelab-hosts
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 900
+              to: 0
+            datasourceUid: stacks-prometheus
+            model:
+              datasource:
+                type: prometheus
+                uid: stacks-prometheus
+              editorMode: code
+              expr: 100 * node_filesystem_avail_bytes{job="node",fstype!~"tmpfs|overlay",mountpoint!~"/(proc|sys|dev|run).*"} / node_filesystem_size_bytes{job="node",fstype!~"tmpfs|overlay",mountpoint!~"/(proc|sys|dev|run).*"} < 10
+              instant: true
+              refId: A
+          - refId: B
+            datasourceUid: -100
+            model:
+              conditions:
+                - evaluator:
+                    params: [0]
+                    type: gt
+                  operator:
+                    type: and
+                  query:
+                    params: [A]
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+              datasource:
+                type: __expr__
+                uid: -100
+              expression: A
+              refId: B
+              type: threshold
+
+      - uid: node-memory-low
+        title: Host memory available low
+        condition: B
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: '{{ $labels.host }} has less than 10% memory available'
+          description: 'Check memory pressure and the largest resident processes.'
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: stacks-prometheus
+            model:
+              datasource:
+                type: prometheus
+                uid: stacks-prometheus
+              editorMode: code
+              expr: 100 * node_memory_MemAvailable_bytes{job="node"} / node_memory_MemTotal_bytes{job="node"} < 10
+              instant: true
+              refId: A
+          - refId: B
+            datasourceUid: -100
+            model:
+              conditions:
+                - evaluator:
+                    params: [0]
+                    type: gt
+                  operator:
+                    type: and
+                  query:
+                    params: [A]
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+              datasource:
+                type: __expr__
+                uid: -100
+              expression: A
+              refId: B
+              type: threshold
+
+      - uid: node-cpu-high
+        title: Host CPU usage high
+        condition: B
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: '{{ $labels.host }} CPU usage is above 90%'
+          description: 'Investigate the busiest processes and active workloads.'
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 900
+              to: 0
+            datasourceUid: stacks-prometheus
+            model:
+              datasource:
+                type: prometheus
+                uid: stacks-prometheus
+              editorMode: code
+              expr: 100 * (1 - avg by (host) (rate(node_cpu_seconds_total{job="node",mode="idle"}[5m]))) > 90
+              instant: true
+              refId: A
+          - refId: B
+            datasourceUid: -100
+            model:
+              conditions:
+                - evaluator:
+                    params: [0]
+                    type: gt
+                  operator:
+                    type: and
+                  query:
+                    params: [A]
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+              datasource:
+                type: __expr__
+                uid: -100
+              expression: A
+              refId: B
+              type: threshold
+
+      - uid: traefik-5xx-rate
+        title: Traefik elevated 5xx rate
+        condition: B
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: 'Traefik is returning elevated 5xx responses'
+          description: 'The proxy has returned more than 0.1 server errors per second for ten minutes.'
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: stacks-prometheus
+            model:
+              datasource:
+                type: prometheus
+                uid: stacks-prometheus
+              editorMode: code
+              expr: sum(rate(traefik_service_requests_total{code=~"5.."}[5m]))
+              instant: true
+              refId: A
+          - refId: B
+            datasourceUid: -100
+            model:
+              conditions:
+                - evaluator:
+                    params: [0.1]
+                    type: gt
+                  operator:
+                    type: and
+                  query:
+                    params: [A]
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+              datasource:
+                type: __expr__
+                uid: -100
+              expression: A
+              refId: B
+              type: threshold
+
+      - uid: tls-certificate-expiring
+        title: TLS certificate expiring soon
+        condition: B
+        for: 1h
+        labels:
+          severity: warning
+        annotations:
+          summary: '{{ $labels.instance }} TLS certificate expires within 14 days'
+          description: 'Renew the certificate before the public route becomes unavailable.'
+          runbook_url: https://monitoring.74services.net/d/homelab-endpoints/endpoints
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 3600
+              to: 0
+            datasourceUid: stacks-prometheus
+            model:
+              datasource:
+                type: prometheus
+                uid: stacks-prometheus
+              editorMode: code
+              expr: probe_ssl_earliest_cert_expiry{job="blackbox",alerting="enabled"} - time() < 14 * 24 * 3600
+              instant: true
+              refId: A
+          - refId: B
+            datasourceUid: -100
+            model:
+              conditions:
+                - evaluator:
+                    params: [0]
+                    type: gt
+                  operator:
+                    type: and
+                  query:
+                    params: [A]
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+              datasource:
+                type: __expr__
+                uid: -100
+              expression: A
+              refId: B
+              type: threshold

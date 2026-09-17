@@ -1,0 +1,16 @@
+apiVersion: 1
+
+contactPoints:
+  - orgId: 1
+    name: ntfy
+    receivers:
+      - uid: ntfy
+        type: webhook
+        disableResolveMessage: false
+        settings:
+          url: $NTFY_ALERT_URL
+          httpMethod: POST
+          authorizationScheme: Bearer
+          authorizationCredentials: $NTFY_ALERT_TOKEN
+          title: '{{ template "default.title" . }}'
+          message: '{{ template "default.message" . }}'

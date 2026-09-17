@@ -79,10 +79,11 @@ safe reconciliation and URL stability.
 
 ### Alerting and operations
 
-- [ ] Provision alert rules from Git for target loss, disk pressure, memory
-  pressure, high CPU, Traefik 5xx responses, certificate expiry, and stale
-  backups.
-- [ ] Route alerts through ntfy with severity-aware notification policies.
+- [x] Provision alert rules from Git for target loss, disk pressure, memory
+  pressure, Traefik 5xx responses, and certificate expiry. Backup freshness
+  remains pending until backup metrics exist.
+- [x] Route alerts through ntfy with severity-aware notification labels and
+  notification policies.
 - [ ] Link alerts to the relevant dashboard and an actionable runbook.
 - [ ] Document recovery for Grafana, Prometheus, InfluxDB, and persistent data.
 - [ ] Test dashboard provisioning after Grafana upgrades and keep UIDs stable.

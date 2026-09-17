@@ -16,6 +16,10 @@ folder by `../dashboards.yaml`.
 - `endpoints.json` — Blackbox Exporter HTTP reachability, status, timing, IP,
   TLS, and certificate-expiry metrics.
 
+Grafana alerting resources are provisioned separately from
+`../alerting/`. They include endpoint, scrape-target, host-resource, Traefik,
+and certificate alerts and route through ntfy.
+
 ## Adding a dashboard
 
 1. Export a classic dashboard JSON compatible with Grafana 12.
@@ -78,10 +82,11 @@ The intended navigation is:
 
 ### Alerts and operations
 
-- [ ] Provision alert rules from Git for target loss, disk pressure, memory
-  pressure, high CPU, elevated Traefik 5xx responses, certificate expiry, and
-  stale backups.
-- [ ] Route alerts through ntfy with severity-aware notification policies.
+- [x] Provision alert rules from Git for target loss, disk pressure, memory
+  pressure, elevated Traefik 5xx responses, and certificate expiry. Backup
+  freshness remains pending until backup metrics exist.
+- [x] Route alerts through ntfy with severity-aware notification labels and
+  notification policies.
 - [ ] Add alert links to the relevant dashboard and runbook.
 - [ ] Document recovery steps for Grafana, Prometheus, InfluxDB, and their
   persistent data.
