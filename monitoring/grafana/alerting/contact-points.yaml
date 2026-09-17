@@ -10,7 +10,7 @@ contactPoints:
         settings:
           url: $NTFY_ALERT_URL
           httpMethod: POST
-          authorizationScheme: Bearer
-          authorizationCredentials: $NTFY_ALERT_TOKEN
+          authorization_scheme: Bearer
+          authorization_credentials: $NTFY_ALERT_TOKEN
           title: '{{ template "default.title" . }}'
           message: '{{ template "default.message" . }}'
