@@ -10,7 +10,8 @@ Docker Compose definitions and service configuration for a self-hosted homelab. 
 | `factorio` | Factorio server and server configuration |
 | `glance` | Glance dashboard |
 | `home-assistant` | Home Assistant |
-| `immich` | Immich photo server, machine learning, Redis, and PostgreSQL |
+| `immich` | Primary Immich photo server, machine learning, Redis, and PostgreSQL |
+| `immich2` | Secondary Immich stack for a friend on the backup host |
 | `mediarr` | Deluge, Prowlarr, Sonarr, Radarr, Lidarr, Bazarr, Seerr, Bindery, and FlareSolverr |
 | `minecraft` | Minecraft router and multiple servers, including ATM10 and JJK worlds |
 | `monitoring` | Grafana, Prometheus, InfluxDB, and cAdvisor |
@@ -151,6 +152,7 @@ Check the service logs after updates and make sure persistent data and backups a
 Detailed project plans are stored in the [`todo/`](todo/) directory:
 
 - [`todo/renovate.md`](todo/renovate.md) — Renovate, Git hosting, and Komodo execution
+- [`todo/komodo.md`](todo/komodo.md) — Komodo monorepo change detection and stack deployment
 - [`todo/authentication.md`](todo/authentication.md) — backend/frontend access control and identity-provider options
 - [`todo/knowledge-base.md`](todo/knowledge-base.md) — homelab knowledge organisation system options and deployment plan
 - [`todo/dashboard.md`](todo/dashboard.md) — dashboard, service portal, and monitoring overhaul options

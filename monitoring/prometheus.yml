@@ -83,7 +83,6 @@ scrape_configs:
       module: [http_any]
     static_configs:
       - targets:
-          - https://budget.74services.net
           - https://ha.74services.net
           - https://photos.74services.net
           - https://immich.74services.net
@@ -106,6 +105,7 @@ scrape_configs:
       # Arr routes are deliberately excluded until their HTTPS redirect is
       # fixed; opt them in after a successful end-to-end probe.
       - targets:
+          - https://budget.74services.net
           - https://prowlarr.74services.net
           - https://sonarr.74services.net
           - https://radarr.74services.net
