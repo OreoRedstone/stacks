@@ -209,6 +209,26 @@ services:
       - radarr
       - sonarr
 
+  cleanuparr:
+    image: ghcr.io/cleanuparr/cleanuparr:2.10.6@sha256:8136c3beda7aa217012657e0ee31f0473ff4ae7e54a156730ff04523987fa815
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/London
+      PORT: 11011
+    ports:
+      - 10.44.0.2:11011:11011
+    volumes:
+      - /mnt/docker-data/mediarr/cleanuparr-config:/config
+      - /mnt/nas/othermedia:/data
+    networks:
+      - arr
+    depends_on:
+      - vpn
+      - radarr
+      - sonarr
+
   seerr:
     image: ghcr.io/seerr-team/seerr:develop@sha256:11073d42c8d2c76291de91725cab40bc5eb433110183009df2e3642686fabbce
     init: true
