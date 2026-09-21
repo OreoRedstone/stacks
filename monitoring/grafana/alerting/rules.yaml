@@ -168,7 +168,7 @@ groups:
         labels:
           severity: warning
         annotations:
-          summary: '{{ $labels.host }} has less than 10% memory available'
+          summary: '{{ $labels.host }} has less than 5% memory available'
           description: 'Check memory pressure and the largest resident processes.'
         data:
           - refId: A
@@ -189,7 +189,7 @@ groups:
             model:
               conditions:
                 - evaluator:
-                    params: [10]
+                    params: [5]
                     type: lt
                   operator:
                     type: and
@@ -215,7 +215,7 @@ groups:
         labels:
           severity: warning
         annotations:
-          summary: '{{ $labels.host }} CPU usage is above 95%'
+          summary: '{{ $labels.host }} CPU usage is above 90%'
           description: 'Investigate the busiest processes and active workloads.'
         data:
           - refId: A
@@ -236,7 +236,7 @@ groups:
             model:
               conditions:
                 - evaluator:
-                    params: [95]
+                    params: [90]
                     type: gt
                   operator:
                     type: and
