@@ -215,7 +215,7 @@ groups:
         labels:
           severity: warning
         annotations:
-          summary: '{{ $labels.host }} CPU usage is above 90%'
+          summary: '{{ $labels.host }} CPU usage is above 95%'
           description: 'Investigate the busiest processes and active workloads.'
         data:
           - refId: A
@@ -236,7 +236,7 @@ groups:
             model:
               conditions:
                 - evaluator:
-                    params: [90]
+                    params: [95]
                     type: gt
                   operator:
                     type: and
