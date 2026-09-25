@@ -1,6 +1,6 @@
 services:
   site:
-    image: ghcr.io/insignificant74/wik_74site:latest
+    image: ghcr.io/insignificant74/wik_74site:main
     restart: unless-stopped
     networks:
       - traefik
