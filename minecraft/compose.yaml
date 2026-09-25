@@ -1,6 +1,6 @@
 services:
   router:
-    image: itzg/mc-router:1.46.4@sha256:92766cd72262e4e13569463708af2bb87457ee5b3ba914b72ccbc8b09f8eb384
+    image: itzg/mc-router:1.47.1@sha256:177433dd91507339924d60205a19ae9a289afd0e69dbad54e1a55d497f7523f8
     restart: unless-stopped
     command: "-debug -in-docker"
     environment:
@@ -98,7 +98,7 @@ services:
   #     glance.name: Create
   #     glance.category: Gaming
   vanilla:
-    image: itzg/minecraft-server:2026.8.2-java25-alpine@sha256:4be1a83075ce4edb5821704b1eea91d3cee610c4dd879fb1d7bb09db8a6e7745
+    image: itzg/minecraft-server:2026.9.2-java25-alpine@sha256:979f57f2d947cf617bb5f2ede47d05891965b0ad20612e8ab4a6f54016028623
     restart: unless-stopped
     environment:
       EULA: "TRUE"
@@ -117,7 +117,7 @@ services:
       glance.name: Vanilla MC
       glance.category: Gaming
   deceased-craft:
-      image: itzg/minecraft-server:2026.8.2-java21-alpine@sha256:725243f4c274bb7fc3f2b9eb9326bbcc6bf3fef86a126c831d0ae1296e1b49b9
+      image: itzg/minecraft-server:2026.9.2-java21-alpine@sha256:0c49df2298f6297ff93208896a5fd077962aaaeb05c7612b72441ac04d1f6f4d
       restart: unless-stopped
       environment:
         EULA: "TRUE"
