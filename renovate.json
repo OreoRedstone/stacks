@@ -27,6 +27,14 @@
       "matchFileNames": ["nextcloud/compose.yaml"],
       "matchPackageNames": ["mariadb"],
       "allowedVersions": ">=11.8 <11.9"
+    },
+    {
+      "description": "Ignore the unpinned Wiksite image.",
+      "matchManagers": ["docker-compose"],
+      "matchFileNames": ["wiksite/compose.yaml"],
+      "matchPackageNames": ["ghcr.io/insignificant74/wik_74site"],
+      "matchUpdateTypes": ["pinDigest"],
+      "enabled": false
     }
   ]
 }
