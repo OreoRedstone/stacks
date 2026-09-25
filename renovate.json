@@ -27,12 +27,6 @@
       "matchFileNames": ["nextcloud/compose.yaml"],
       "matchPackageNames": ["mariadb"],
       "allowedVersions": ">=11.8 <11.9"
-    },
-    {
-      "description": "Auto-update wiksite on push.",
-      "matchFileNames": ["wiksite/**"],
-      "automergeSchedule": ["at any time"],
-      "automerge": true
     }
   ]
 }
