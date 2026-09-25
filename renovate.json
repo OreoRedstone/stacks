@@ -24,6 +24,13 @@
       "maxMajorIncrement": 1
     },
     {
+      "description": "Keep Nextcloud MariaDB within its supported version ranges.",
+      "matchManagers": ["docker-compose"],
+      "matchFileNames": ["nextcloud/compose.yaml"],
+      "matchPackageNames": ["mariadb"],
+      "allowedVersions": ">=11.8 <11.9"
+    },
+    {
       "description": "Auto-update wiksite on push.",
       "matchFileNames": ["wiksite/**"],
       "automergeSchedule": ["at any time"],
