@@ -13,7 +13,7 @@
     },
     {
       "matchManagers": ["docker-compose"],
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchUpdateTypes": ["pin", "digest"],
       "groupName": "{{packageFileDir}} non-major",
       "automerge": true,
       "automergeSchedule": ["at any time"]
