@@ -29,7 +29,7 @@ services:
       glance.description: Data Collection and Visualisation
 
   prometheus:
-    image: prom/prometheus:v3.14.0@sha256:5ce7540c3c00ef4ab0c9d2c995c6a5b9c421f44b4a115d97a2c7af3b1c21cbb0
+    image: prom/prometheus:v3.15.0@sha256:efd719c99d83b060d9daefdcf00360461adf279f45ef5391f8d111892118753e
     restart: unless-stopped
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -56,7 +56,7 @@ services:
       glance.category: Management
 
   influxdb:
-    image: influxdb:2.9@sha256:270145207873eb426e15a211063532fc6f966f4ffb6edf4114ffac83ac4696eb
+    image: influxdb:2.9@sha256:05d6fb735bc22449c401094d42846123a24e3325d3a6e092242a45bfd68fff21
     restart: unless-stopped
     ports:
       - 10.44.0.2:8086:8086
@@ -75,7 +75,7 @@ services:
       glance.category: Management
       
   cadvisor:
-    image: ghcr.io/google/cadvisor:v0.60.5@sha256:763aecf1c32c2be8a1a75f9abfc2fc461005c9dbbaa39cb356b354aac1296dbe
+    image: ghcr.io/google/cadvisor:v0.60.6@sha256:b8e7d1093144fd088f425ff003d75a4aa405de075db78dae3bc563730b1bd07a
     restart: unless-stopped
     command:
       - "--housekeeping_interval=10s"
