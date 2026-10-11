@@ -38,6 +38,12 @@
       "type": "dashboards",
       "url": "/d/IfgdXjtnk/proxmox",
       "includeVars": true
+    },
+    {
+      "title": "Proxmox Storage",
+      "type": "dashboards",
+      "url": "/d/proxmox-storage/proxmox-storage",
+      "includeVars": true
     }
   ],
   "templating": {

@@ -27,3 +27,17 @@ applications from generating notifications. Arr routes are currently marked
 Provisioned resources are managed from Git and should not be edited in the
 Grafana UI. Change the files in `alerting/` and redeploy or reload Grafana
 provisioning.
+
+## Proxmox thin-pool alerts
+
+Proxmox's built-in `pvestatd` sends storage metrics to the InfluxDB
+`proxmox` bucket. Grafana reads the `system` measurement where
+`object=storages` and `host=local-lvm`; `used` and `total` are byte values.
+The warning and critical alerts fire above 75% and 85% of data capacity. A
+separate alert fires when no `local-lvm` sample arrives for five minutes, so
+an interrupted Proxmox-to-InfluxDB path does not silently disable the capacity
+alerts.
+
+These metrics describe thin-pool data allocation. They do not include LVM
+thin-pool metadata usage; add a host-side `lvs` metric if metadata-specific
+alerting is needed.

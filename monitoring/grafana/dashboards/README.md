@@ -11,6 +11,8 @@ folder by `../dashboards.yaml`.
   variable.
 - `docker.json` — container metrics from cAdvisor.
 - `proxmox.json` — Proxmox metrics from InfluxDB.
+- `proxmox-storage.json` — local-lvm capacity from Proxmox storage metrics in
+  InfluxDB.
 - `media-applications.json` — Jellyfin native metrics and Exportarr metrics
   for Sonarr, Radarr, Lidarr, Prowlarr, and Bazarr.
 - `endpoints.json` — Blackbox Exporter HTTP reachability, status, timing, IP,

@@ -347,3 +347,142 @@ groups:
               expression: A
               refId: B
               type: threshold
+
+  - orgId: 1
+    name: proxmox-storage
+    folder: Homelab Alerts
+    interval: 1m
+    rules:
+      - uid: proxmox-thinpool-warning
+        title: Proxmox local-lvm thin pool usage high
+        condition: B
+        for: 5m
+        noDataState: OK
+        execErrState: Alerting
+        labels:
+          severity: warning
+        annotations:
+          summary: '{{ $labels.nodename }} local-lvm thin pool is at {{ printf "%.1f" $values.A.Value }}%'
+          description: 'Thin-pool data usage is at least 75%. Review Proxmox storage growth and reclaim unused guest blocks with discard.'
+          runbook_url: https://monitoring.74services.net/d/proxmox-storage/proxmox-storage
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: stacks-influxdb
+            model:
+              datasource:
+                type: influxdb
+                uid: stacks-influxdb
+              query: >-
+                from(bucket: "proxmox")
+                  |> range(start: -5m)
+                  |> filter(fn: (r) => r._measurement == "system" and r.object == "storages" and r.host == "local-lvm" and (r._field == "used" or r._field == "total"))
+                  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
+                  |> map(fn: (r) => ({r with _value: float(v: r.used) / float(v: r.total) * 100.0}))
+                  |> keep(columns: ["_time", "_value", "host", "nodename"])
+                  |> last()
+              refId: A
+          - refId: B
+            datasourceUid: -100
+            model:
+              conditions:
+                - evaluator:
+                    params: [75]
+                    type: gt
+                  operator:
+                    type: and
+                  query:
+                    params: [A]
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+              datasource:
+                type: __expr__
+                uid: -100
+              expression: A
+              refId: B
+              type: threshold
+
+      - uid: proxmox-thinpool-critical
+        title: Proxmox local-lvm thin pool usage critical
+        condition: B
+        for: 5m
+        noDataState: OK
+        execErrState: Alerting
+        labels:
+          severity: critical
+        annotations:
+          summary: '{{ $labels.nodename }} local-lvm thin pool is at {{ printf "%.1f" $values.A.Value }}%'
+          description: 'Thin-pool data usage is at least 85%. Take action promptly; a full pool can stall guest I/O.'
+          runbook_url: https://monitoring.74services.net/d/proxmox-storage/proxmox-storage
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: stacks-influxdb
+            model:
+              datasource:
+                type: influxdb
+                uid: stacks-influxdb
+              query: >-
+                from(bucket: "proxmox")
+                  |> range(start: -5m)
+                  |> filter(fn: (r) => r._measurement == "system" and r.object == "storages" and r.host == "local-lvm" and (r._field == "used" or r._field == "total"))
+                  |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
+                  |> map(fn: (r) => ({r with _value: float(v: r.used) / float(v: r.total) * 100.0}))
+                  |> keep(columns: ["_time", "_value", "host", "nodename"])
+                  |> last()
+              refId: A
+          - refId: B
+            datasourceUid: -100
+            model:
+              conditions:
+                - evaluator:
+                    params: [85]
+                    type: gt
+                  operator:
+                    type: and
+                  query:
+                    params: [A]
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+              datasource:
+                type: __expr__
+                uid: -100
+              expression: A
+              refId: B
+              type: threshold
+
+      - uid: proxmox-storage-metrics-stale
+        title: Proxmox storage metrics missing
+        condition: A
+        noDataState: Alerting
+        execErrState: Alerting
+        labels:
+          severity: warning
+        annotations:
+          summary: 'Proxmox local-lvm storage metrics are missing'
+          description: 'No local-lvm storage sample has reached InfluxDB in five minutes. Check pvestatd and the Proxmox-to-InfluxDB metrics connection.'
+          runbook_url: https://monitoring.74services.net/d/proxmox-storage/proxmox-storage
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: stacks-influxdb
+            model:
+              datasource:
+                type: influxdb
+                uid: stacks-influxdb
+              query: >-
+                from(bucket: "proxmox")
+                  |> range(start: -5m)
+                  |> filter(fn: (r) => r._measurement == "system" and r.object == "storages" and r.host == "local-lvm" and r._field == "used")
+                  |> last()
+              refId: A
