@@ -95,8 +95,9 @@ treated as the canonical inventory.
 
 Proxmox VE sends its built-in metrics to the InfluxDB `proxmox` bucket. The
 `system` measurement's `object=storages` records include `used` and `total`
-for `local-lvm`; Grafana uses these for a storage dashboard and 75% warning
-and 85% critical alerts. A separate alert fires if those storage samples stop
+for `local-lvm`; Grafana uses these for a storage dashboard and 90% warning
+and 95% critical alerts. Alert notifications include the current usage
+percentage. A separate alert fires if those storage samples stop
 arriving for five minutes. The built-in storage metrics report thin-pool data
 usage, not thin-pool metadata usage.
 

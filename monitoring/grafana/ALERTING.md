@@ -33,10 +33,11 @@ provisioning.
 Proxmox's built-in `pvestatd` sends storage metrics to the InfluxDB
 `proxmox` bucket. Grafana reads the `system` measurement where
 `object=storages` and `host=local-lvm`; `used` and `total` are byte values.
-The warning and critical alerts fire above 75% and 85% of data capacity. A
-separate alert fires when no `local-lvm` sample arrives for five minutes, so
-an interrupted Proxmox-to-InfluxDB path does not silently disable the capacity
-alerts.
+The warning and critical alerts fire above 90% and 95% of data capacity,
+respectively. Their notification summaries and descriptions include the
+current usage percentage. A separate alert fires when no `local-lvm` sample
+arrives for five minutes, so an interrupted Proxmox-to-InfluxDB path does not
+silently disable the capacity alerts.
 
 These metrics describe thin-pool data allocation. They do not include LVM
 thin-pool metadata usage; add a host-side `lvs` metric if metadata-specific
