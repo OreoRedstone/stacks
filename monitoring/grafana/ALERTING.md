@@ -39,6 +39,14 @@ current usage percentage. A separate alert fires when no `local-lvm` sample
 arrives for five minutes, so an interrupted Proxmox-to-InfluxDB path does not
 silently disable the capacity alerts.
 
+All three rules use an explicit Grafana Last reduction before evaluating
+their conditions. Flux `last()` still returns a time series and does not
+replace this reduction. Capacity notifications read the reduced value `R`.
+The missing-metrics rule checks for a negative used-byte value (which valid
+storage samples cannot have), so valid samples keep it Normal; an empty
+five-minute query triggers its `noDataState: Alerting` behavior. Query failures
+use the Error state to distinguish evaluation failures from missing samples.
+
 These metrics describe thin-pool data allocation. They do not include LVM
 thin-pool metadata usage; add a host-side `lvs` metric if metadata-specific
 alerting is needed.

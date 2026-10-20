@@ -362,8 +362,8 @@ groups:
         labels:
           severity: warning
         annotations:
-          summary: '{{ $labels.nodename }} local-lvm thin pool is at {{ printf "%.1f" $values.A.Value }}%'
-          description: 'Thin-pool data usage is {{ printf "%.1f" $values.A.Value }}%, above the 90% warning threshold. Review Proxmox storage growth and reclaim unused guest blocks with discard.'
+          summary: '{{ $labels.nodename }} local-lvm thin pool is at {{ printf "%.1f" $values.R.Value }}%'
+          description: 'Thin-pool data usage is {{ printf "%.1f" $values.R.Value }}%, above the 90% warning threshold. Review Proxmox storage growth and reclaim unused guest blocks with discard.'
           runbook_url: https://monitoring.74services.net/d/proxmox-storage/proxmox-storage
         data:
           - refId: A
@@ -384,6 +384,16 @@ groups:
                   |> keep(columns: ["_time", "_value", "host", "nodename"])
                   |> last()
               refId: A
+          - refId: R
+            datasourceUid: -100
+            model:
+              datasource:
+                type: __expr__
+                uid: -100
+              expression: A
+              reducer: last
+              refId: R
+              type: reduce
           - refId: B
             datasourceUid: -100
             model:
@@ -394,7 +404,7 @@ groups:
                   operator:
                     type: and
                   query:
-                    params: [A]
+                    params: [R]
                   reducer:
                     params: []
                     type: last
@@ -402,7 +412,7 @@ groups:
               datasource:
                 type: __expr__
                 uid: -100
-              expression: A
+              expression: R
               refId: B
               type: threshold
 
@@ -415,8 +425,8 @@ groups:
         labels:
           severity: critical
         annotations:
-          summary: '{{ $labels.nodename }} local-lvm thin pool is at {{ printf "%.1f" $values.A.Value }}%'
-          description: 'Thin-pool data usage is {{ printf "%.1f" $values.A.Value }}%, above the 95% critical threshold. Take action promptly; a full pool can stall guest I/O.'
+          summary: '{{ $labels.nodename }} local-lvm thin pool is at {{ printf "%.1f" $values.R.Value }}%'
+          description: 'Thin-pool data usage is {{ printf "%.1f" $values.R.Value }}%, above the 95% critical threshold. Take action promptly; a full pool can stall guest I/O.'
           runbook_url: https://monitoring.74services.net/d/proxmox-storage/proxmox-storage
         data:
           - refId: A
@@ -437,6 +447,16 @@ groups:
                   |> keep(columns: ["_time", "_value", "host", "nodename"])
                   |> last()
               refId: A
+          - refId: R
+            datasourceUid: -100
+            model:
+              datasource:
+                type: __expr__
+                uid: -100
+              expression: A
+              reducer: last
+              refId: R
+              type: reduce
           - refId: B
             datasourceUid: -100
             model:
@@ -447,7 +467,7 @@ groups:
                   operator:
                     type: and
                   query:
-                    params: [A]
+                    params: [R]
                   reducer:
                     params: []
                     type: last
@@ -455,15 +475,15 @@ groups:
               datasource:
                 type: __expr__
                 uid: -100
-              expression: A
+              expression: R
               refId: B
               type: threshold
 
       - uid: proxmox-storage-metrics-stale
         title: Proxmox storage metrics missing
-        condition: A
+        condition: B
         noDataState: Alerting
-        execErrState: Alerting
+        execErrState: Error
         labels:
           severity: warning
         annotations:
@@ -486,3 +506,22 @@ groups:
                   |> filter(fn: (r) => r._measurement == "system" and r.object == "storages" and r.host == "local-lvm" and r._field == "used")
                   |> last()
               refId: A
+          - refId: R
+            datasourceUid: -100
+            model:
+              datasource:
+                type: __expr__
+                uid: -100
+              expression: A
+              reducer: last
+              refId: R
+              type: reduce
+          - refId: B
+            datasourceUid: -100
+            model:
+              datasource:
+                type: __expr__
+                uid: -100
+              expression: $R < 0
+              refId: B
+              type: math
