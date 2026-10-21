@@ -29,7 +29,7 @@ services:
       glance.description: Data Collection and Visualisation
 
   prometheus:
-    image: prom/prometheus:v3.15.0@sha256:efd719c99d83b060d9daefdcf00360461adf279f45ef5391f8d111892118753e
+    image: prom/prometheus:v3.15.1@sha256:fa3302279710be2f21a8301ec17a8b4f2301fd829bd113839b3b6b02b6f191a2
     restart: unless-stopped
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -42,7 +42,7 @@ services:
       glance.category: Management
 
   blackbox-exporter:
-    image: prom/blackbox-exporter:v0.28.0@sha256:e753ff9f3fc458d02cca5eddab5a77e1c175eee484a8925ac7d524f04366c2fc
+    image: prom/blackbox-exporter:v0.29.1@sha256:ea1c7aa3ef3f307cd03e85f34abb604478ccb90b567fc690da0cd9776da76b13
     restart: unless-stopped
     cap_drop:
       - ALL
@@ -56,7 +56,7 @@ services:
       glance.category: Management
 
   influxdb:
-    image: influxdb:2.9@sha256:05d6fb735bc22449c401094d42846123a24e3325d3a6e092242a45bfd68fff21
+    image: influxdb:2.9@sha256:8f106f7ff12659c5e367b99f8a0e7d14cbd4e6ca1f2914094062db6a9813d9c2
     restart: unless-stopped
     ports:
       - 10.44.0.2:8086:8086
