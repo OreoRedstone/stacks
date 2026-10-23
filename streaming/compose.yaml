@@ -1,6 +1,6 @@
 services:
   jellyfin:
-    image: jellyfin/jellyfin:12.2@sha256:357724bf0ae27a672c7cbaa899db2d9abeb13dbd8657ccce750258a4c059d037
+    image: jellyfin/jellyfin:12.3@sha256:2038fe038ab3876a80f6e7b7e0aef6607b032c7dc0c9b3ad3296d0b2eba3bbb5
     user: 1000:1000
     group_add:
       - "44"  # video
@@ -39,7 +39,7 @@ services:
       glance.description: Movies and TV
 
   wizarr:
-    image: ghcr.io/wizarrrr/wizarr:v2026.9.1@sha256:3e89f4850092d60f532406209100f5e929e06dd679bfd78c5f3559065f2854e0
+    image: ghcr.io/wizarrrr/wizarr:v2026.10.1@sha256:08f2c6de534ec7d36d39a4f55b7c5c379021ca881dc519c702aad0ddafbdc67a
     restart: unless-stopped
     networks:
       - traefik
