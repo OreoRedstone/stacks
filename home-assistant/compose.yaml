@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/home-assistant/home-assistant:2026.9@sha256:d8922685169707fd91e8b9729902d975f06157d005e422874d201e0261dda196 
+    image: ghcr.io/home-assistant/home-assistant:2026.10@sha256:23f4dfbb69ce76315dbc4de7915504f1c2dcecd7ca2648113a493a385972e133 
     volumes:
       - /mnt/docker-data/home-assistant/config:/config
       - /etc/localtime:/etc/localtime:ro
