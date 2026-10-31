@@ -137,6 +137,27 @@ services:
         glance.parent: mc-router
         glance.name: DeceasedCraft
         glance.category: Gaming
+  monifactory:
+      image: itzg/minecraft-server:2026.10.1-java21-alpine@sha256:739be7bf58c5372477f092d3a8c2c74541b9f0f43884e560d766477feecc19ae
+      restart: unless-stopped
+      environment:
+        EULA: "TRUE"
+        MOTD: Running %MODPACK_NAME% version %MODPACK_VERSION%
+        TYPE: AUTO_CURSEFORGE
+        CF_API_KEY: ${CF_API_KEY}
+        CF_SLUG: monifactory
+        CF_FILENAME_MATCHER: 0.13.8
+        INIT_MEMORY: 1G
+        MAX_MEMORY: 12G
+      volumes:
+        - /mnt/docker-data/minecraft/monifactory:/data
+        - /mnt/nas/backups/minecraft/monifactory:/backups
+      labels:
+        mc-router.host: monifactory.play.74services.net
+        homelab.canonical-route: tcp://monifactory.play.74services.net:25565
+        glance.parent: mc-router
+        glance.name: Monifactory
+        glance.category: Gaming
 
 networks:
   docker-socket-proxy:
