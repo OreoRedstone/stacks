@@ -1,6 +1,6 @@
 services:
   app:
-    image: rommapp/romm:latest@sha256:3512f2ca455782f90247271bed23116e6bc675bc74e379be2c41696e607ab11e
+    image: rommapp/romm:latest@sha256:8677fb7b81b1d3db20b849e989a1dadc2a11159e51eb34a2acdcb01102274edf
     restart: unless-stopped
     environment:
       DB_HOST: db
@@ -38,7 +38,7 @@ services:
       glance.url: https://romm.74services.net
       glance.description: ROM Management System
   db:
-    image: mariadb:latest@sha256:349b42626b076146b4fa15571fccc5293fe03ed4cfcdf7ad8bb49ba13ec77585
+    image: mariadb:latest@sha256:f4054da26e3a9dd6c8b5cc97363e544408b15c0fb369d7359c25dc04826eb6e1
     restart: unless-stopped
     environment:
       MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
