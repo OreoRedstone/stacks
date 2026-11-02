@@ -1,6 +1,6 @@
 services:
   server:
-    image: devidian/spaceengineers:winestaging@sha256:a09dbb38ab62b2c68161b27dd2ab88a59295f3f08ad7397881da0886fc877d79
+    image: devidian/spaceengineers:winestaging@sha256:ad2c5b512d1b98d3aaf050fc9e36af88ed1d8c5b7de5fc9021f01cc9c003db1b
     volumes:
       - /mnt/docker-data/space-engineers/data:/appdata/space-engineers
       - /mnt/docker-data/space-engineers/steam:/root/.steam
