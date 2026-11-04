@@ -1,6 +1,6 @@
 services:
   router:
-    image: itzg/mc-router:1.51.0@sha256:0ffc4f772863b6b09a5bcbe3f86538ef8723f267f27bb474169b363c47da6127
+    image: itzg/mc-router:1.54.2@sha256:1b2a7d924351b5ec9abe9e2c065ccdd3537043e008f892b5b9bdafecf1234975
     restart: unless-stopped
     command: "-debug -in-docker"
     environment:
