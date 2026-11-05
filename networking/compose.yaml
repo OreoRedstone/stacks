@@ -19,7 +19,7 @@ services:
       - "--metrics.prometheus.addrouterslabels=true"
       - "--providers.file.filename=/etc/traefik/dynamic.yaml"
     volumes:
-      - ./dynamic.yaml:/etc/traefik/dynamic.yaml
+      - ./dynamic.yaml:/etc/traefik/dynamic.yaml:ro
     networks:
       - traefik
       - docker-socket-proxy

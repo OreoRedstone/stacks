@@ -2,6 +2,35 @@
 
 Last reviewed: 2026-09-07
 
+## Public release review — 2026-11-05
+
+Publication is still blocked pending secret rotation and a full history scan.
+This review does not certify the environment as free of vulnerabilities.
+
+- Removed the archived Tdarr authentication secret from the working tree.
+  Local history was rewritten with git-filter-repo and the exact value was
+  verified absent from all reachable Git objects. GitHub has not been updated;
+  remote refs and other clones still require cleanup. Invalidate the key
+  anywhere it was used before publishing.
+  Archived Tdarr still has authentication disabled and must remain inactive.
+- Made the Prometheus and Traefik configuration mounts read-only and changed
+  Seerr logging from debug to info. Deployment verification is outstanding.
+- Added ignore patterns for local environment variants and common private-key
+  files. Ignore rules do not protect already tracked files or history.
+- Searched reachable Git blobs for PEM private-key headers; none were found.
+  This is a limited check, not a complete secret scan.
+- Docker, Gitleaks, and Trivy were unavailable locally. Compose validation,
+  comprehensive secret scanning, image vulnerability scanning, and runtime
+  access checks remain outstanding.
+- The privileged Docker socket proxy remains a critical trust boundary.
+  `POST=0` and a read-only socket mount do not guarantee that permitted GET
+  endpoints cannot disclose secrets. Review the pinned implementation against
+  the upstream [filesystem exposure report](https://github.com/Tecnativa/docker-socket-proxy/pull/183)
+  and verify endpoint restrictions before treating consumers as isolated.
+
+The findings below are the earlier review inventory; changes listed above
+are repository fixes awaiting deployment verification, not closed findings.
+
 This is a repository-level review of tracked Compose files and service
 configuration. It is not a host audit, vulnerability scan, or confirmation
 that a service is currently running. `archive/` is not deployed, but archived
