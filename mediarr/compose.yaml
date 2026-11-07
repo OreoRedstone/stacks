@@ -1,6 +1,6 @@
 services:
   vpn:
-    image: qmcgaw/gluetun:latest@sha256:4af0c804003481e100180e1f8d4d5e9c48163fedc0f88d061881b615aef9d183
+    image: qmcgaw/gluetun:latest@sha256:78c09588169ad05b9f88bc492ac8f80e6167e93da7526171863c0dfb88bf18d6
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
@@ -29,7 +29,7 @@ services:
       glance.category: Arr
 
   deluge:
-    image: lscr.io/linuxserver/deluge:latest@sha256:1dbf9663387f85bb5805fcb1418a246f877e01374bb2a6cd9e632c72fb2e1ebc
+    image: lscr.io/linuxserver/deluge:latest@sha256:3e8e2f2b5267e352ccf448e0db6c920d770f04316fbbe5fe95ed151674843d69
     restart: unless-stopped
     environment:
       PUID: 1000
@@ -51,7 +51,7 @@ services:
       glance.url: http://10.44.0.2:8112
 
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:latest@sha256:04be30163fbaf48d6aeee7b5893c9f6614ffbad6d853971df0d6dcdf01c7f104
+    image: lscr.io/linuxserver/prowlarr:latest@sha256:431d7efebcef466e56adaa40a7a2fa2b0e85159a037b8bf465eaadbf0cf5bedf
     environment:
       PUID: 1000
       PGID: 1000
@@ -74,7 +74,7 @@ services:
       homelab.canonical-route: https://prowlarr.74services.net
 
   sonarr:
-    image: lscr.io/linuxserver/sonarr:latest@sha256:386c962ee6e260e3a5656b25df2ed056bcc9b6410e197d075f9547fd14c23bca
+    image: lscr.io/linuxserver/sonarr:latest@sha256:3b8c947d7fa173f70e40047d2c8d02835fb8416aeb5ae36def57d9ad15e2f906
     restart: unless-stopped
     environment:
       PUID: 1000
@@ -100,7 +100,7 @@ services:
       glance.url: https://sonarr.74services.net
 
   radarr:
-    image: lscr.io/linuxserver/radarr:latest@sha256:084b3b2ab1d0ef930660727259546a241f2bdf67c9ed085d54bf1486a6887c9b
+    image: lscr.io/linuxserver/radarr:latest@sha256:ade5937813c6ae415b29db729386e53fea3ecf067a019849bafbe2d2a6ec02ba
     restart: unless-stopped
     environment:
       PUID: 1000
@@ -126,7 +126,7 @@ services:
       glance.url: https://radarr.74services.net
 
   lidarr:
-    image: lscr.io/linuxserver/lidarr:latest@sha256:9fddcf5c613361edfce390d4e6b7c364282e71e90a40ce7793077fed788f6e63
+    image: lscr.io/linuxserver/lidarr:latest@sha256:d5707cfe084da21a3864c7ef0edd9c0543b5e26c79c551f84dad5ef8683af8c7
     environment:
       PUID: 1000
       PGID: 1000
@@ -151,7 +151,7 @@ services:
       glance.url: https://lidarr.74services.net
       
   bazarr:
-    image: lscr.io/linuxserver/bazarr:latest@sha256:9a625883f054e722795affe5e3ca71057e6ed817ecdf99f4a99624346fcc509c
+    image: lscr.io/linuxserver/bazarr:latest@sha256:7ef0e58216900dbce30b123e0eb65f5cb30e36f126de9474acdd2022fb069c54
     restart: unless-stopped
     environment:
       PUID: 1000
@@ -197,7 +197,7 @@ services:
       - sonarr
 
   seerr:
-    image: ghcr.io/seerr-team/seerr:develop@sha256:934a510a942e1afdd52a30bf8de4298340eca92d778aa000a601e0817c5cd8ea
+    image: ghcr.io/seerr-team/seerr:develop@sha256:0a90e827c20997aedbce597d78cc5bb3b0852e9de61d73ea2cc41c70d4ae3fca
     init: true
     environment:
       LOG_LEVEL: info
@@ -227,7 +227,7 @@ services:
       glance.url: https://seerr.74services.net
 
   bindery:
-    image: ghcr.io/vavallee/bindery:latest@sha256:19f1edab36df9f9b81cb51f0d1bed32aff19c262491e7c3cc763b68b9f6b733d
+    image: ghcr.io/vavallee/bindery:latest@sha256:3d434e4be0bf561847e20b9259e25ac903a3e28cdad5e72fe5ca5b71b3136fbd
     user: 1000:1000
     networks:
       - traefik
