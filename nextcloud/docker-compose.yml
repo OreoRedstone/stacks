@@ -3,7 +3,7 @@ services:
   # https://hub.docker.com/_/mariadb
   db:
     # Note: Check the recommend version here: https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html#server
-    image: mariadb:lts
+    image: mariadb:lts@sha256:4ebbcf100a3ba320766dfa0e1af008df12261301db6ef72798c7650f70794aed
     restart: unless-stopped
     command: --transaction-isolation=READ-COMMITTED
     volumes:
@@ -17,11 +17,11 @@ services:
   # Note: Redis is an external service. You can find more information about the configuration here:
   # https://hub.docker.com/_/redis
   redis:
-    image: redis:alpine
+    image: redis:alpine@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3
     restart: unless-stopped
 
   nextcloud:
-    image: nextcloud:stable-apache
+    image: nextcloud:stable-apache@sha256:25d07d3091844c87c5f812037f5281b5d61fbb47f2c3f125274baabfe6f3ed1b
     restart: unless-stopped
     container_name: nextcloud
     user: 1000:1000
@@ -51,7 +51,7 @@ services:
       - homepage.description=Cloud File, Calendar and Notes Management
     
   collabora:
-    image: collabora/code:latest
+    image: collabora/code:latest@sha256:95f29f1c0a1778999125f53f058d968fe0afb37c95e32ebfb9f3444140faebd2
     container_name: collabora
     networks:
       - nginx-proxy
