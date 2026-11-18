@@ -1,0 +1,27 @@
+services:
+  archivebox:
+    image: archivebox/archivebox:latest
+    restart: unless-stopped
+    environment:
+      ALLOWED_HOSTS: archivebox.74services.net
+      BASE_URL: https://archivebox.74services.net
+    volumes:
+      - /mnt/docker-data/archivebox/data:/data
+      - /mnt/nas/archivebox:/data/archive
+    networks:
+      - traefik
+    labels:
+      traefik.enable: true
+      traefik.http.routers.archivebox.rule: Host(`archivebox.74services.net`)
+      traefik.http.services.archivebox.loadbalancer.server.port: 5797
+      homelab.canonical-route: https://archivebox.74services.net
+      glance.name: ArchiveBox
+      glance.id: archivebox
+      glance.category: Management
+      glance.icon: sh:archivebox
+      glance.url: https://archivebox.74services.net
+      glance.description: Web Archive
+
+networks:
+  traefik:
+    external: true
