@@ -3,7 +3,7 @@ services:
   # https://hub.docker.com/_/mariadb
   db:
     # Note: Check the recommend version here: https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html#server
-    image: mariadb:11.8@sha256:f16d7a344413e519dff518f27bdb221388f84b0d274c97c4fb5f2cb0dc1b34fa
+    image: mariadb:11.8@sha256:e1d5495f445654134f226f55a41ce0da227116f6f27f283101f405c794d841fc
     restart: unless-stopped
     command: --transaction-isolation=READ-COMMITTED
     volumes:
@@ -29,7 +29,7 @@ services:
   #     glance.category: Media
 
   app:
-    image: nextcloud:35.0-apache@sha256:89af7ee7a96ff5e9668280566209268ae6b2d02327f6ef6d56f6d68228cf9431
+    image: nextcloud:35.0-apache@sha256:8de31d1ba6d670b1e60052e8a2b4715a3cf5c05fc69baf3786f265703efe285e
     restart: unless-stopped
     user: 1000:1000
     depends_on:
@@ -63,7 +63,7 @@ services:
       glance.description: Cloud Management
     
   collabora:
-    image: collabora/code:26.04.5.2.1@sha256:c7415b963e32eb0986a562583f154d36d3d7a461e1ddfb660a95e87094328acb
+    image: collabora/code:26.04.6.2.1@sha256:a2f5d4e88addd46033d8440f7a13b82f7e6fe444bf8c6b5a3eadc789f0b5342b
     restart: unless-stopped
     networks:
       - traefik
