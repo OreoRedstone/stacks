@@ -1,6 +1,6 @@
 services:
   vpn:
-    image: qmcgaw/gluetun:latest@sha256:cbafe0945d0fe5a3c55ca64d43a85c5db270458f4c645ee65797b527f6f57a64
+    image: qmcgaw/gluetun:latest@sha256:3c43ec327d7ab2b5f1dc798b92a7640de9a1e1b74a81c9a5143adb383c03d28b
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
@@ -74,7 +74,7 @@ services:
       homelab.canonical-route: https://prowlarr.74services.net
 
   sonarr:
-    image: lscr.io/linuxserver/sonarr:latest@sha256:c7d1df25e428da6c9ace05daea0d34e59522978a3843ea1944812f855af4086c
+    image: lscr.io/linuxserver/sonarr:latest@sha256:339814bbf50599ac3b59077c252f29833d0138b59a062d0e82ce37bdc7f04f86
     restart: unless-stopped
     environment:
       PUID: 1000
@@ -197,7 +197,7 @@ services:
       - sonarr
 
   seerr:
-    image: ghcr.io/seerr-team/seerr:develop@sha256:9cc0a1e9f5c83793ddbe319bd0233d8b06971c412c407f1a30a24fa8882361ed
+    image: ghcr.io/seerr-team/seerr:develop@sha256:0dbe85708e291bbfe1fe3747ca2ba560bf0ed1f0f4d882613f2db899ebdeafe8
     init: true
     environment:
       LOG_LEVEL: info
@@ -227,7 +227,7 @@ services:
       glance.url: https://seerr.74services.net
 
   bindery:
-    image: ghcr.io/vavallee/bindery:latest@sha256:c22516f3ebe69239c09021cc232765944737dfd1c5c77fa18a2213a87d65ddb9
+    image: ghcr.io/vavallee/bindery:latest@sha256:100091a1d8247e1f5d0ea8c243b703da5398afa9caa7d3aea237ad4fa468e4d0
     user: 1000:1000
     networks:
       - traefik
