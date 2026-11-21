@@ -9,7 +9,7 @@ services:
     ports:
       - 25565:25565
   lspace-atm8:
-    image: itzg/minecraft-server:java17@sha256:d5e30b5902085dd87809048c1b39c2abd18cff425dadac3ef1b38e368a4bf191
+    image: itzg/minecraft-server:java17@sha256:6eeaf2dc61addb28a6a6568e9c4144dfb977297fcae398cde230802c2da64cd3
     environment:
       EULA: "TRUE"
       TYPE: AUTO_CURSEFORGE
