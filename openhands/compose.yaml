@@ -1,13 +1,10 @@
 services:
   app:
     # Pin to the reviewed release; Renovate can propose future updates.
-    image: ghcr.io/openhands/agent-canvas:1.6.1
+    image: ghcr.io/openhands/agent-canvas:1.43.0
     restart: unless-stopped
     environment:
       AGENT_CANVAS_DISABLE_TELEMETRY: "1"
-      # Avoid Codex ACP's full-access mode, which requests approval_policy=Never.
-      # Managed ChatGPT policies may require approval-on-request instead.
-      INITIAL_AGENT_MODE: agent
       # Set strong, unique values in the Komodo stack environment.
       LOCAL_BACKEND_API_KEY: ${LOCAL_BACKEND_API_KEY:?Set LOCAL_BACKEND_API_KEY in the stack environment}
       OH_SECRET_KEY: ${OH_SECRET_KEY:?Set OH_SECRET_KEY in the stack environment}
