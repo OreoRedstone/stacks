@@ -1,0 +1,34 @@
+services:
+  app:
+    # Pin to the reviewed release; Renovate can propose future updates.
+    image: ghcr.io/openhands/agent-canvas:1.6.1
+    restart: unless-stopped
+    environment:
+      AGENT_CANVAS_DISABLE_TELEMETRY: "1"
+      # Set strong, unique values in the Komodo stack environment.
+      LOCAL_BACKEND_API_KEY: ${LOCAL_BACKEND_API_KEY:?Set LOCAL_BACKEND_API_KEY in the stack environment}
+      OH_SECRET_KEY: ${OH_SECRET_KEY:?Set OH_SECRET_KEY in the stack environment}
+    volumes:
+      - /mnt/docker-data/openhands/data:/home/openhands/.openhands
+      # Dedicated workspace; do not mount the live stacks checkout or host data.
+      - /mnt/docker-data/openhands/projects:/projects
+    networks:
+      - traefik
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: traefik
+      traefik.http.routers.openhands.rule: Host(`openhands.74services.net`)
+      traefik.http.routers.openhands.entrypoints: web
+      traefik.http.routers.openhands.middlewares: auth@file
+      traefik.http.services.openhands.loadbalancer.server.port: "8000"
+      homelab.canonical-route: https://openhands.74services.net
+      glance.name: OpenHands
+      glance.id: openhands
+      glance.category: Management
+      glance.icon: sh:openhands
+      glance.url: https://openhands.74services.net
+      glance.description: Agent Canvas
+
+networks:
+  traefik:
+    external: true

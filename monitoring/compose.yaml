@@ -33,6 +33,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - /mnt/docker-data/monitoring/prometheus-data:/prometheus
     networks:
       - default
       - monitoring
