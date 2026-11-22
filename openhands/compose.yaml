@@ -12,23 +12,12 @@ services:
       - /mnt/docker-data/openhands/data:/home/openhands/.openhands
       # Dedicated workspace; do not mount the live stacks checkout or host data.
       - /mnt/docker-data/openhands/projects:/projects
-    networks:
-      - traefik
+    ports:
+      - 10.44.0.2:8000:8000
     labels:
-      traefik.enable: "true"
-      traefik.docker.network: traefik
-      traefik.http.routers.openhands.rule: Host(`openhands.74services.net`)
-      traefik.http.routers.openhands.entrypoints: web
-      traefik.http.routers.openhands.middlewares: auth@file
-      traefik.http.services.openhands.loadbalancer.server.port: "8000"
-      homelab.canonical-route: https://openhands.74services.net
       glance.name: OpenHands
       glance.id: openhands
       glance.category: Management
       glance.icon: sh:openhands
-      glance.url: https://openhands.74services.net
+      glance.url: http://10.44.0.2:8000/canvas
       glance.description: Agent Canvas
-
-networks:
-  traefik:
-    external: true
