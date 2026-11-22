@@ -1,7 +1,7 @@
 services:
   app:
     # Pin to the reviewed release; Renovate can propose future updates.
-    image: ghcr.io/openhands/agent-canvas:1.6.1
+    image: ghcr.io/openhands/agent-canvas:1.43.0@sha256:bcdbb3fb9610f14eda67f39fc609f162ad8c3c28697d6ff3f4adae55c15c3f1d
     restart: unless-stopped
     environment:
       AGENT_CANVAS_DISABLE_TELEMETRY: "1"
