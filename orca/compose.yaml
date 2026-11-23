@@ -1,0 +1,38 @@
+services:
+  orca:
+    image: local/orca-server:1.4.258
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ORCA_VERSION: "1.4.258"
+    init: true
+    restart: unless-stopped
+    user: "1000:1000"
+    working_dir: /projects
+    environment:
+      ORCA_PAIRING_ADDRESS: ${ORCA_PAIRING_ADDRESS:-10.44.0.2}
+    command:
+      - /opt/orca-server/bin/orca-ide
+      - serve
+      - --bind
+      - 0.0.0.0
+      - --port
+      - "6768"
+      - --pairing-address
+      - ${ORCA_PAIRING_ADDRESS:-10.44.0.2}
+      - --no-pairing
+    volumes:
+      - /mnt/docker-data/orca/home:/home/orca
+      - /mnt/docker-data/orca/projects:/projects
+    ports:
+      - ${ORCA_HOST_BIND_IP:-10.44.0.2}:6768:6768
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    labels:
+      glance.name: Orca
+      glance.id: orca
+      glance.category: Management
+      glance.description: Remote Agent Runtime
