@@ -1,6 +1,6 @@
 services:
   server:
-    image: factoriotools/factorio:stable-2.0.77@sha256:c21d798e75a8333ddca2f7029290325b3f2085841c72ab31cc64f7a916872841
+    image: factoriotools/factorio:stable-2.0.77@sha256:312341f29987b5a6b11f00ba8240192f7564936af9913384d13f7f4c535708ef
     restart: unless-stopped
     entrypoint: ["/bin/sh", "/start.sh"]
     ports:
