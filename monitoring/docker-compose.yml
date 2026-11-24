@@ -1,6 +1,6 @@
 services:
   grafana:
-    image: grafana/grafana-enterprise:latest@sha256:255cf088bf7ce26f4ce335eb48184b39dbacb7e34c81f4c16552aab433224b66
+    image: grafana/grafana-enterprise:latest@sha256:dbaedd1c24b184e4e2cb3838a6da6b0d6800df7b5c7e5314b7ebdf144f8a9f14
     container_name: grafana
     restart: always
     user: 0:0 # Temp fix for permissions in the volume
@@ -43,7 +43,7 @@ services:
       - homepage.description=Container Monitoring
 
   influxdb:
-    image: influxdb:2@sha256:e4572d094ac3272f06528ea904ce6b4cb3bb19be2db3b3b1acbd27ba5c3a73e2
+    image: influxdb:2@sha256:94e98bf5a07587c91bac4f6059aa2ddc172cd246bbd296852a30654192a38a03
     container_name: influxdb
     restart: always
     ports:
