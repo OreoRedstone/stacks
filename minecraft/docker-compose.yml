@@ -1,6 +1,6 @@
 services:
   router:
-    image: itzg/mc-router:latest@sha256:e2f002006d617b2df898c9beec963baa212c685aae1df83de5a13ebf5b5966c9
+    image: itzg/mc-router:latest@sha256:0dd5d379e0930a912a96e12e082ff7d379f8dcef874dd9b6eae7c71387279ae2
     container_name: mc-router
     # environment:
     #   MAPPING: |
@@ -9,7 +9,7 @@ services:
     ports:
       - 25565:25565
   lspace-atm8:
-    image: itzg/minecraft-server:java17@sha256:d5e30b5902085dd87809048c1b39c2abd18cff425dadac3ef1b38e368a4bf191
+    image: itzg/minecraft-server:java17@sha256:9423e4239cc249da06f1aba8ee87d5a299b6f633491b9b58236d2f1526e97727
     environment:
       EULA: "TRUE"
       TYPE: AUTO_CURSEFORGE
