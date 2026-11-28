@@ -1,6 +1,6 @@
 services:
   router:
-    image: itzg/mc-router:1.51.0@sha256:0ffc4f772863b6b09a5bcbe3f86538ef8723f267f27bb474169b363c47da6127
+    image: itzg/mc-router:1.57.1@sha256:0dd5d379e0930a912a96e12e082ff7d379f8dcef874dd9b6eae7c71387279ae2
     restart: unless-stopped
     command: "-debug -in-docker"
     environment:
@@ -98,7 +98,7 @@ services:
   #     glance.name: Create
   #     glance.category: Gaming
   vanilla:
-    image: itzg/minecraft-server:2026.10.1-java25-alpine@sha256:8428f871faa0120ed3017a237acec03b7e6dd7c037cfe1cc0622089b72eceeaa
+    image: itzg/minecraft-server:2026.11.1-java25-alpine@sha256:71fe93c80dc411c290ca4fe26ba27b13e5343b5999843204e81498181a4a178b
     restart: unless-stopped
     environment:
       EULA: "TRUE"
@@ -117,7 +117,7 @@ services:
       glance.name: Vanilla MC
       glance.category: Gaming
   deceased-craft:
-      image: itzg/minecraft-server:2026.10.1-java21-alpine@sha256:739be7bf58c5372477f092d3a8c2c74541b9f0f43884e560d766477feecc19ae
+      image: itzg/minecraft-server:2026.11.1-java21-alpine@sha256:3890f792a7f8907d3e354e9dfadbad32a50acb20c4b373b677565cc4d942d6c2
       restart: unless-stopped
       environment:
         EULA: "TRUE"
@@ -138,7 +138,7 @@ services:
         glance.name: DeceasedCraft
         glance.category: Gaming
   monifactory:
-      image: itzg/minecraft-server:2026.10.1-java21-alpine@sha256:739be7bf58c5372477f092d3a8c2c74541b9f0f43884e560d766477feecc19ae
+      image: itzg/minecraft-server:2026.11.1-java21-alpine@sha256:3890f792a7f8907d3e354e9dfadbad32a50acb20c4b373b677565cc4d942d6c2
       restart: unless-stopped
       environment:
         EULA: "TRUE"
