@@ -2,7 +2,7 @@ services:
   renovate:
     # Keep this as an exact release tag. Pin the digest after selecting the
     # version you want to run in production.
-    image: renovate/renovate:44.64.0@sha256:4912c3b8d0b09e157e6e8045fa7c45c3355b13ea717b0772fdca9eaa0fc422cf
+    image: renovate/renovate:45.3.2@sha256:d0358088501c7665688673c8932474b02517941703a16e970e8b4fcf235299cb
     restart: unless-stopped
     environment:
       RENOVATE_PLATFORM: github
